@@ -104,7 +104,7 @@ export default function ExpHomePage() {
                 Accompagnement stratégique global et CMO on demand pour définir et exécuter votre vision.
               </p>
               <Link href="/services/strategie-cmo">
-                <Button variant="link" className="text-exp-teal font-bold text-lg group-hover:text-exp-black transition-colors">
+                <Button variant="ghost" className="text-exp-teal font-bold text-lg group-hover:text-exp-black transition-colors">
                   En savoir plus →
                 </Button>
               </Link>
