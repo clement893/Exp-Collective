@@ -7,7 +7,6 @@ from pydantic import BaseModel, Field
 from app.dependencies import get_current_user
 from app.models import User
 from app.services.ai_service import AIService, AIProvider
-from app.services.documentation_service import get_documentation_service
 
 router = APIRouter(prefix="/ai", tags=["ai"])
 
@@ -133,8 +132,8 @@ async def template_chat(
     current_user: User = Depends(get_current_user),
 ):
     """
-    Chat completion with template documentation context.
-    This endpoint automatically includes template documentation in the system prompt.
+    Chat completion with enhanced system prompt.
+    This endpoint uses an enhanced system prompt for better context-aware responses.
     """
     if not AIService.is_configured():
         raise HTTPException(
@@ -143,40 +142,18 @@ async def template_chat(
         )
     
     try:
-        # Load documentation
-        doc_service = get_documentation_service()
-        documentation_context = doc_service.format_documentation_for_context(max_total_size=80000)
-        doc_summary = doc_service.get_documentation_summary()
-        
         # Build enhanced system prompt
-        base_system_prompt = request.system_prompt or """You are a helpful AI assistant specialized in helping users understand and work with the Next.js Full-Stack Template.
+        base_system_prompt = request.system_prompt or """You are a helpful AI assistant specialized in helping users with their CMS and website management.
 
-You have access to the complete template documentation. Use this information to provide accurate, helpful answers about:
-- Template features and capabilities
-- Setup and configuration
-- Architecture and design patterns
-- API endpoints and usage
-- Database schema and migrations
-- Authentication and security
-- Deployment and development workflows
-- Customization and theming
-- And any other template-related questions
-
-Always cite specific documentation when providing answers. If you're unsure about something, say so rather than guessing.
+You can help with:
+- Content management and editing
+- Website configuration and setup
+- API usage and integration
+- General web development questions
 
 Be friendly, professional, and concise. Format your responses clearly with proper markdown when appropriate."""
 
-        enhanced_system_prompt = f"""{base_system_prompt}
-
-=== TEMPLATE DOCUMENTATION ===
-
-{doc_summary}
-
-{documentation_context}
-
-=== END DOCUMENTATION ===
-
-Remember: You have access to the complete template documentation above. Use it to provide accurate, detailed answers."""
+        enhanced_system_prompt = base_system_prompt
 
         # Resolve provider
         provider = AIProvider(request.provider) if request.provider != "auto" else AIProvider.AUTO
