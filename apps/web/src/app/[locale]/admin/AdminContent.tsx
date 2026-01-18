@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { PageHeader, PageContainer, Section } from '@/components/layout';
-import { Card, Button, Badge, LoadingSkeleton, Grid } from '@/components/ui';
+import { Card, Button, Badge, LoadingSkeleton } from '@/components/ui';
 import Link from 'next/link';
 
 export default function AdminContent() {
