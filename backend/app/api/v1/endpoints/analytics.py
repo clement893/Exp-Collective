@@ -14,7 +14,6 @@ from app.models.user import User
 from app.models.project import Project
 from app.dependencies import get_current_user, get_db
 from app.core.security_audit import SecurityAuditLogger, SecurityEventType
-from app.core.tenancy_helpers import apply_tenant_scope
 from fastapi import Request
 
 router = APIRouter()
@@ -59,7 +58,6 @@ async def get_analytics_metrics(
         Project.created_at >= start_dt,
         Project.created_at <= end_dt
     )
-    projects_query = apply_tenant_scope(projects_query, Project)
     
     result = await db.execute(projects_query)
     projects = result.scalars().all()
@@ -74,7 +72,6 @@ async def get_analytics_metrics(
         Project.created_at >= prev_start_dt,
         Project.created_at < prev_end_dt
     )
-    prev_projects_query = apply_tenant_scope(prev_projects_query, Project)
     prev_result = await db.execute(prev_projects_query)
     prev_projects = prev_result.scalars().all()
     

@@ -13,7 +13,6 @@ from app.models.page import Page
 from app.models.user import User
 from app.dependencies import get_current_user, get_db, is_superadmin
 from app.core.security_audit import SecurityAuditLogger, SecurityEventType
-from app.core.tenancy_helpers import apply_tenant_scope
 from fastapi import Request
 
 router = APIRouter()
@@ -84,8 +83,6 @@ async def list_pages(
     query = select(Page)
     if status:
         query = query.where(Page.status == status)
-    # Apply tenant scoping if tenancy is enabled
-    query = apply_tenant_scope(query, Page)
     query = query.order_by(Page.created_at.desc()).offset(skip).limit(limit)
     
     result = await db.execute(query)
@@ -121,8 +118,6 @@ async def get_page(
 ):
     """Get a page by slug"""
     query = select(Page).where(Page.slug == slug)
-    # Apply tenant scoping if tenancy is enabled
-    query = apply_tenant_scope(query, Page)
     result = await db.execute(query)
     page = result.scalar_one_or_none()
     
@@ -142,7 +137,6 @@ async def create_page(
     """Create a new page"""
     # Check if slug already exists
     query = select(Page).where(Page.slug == page_data.slug)
-    query = apply_tenant_scope(query, Page)
     result = await db.execute(query)
     if result.scalar_one_or_none():
         raise HTTPException(
@@ -205,7 +199,6 @@ async def update_page(
 ):
     """Update a page"""
     query = select(Page).where(Page.slug == slug)
-    query = apply_tenant_scope(query, Page)
     result = await db.execute(query)
     page = result.scalar_one_or_none()
     
@@ -225,7 +218,6 @@ async def update_page(
     if page_data.slug is not None and page_data.slug != slug:
         # Check if new slug exists
         query = select(Page).where(Page.slug == page_data.slug)
-        query = apply_tenant_scope(query, Page)
         result = await db.execute(query)
         if result.scalar_one_or_none():
             raise HTTPException(
@@ -285,7 +277,6 @@ async def delete_page(
 ):
     """Delete a page by slug"""
     query = select(Page).where(Page.slug == slug)
-    query = apply_tenant_scope(query, Page)
     result = await db.execute(query)
     page = result.scalar_one_or_none()
     
@@ -333,7 +324,6 @@ async def delete_page_by_id(
 ):
     """Delete a page by ID"""
     query = select(Page).where(Page.id == page_id)
-    query = apply_tenant_scope(query, Page)
     result = await db.execute(query)
     page = result.scalar_one_or_none()
     

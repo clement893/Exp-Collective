@@ -13,7 +13,6 @@ from app.models.file import File as FileModel
 from app.models.user import User
 from app.dependencies import get_current_user, get_db
 from app.core.security_audit import SecurityAuditLogger, SecurityEventType
-from app.core.tenancy_helpers import apply_tenant_scope
 from app.services.s3_service import S3Service
 from fastapi import Request
 import os
@@ -62,8 +61,6 @@ async def list_media(
     if folder:
         query = query.where(FileModel.file_path.like(f"{folder}/%"))
     
-    # Apply tenant scoping if tenancy is enabled
-    query = apply_tenant_scope(query, FileModel)
     query = query.order_by(FileModel.created_at.desc()).offset(skip).limit(limit)
     
     result = await db.execute(query)

@@ -14,7 +14,6 @@ from app.models.user import User
 from app.models.project import Project
 from app.dependencies import get_current_user, get_db
 from app.core.security_audit import SecurityAuditLogger, SecurityEventType
-from app.core.tenancy_helpers import apply_tenant_scope
 from fastapi import Request
 
 router = APIRouter()
@@ -49,7 +48,6 @@ async def get_insights(
     
     # Calculate metrics from projects and activities
     projects_query = select(Project).where(Project.user_id == current_user.id)
-    projects_query = apply_tenant_scope(projects_query, Project)
     
     result = await db.execute(projects_query)
     projects = result.scalars().all()
@@ -68,7 +66,6 @@ async def get_insights(
         Project.created_at >= sixty_days_ago,
         Project.created_at < thirty_days_ago
     )
-    prev_projects_query = apply_tenant_scope(prev_projects_query, Project)
     prev_result = await db.execute(prev_projects_query)
     prev_projects = prev_result.scalars().all()
     prev_total = len(prev_projects)
@@ -91,7 +88,6 @@ async def get_insights(
             Project.created_at >= month_start,
             Project.created_at < month_end
         )
-        month_projects_query = apply_tenant_scope(month_projects_query, Project)
         month_result = await db.execute(month_projects_query)
         month_count = month_result.scalar() or 0
         
@@ -110,7 +106,6 @@ async def get_insights(
             Project.user_id == current_user.id,
             Project.created_at < month_end
         )
-        month_projects_query = apply_tenant_scope(month_projects_query, Project)
         month_result = await db.execute(month_projects_query)
         cumulative_count = month_result.scalar() or 0
         

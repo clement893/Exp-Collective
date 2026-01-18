@@ -13,7 +13,6 @@ from app.models.report import Report
 from app.models.user import User
 from app.dependencies import get_current_user, get_db
 from app.core.security_audit import SecurityAuditLogger, SecurityEventType
-from app.core.tenancy_helpers import apply_tenant_scope
 from fastapi import Request
 
 router = APIRouter()
@@ -81,8 +80,6 @@ async def list_reports(
 ):
     """List all reports for the current user"""
     query = select(Report).where(Report.user_id == current_user.id)
-    # Apply tenant scoping if tenancy is enabled
-    query = apply_tenant_scope(query, Report)
     query = query.order_by(Report.created_at.desc()).offset(skip).limit(limit)
     
     result = await db.execute(query)
@@ -115,7 +112,6 @@ async def get_report(
         Report.id == report_id,
         Report.user_id == current_user.id
     )
-    query = apply_tenant_scope(query, Report)
     
     result = await db.execute(query)
     report = result.scalar_one_or_none()
@@ -190,7 +186,6 @@ async def update_report(
         Report.id == report_id,
         Report.user_id == current_user.id
     )
-    query = apply_tenant_scope(query, Report)
     
     result = await db.execute(query)
     report = result.scalar_one_or_none()
@@ -241,7 +236,6 @@ async def delete_report(
         Report.id == report_id,
         Report.user_id == current_user.id
     )
-    query = apply_tenant_scope(query, Report)
     
     result = await db.execute(query)
     report = result.scalar_one_or_none()
@@ -282,7 +276,6 @@ async def refresh_report(
         Report.id == report_id,
         Report.user_id == current_user.id
     )
-    query = apply_tenant_scope(query, Report)
     
     result = await db.execute(query)
     report = result.scalar_one_or_none()

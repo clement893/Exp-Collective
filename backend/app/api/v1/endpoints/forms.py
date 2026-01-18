@@ -13,7 +13,6 @@ from app.models.form import Form, FormSubmission
 from app.models.user import User
 from app.dependencies import get_current_user, get_db, is_superadmin
 from app.core.security_audit import SecurityAuditLogger, SecurityEventType
-from app.core.tenancy_helpers import apply_tenant_scope
 from fastapi import Request
 
 router = APIRouter()
@@ -87,8 +86,6 @@ async def list_forms(
 ):
     """List all forms"""
     query = select(Form).order_by(Form.created_at.desc())
-    # Apply tenant scoping if tenancy is enabled
-    query = apply_tenant_scope(query, Form)
     result = await db.execute(query)
     forms = result.scalars().all()
     return [FormResponse.model_validate(form) for form in forms]
@@ -102,8 +99,6 @@ async def get_form(
 ):
     """Get a form by ID"""
     query = select(Form).where(Form.id == form_id)
-    # Apply tenant scoping if tenancy is enabled
-    query = apply_tenant_scope(query, Form)
     result = await db.execute(query)
     form = result.scalar_one_or_none()
     
@@ -168,8 +163,6 @@ async def update_form(
 ):
     """Update a form"""
     query = select(Form).where(Form.id == form_id)
-    # Apply tenant scoping if tenancy is enabled
-    query = apply_tenant_scope(query, Form)
     result = await db.execute(query)
     form = result.scalar_one_or_none()
     
@@ -228,8 +221,6 @@ async def delete_form(
 ):
     """Delete a form"""
     query = select(Form).where(Form.id == form_id)
-    # Apply tenant scoping if tenancy is enabled
-    query = apply_tenant_scope(query, Form)
     result = await db.execute(query)
     form = result.scalar_one_or_none()
     
@@ -279,8 +270,6 @@ async def create_submission(
     from fastapi import Request as FastAPIRequest
     
     query = select(Form).where(Form.id == form_id)
-    # Apply tenant scoping if tenancy is enabled
-    query = apply_tenant_scope(query, Form)
     result = await db.execute(query)
     form = result.scalar_one_or_none()
     
@@ -364,7 +353,6 @@ async def delete_submission(
     
     # Get form to check ownership
     query = select(Form).where(Form.id == submission.form_id)
-    query = apply_tenant_scope(query, Form)
     result = await db.execute(query)
     form = result.scalar_one_or_none()
     

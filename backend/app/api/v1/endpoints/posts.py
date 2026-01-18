@@ -14,7 +14,6 @@ from app.models.user import User
 from app.models.tag import Category
 from app.dependencies import get_current_user, get_db
 from app.core.security_audit import SecurityAuditLogger, SecurityEventType
-from app.core.tenancy_helpers import apply_tenant_scope
 from fastapi import Request
 
 router = APIRouter()
@@ -151,8 +150,6 @@ async def list_posts(
             Post.published_at < year_end
         )
     
-    # Apply tenant scoping if tenancy is enabled
-    query = apply_tenant_scope(query, Post)
     query = query.order_by(Post.created_at.desc()).offset(skip).limit(limit)
     
     result = await db.execute(query)
@@ -225,8 +222,6 @@ async def get_post_by_slug(
     # If not authenticated or not admin, only show published posts
     if not current_user:
         query = query.where(Post.status == 'published')
-    
-    query = apply_tenant_scope(query, Post)
     
     result = await db.execute(query)
     post = result.scalar_one_or_none()
@@ -382,7 +377,6 @@ async def update_post(
 ):
     """Update a post"""
     query = select(Post).where(Post.id == post_id)
-    query = apply_tenant_scope(query, Post)
     
     result = await db.execute(query)
     post = result.scalar_one_or_none()
@@ -500,7 +494,6 @@ async def delete_post(
 ):
     """Delete a post"""
     query = select(Post).where(Post.id == post_id)
-    query = apply_tenant_scope(query, Post)
     
     result = await db.execute(query)
     post = result.scalar_one_or_none()
