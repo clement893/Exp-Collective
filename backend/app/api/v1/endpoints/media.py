@@ -93,7 +93,6 @@ async def get_media(
         FileModel.id == media_id,
         FileModel.user_id == current_user.id
     )
-    query = apply_tenant_scope(query, FileModel)
     
     result = await db.execute(query)
     file = result.scalar_one_or_none()
@@ -235,7 +234,6 @@ async def delete_media(
         FileModel.id == media_id,
         FileModel.user_id == current_user.id
     )
-    query = apply_tenant_scope(query, FileModel)
     
     result = await db.execute(query)
     file = result.scalar_one_or_none()
