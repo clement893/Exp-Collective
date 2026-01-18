@@ -30,7 +30,6 @@ import {
   Building2,
   MessageSquare,
   GraduationCap,
-  MapPin,
 } from 'lucide-react';
 import { clsx } from 'clsx';
 
