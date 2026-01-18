@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { Metadata } from 'next';
 import { Link } from '@/i18n/routing';
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
