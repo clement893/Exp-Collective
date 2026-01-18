@@ -1,0 +1,259 @@
+/* ACCUEIL */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+isolation: isolate;
+
+position: relative;
+width: 1440px;
+height: 3507.5px;
+left: 2015px;
+top: 535px;
+
+/* UX/White */
+background: #FFFFFF;
+
+
+/* close */
+
+position: absolute;
+width: 24px;
+height: 24px;
+left: 3486px;
+top: 572px;
+
+
+
+/* Header */
+
+box-sizing: border-box;
+
+position: relative;
+width: 1480px;
+height: 568px;
+left: 3784px;
+top: 515px;
+
+border: 1px dashed #9747FF;
+border-radius: 5px;
+
+
+/* Frame 92 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 96px 72px;
+gap: 96px;
+
+position: relative;
+width: 1440px;
+height: 642px;
+
+/* UX/Grey 1 */
+background: #373737;
+
+
+/* ACCUEIL */
+
+position: relative;
+width: 1440px;
+height: 3682.5px;
+left: 1301px;
+top: 1180px;
+
+/* UX/White */
+background: #FFFFFF;
+
+
+/* NOS SERVICES */
+
+position: relative;
+width: 1440px;
+height: 2792px;
+left: 3479px;
+top: 1180px;
+
+/* UX/White */
+background: #FFFFFF;
+
+
+/* NOS RÉALISATIONS */
+
+position: relative;
+width: 1440px;
+height: 4344.5px;
+left: 5657px;
+top: 1180px;
+
+/* UX/White */
+background: #FFFFFF;
+
+
+/* NOS PARTENAIRES */
+
+position: relative;
+width: 1440px;
+height: 2454.5px;
+left: 7835px;
+top: 1180px;
+
+/* UX/White */
+background: #FFFFFF;
+
+
+/* NOS RESSOURCES */
+
+position: relative;
+width: 1440px;
+height: 4699.5px;
+left: 10013px;
+top: 1180px;
+
+/* UX/White */
+background: #FFFFFF;
+
+
+/* RESSOURCES - DÉTAILS */
+
+position: relative;
+width: 1440px;
+height: 1994.5px;
+left: 10013px;
+top: 6992px;
+
+/* UX/White */
+background: #FFFFFF;
+
+
+/* image 5 */
+
+position: absolute;
+width: 979px;
+height: 591px;
+left: 7263px;
+top: 4483px;
+
+background: url(image.png);
+
+
+/* image 6 */
+
+position: absolute;
+width: 1296px;
+height: 648px;
+left: 3479px;
+top: 4101px;
+
+background: url(image.png);
+
+
+/* image 7 */
+
+position: absolute;
+width: 1268px;
+height: 656px;
+left: 3479px;
+top: 4863px;
+
+background: url(image.png);
+
+
+/* image 8 */
+
+position: absolute;
+width: 1355px;
+height: 675px;
+left: 10055px;
+top: 5928px;
+
+background: url(image.png);
+
+
+/* Date */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+justify-content: flex-end;
+align-items: flex-start;
+padding: 12px;
+gap: 16px;
+
+position: relative;
+width: 235px;
+height: 71px;
+left: 11543px;
+top: 2566px;
+
+/* UX/Grey 4 */
+background: #D9D9D9;
+border-radius: 4px;
+
+
+/* Filtre */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 12px;
+gap: 11px;
+
+position: relative;
+width: 168px;
+height: 125px;
+left: 11543px;
+top: 2671px;
+
+/* UX/Grey 4 */
+background: #D9D9D9;
+border-radius: 4px;
+
+
+/* À PROPOS */
+
+position: relative;
+width: 1440px;
+height: 4186.5px;
+left: 12258px;
+top: 1180px;
+
+/* UX/White */
+background: #FFFFFF;
+
+
+/* CONTACT */
+
+position: relative;
+width: 1440px;
+height: 2132.5px;
+left: 14503px;
+top: 1180px;
+
+/* UX/White */
+background: #FFFFFF;
+
+
+/* Pop-Up Confirmation */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 40px;
+gap: 24px;
+
+position: relative;
+width: 553px;
+height: 224px;
+left: 2188px;
+top: 5015px;
+
+/* UX/Grey 4 */
+background: #D9D9D9;
+border-radius: 4px;

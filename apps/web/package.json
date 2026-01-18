@@ -1,7 +1,7 @@
 {
-  "name": "@modele/web",
+  "name": "@exp-collective/web",
   "version": "1.0.0",
-  "description": "Next.js 16 frontend for MODELE-NEXTJS-FULLSTACK",
+  "description": "Next.js 16 frontend for Expérience Collective",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "@axe-core/react": "^4.11.0",
-    "@modele/types": "workspace:*",
+    "@exp-collective/types": "workspace:*",
     "@sentry/nextjs": "^10.32.1",
     "@stripe/react-stripe-js": "^5.4.1",
     "@stripe/stripe-js": "^8.6.1",

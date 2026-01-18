@@ -1,18 +1,23 @@
 {
-  "name": "modele-nextjs-fullstack",
+  "name": "experience-collective",
   "version": "1.0.0",
   "private": true,
+  "description": "Site web pour Expérience Collective - Agence de marketing et stratégie",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/clement893/Exp-Collective.git"
+  },
   "scripts": {
-    "dev": "pnpm --filter @modele/web dev",
-    "build": "pnpm --filter @modele/web build",
+    "dev": "pnpm --filter @exp-collective/web dev",
+    "build": "pnpm --filter @exp-collective/web build",
     "lint": "pnpm --recursive lint",
     "type-check": "pnpm --recursive type-check",
     "test": "pnpm --recursive test",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
     "setup": "node scripts/setup.js",
-    "validate:env": "pnpm --filter @modele/web env:validate",
+    "validate:env": "pnpm --filter @exp-collective/web env:validate",
     "validate:env:backend": "cd backend && python -m app.core.config",
-    "validate:env:frontend": "pnpm --filter @modele/web env:validate",
+    "validate:env:frontend": "pnpm --filter @exp-collective/web env:validate",
     "security:scan": "bash scripts/security-scan.sh || powershell -ExecutionPolicy Bypass -File scripts/security-scan.ps1",
     "security:audit": "pnpm audit --recursive && cd backend && safety check || echo 'safety not installed, skipping Python security check'",
     "security:check": "pnpm security:scan && pnpm security:audit",
