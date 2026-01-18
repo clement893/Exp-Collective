@@ -31,8 +31,7 @@ export default function MasterclassFooter() {
     masterclass: [
       { href: '/masterclass', label: 'Le Programme' },
       { href: '/about-russ', label: 'À propos de Russ' },
-      { href: '/tournee', label: 'La Tournée' },
-      { href: '/cities', label: 'Villes & Dates' },
+      { href: '/contact', label: 'Contact' },
     ],
     resources: [
       { href: '/testimonials', label: 'Témoignages' },

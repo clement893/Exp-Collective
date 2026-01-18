@@ -36,7 +36,7 @@ export default function CTAPrimary({
     if (onClick) {
       onClick();
     } else {
-      router.push('/cities');
+      router.push('/contact');
     }
   };
 

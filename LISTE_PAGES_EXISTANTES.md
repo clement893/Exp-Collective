@@ -37,13 +37,13 @@
 - **`/cookies`** - Politique des cookies (`cookies/page.tsx`)
 - **`/faq`** - FAQ (`faq/page.tsx`)
 
-### Villes & Événements
-- **`/cities`** - Liste des villes (`cities/page.tsx`)
-- **`/cities/[city]`** - Page ville (`cities/[city]/page.tsx`)
-- **`/cities/[city]/inscription`** - Inscription ville (`cities/[city]/inscription/page.tsx`)
+### ~~Villes & Événements~~ ❌ SUPPRIMÉ
+- ~~**`/cities`** - Liste des villes~~ ❌
+- ~~**`/cities/[city]`** - Page ville~~ ❌
+- ~~**`/cities/[city]/inscription`** - Inscription ville~~ ❌
 
-### Tarification
-- **`/pricing`** - Tarification (`pricing/page.tsx`)
+### ~~Tarification~~ ❌ SUPPRIMÉ
+- ~~**`/pricing`** - Tarification~~ ❌
 
 ---
 
@@ -83,14 +83,14 @@
 
 ---
 
-## 🎯 Onboarding
+## ~~🎯 Onboarding~~ ❌ SUPPRIMÉ
 
-- **`/onboarding`** - Vue d'ensemble (`onboarding/page.tsx`)
-- **`/onboarding/welcome`** - Bienvenue (`onboarding/welcome/page.tsx`)
-- **`/onboarding/profile`** - Profil (`onboarding/profile/page.tsx`)
-- **`/onboarding/preferences`** - Préférences (`onboarding/preferences/page.tsx`)
-- **`/onboarding/team`** - Équipe (`onboarding/team/page.tsx`)
-- **`/onboarding/complete`** - Complété (`onboarding/complete/page.tsx`)
+- ~~**`/onboarding`** - Vue d'ensemble~~ ❌
+- ~~**`/onboarding/welcome`** - Bienvenue~~ ❌
+- ~~**`/onboarding/profile`** - Profil~~ ❌
+- ~~**`/onboarding/preferences`** - Préférences~~ ❌
+- ~~**`/onboarding/team`** - Équipe~~ ❌
+- ~~**`/onboarding/complete`** - Complété~~ ❌
 
 ---
 
@@ -105,34 +105,34 @@
 - **`/dashboard/cities`** - Villes (`dashboard/cities/page.tsx`)
 - **`/dashboard/become-superadmin`** - Devenir superadmin (`dashboard/become-superadmin/page.tsx`)
 
-### Réseau
-- **`/dashboard/reseau`** - Réseau (`dashboard/reseau/page.tsx`)
-- **`/dashboard/reseau/contacts`** - Contacts (`dashboard/reseau/contacts/page.tsx`)
-- **`/dashboard/reseau/contacts/[id]`** - Contact individuel (`dashboard/reseau/contacts/[id]/page.tsx`)
-- **`/dashboard/reseau/contacts/[id]/edit`** - Éditer contact (`dashboard/reseau/contacts/[id]/edit/page.tsx`)
-- **`/dashboard/reseau/entreprises`** - Entreprises (`dashboard/reseau/entreprises/page.tsx`)
-- **`/dashboard/reseau/entreprises/[id]`** - Entreprise individuelle (`dashboard/reseau/entreprises/[id]/page.tsx`)
-- **`/dashboard/reseau/temoignages`** - Témoignages (`dashboard/reseau/temoignages/page.tsx`)
+### ~~Réseau~~ ❌ SUPPRIMÉ
+- ~~**`/dashboard/reseau`** - Réseau~~ ❌
+- ~~**`/dashboard/reseau/contacts`** - Contacts~~ ❌
+- ~~**`/dashboard/reseau/contacts/[id]`** - Contact individuel~~ ❌
+- ~~**`/dashboard/reseau/contacts/[id]/edit`** - Éditer contact~~ ❌
+- ~~**`/dashboard/reseau/entreprises`** - Entreprises~~ ❌
+- ~~**`/dashboard/reseau/entreprises/[id]`** - Entreprise individuelle~~ ❌
+- ~~**`/dashboard/reseau/temoignages`** - Témoignages~~ ❌
 
 ---
 
-## 🏢 ERP
+## ~~🏢 ERP~~ ❌ SUPPRIMÉ
 
-- **`/erp/dashboard`** - Dashboard ERP (`erp/dashboard/page.tsx`)
-- **`/erp/clients`** - Clients (`erp/clients/page.tsx`)
-- **`/erp/orders`** - Commandes (`erp/orders/page.tsx`)
-- **`/erp/invoices`** - Factures (`erp/invoices/page.tsx`)
-- **`/erp/inventory`** - Inventaire (`erp/inventory/page.tsx`)
-- **`/erp/reports`** - Rapports (`erp/reports/page.tsx`)
+- ~~**`/erp/dashboard`** - Dashboard ERP~~ ❌
+- ~~**`/erp/clients`** - Clients~~ ❌
+- ~~**`/erp/orders`** - Commandes~~ ❌
+- ~~**`/erp/invoices`** - Factures~~ ❌
+- ~~**`/erp/inventory`** - Inventaire~~ ❌
+- ~~**`/erp/reports`** - Rapports~~ ❌
 
 ---
 
-## 👥 Client Portal
+## ~~👥 Client Portal~~ ❌ SUPPRIMÉ
 
-- **`/client/dashboard`** - Dashboard client (`client/dashboard/page.tsx`)
-- **`/client/projects`** - Projets (`client/projects/page.tsx`)
-- **`/client/invoices`** - Factures (`client/invoices/page.tsx`)
-- **`/client/tickets`** - Tickets support (`client/tickets/page.tsx`)
+- ~~**`/client/dashboard`** - Dashboard client~~ ❌
+- ~~**`/client/projects`** - Projets~~ ❌
+- ~~**`/client/invoices`** - Factures~~ ❌
+- ~~**`/client/tickets`** - Tickets support~~ ❌
 
 ---
 
@@ -171,11 +171,10 @@
 
 ---
 
-## 💳 Facturation & Abonnements
+## ~~💳 Facturation & Abonnements~~ ❌ SUPPRIMÉ
 
-- **`/subscriptions`** - Abonnements (`subscriptions/page.tsx`)
-- **`/subscriptions/success`** - Succès abonnement (`subscriptions/success/page.tsx`)
-- **`/stripe/testing`** - Test Stripe (`stripe/testing/page.tsx`)
+- ~~**`/subscriptions`** - Abonnements~~ ❌
+- ~~**`/subscriptions/success`** - Succès abonnement~~ ❌
 
 ---
 

@@ -51,14 +51,8 @@ export default function Header() {
             <Link href="/masterclass" className="text-muted-foreground hover:text-primary transition">
               Programme
             </Link>
-            <Link href="/cities" className="text-muted-foreground hover:text-primary transition">
-              Villes & Dates
-            </Link>
-            <Link href="/about-russ" className="text-muted-foreground hover:text-primary transition">
-              À propos
-            </Link>
-            <Link href="/pricing" className="text-muted-foreground hover:text-primary transition">
-              Tarifs
+            <Link href="/contact" className="text-muted-foreground hover:text-primary transition">
+              Contact
             </Link>
             <Link href="/testimonials" className="text-muted-foreground hover:text-primary transition">
               Témoignages
@@ -148,25 +142,11 @@ export default function Header() {
                 Programme
               </Link>
               <Link
-                href="/cities"
+                href="/contact"
                 onClick={() => setMobileMenuOpen(false)}
                 className="text-foreground hover:text-primary-600 dark:hover:text-primary-400 transition-colors px-4 py-3 min-h-[44px] flex items-center rounded-lg hover:bg-muted/50"
               >
-                Villes & Dates
-              </Link>
-              <Link
-                href="/about-russ"
-                onClick={() => setMobileMenuOpen(false)}
-                className="text-foreground hover:text-primary-600 dark:hover:text-primary-400 transition-colors px-4 py-3 min-h-[44px] flex items-center rounded-lg hover:bg-muted/50"
-              >
-                À propos
-              </Link>
-              <Link
-                href="/pricing"
-                onClick={() => setMobileMenuOpen(false)}
-                className="text-foreground hover:text-primary-600 dark:hover:text-primary-400 transition-colors px-4 py-3 min-h-[44px] flex items-center rounded-lg hover:bg-muted/50"
-              >
-                Tarifs
+                Contact
               </Link>
               <Link
                 href="/testimonials"

@@ -48,7 +48,7 @@ export function PricingSection() {
   const handleSelectPlan = useCallback(
     async (planId: number) => {
       if (!session) {
-        router.push('/auth/signin?redirect=/pricing');
+        router.push('/auth/signin?redirect=/contact');
         return;
       }
 

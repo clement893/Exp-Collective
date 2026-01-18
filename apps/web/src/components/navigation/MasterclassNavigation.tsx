@@ -170,7 +170,7 @@ export default function MasterclassNavigation({
             <div className="hidden lg:flex items-center gap-4">
               {showCTA && (
                 <Link
-                  href="/cities"
+                  href="/contact"
                   className={clsx(
                     'inline-flex items-center px-5 py-2 text-sm font-medium rounded-full',
                     'transition-colors duration-200',

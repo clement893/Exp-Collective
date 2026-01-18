@@ -33,7 +33,7 @@ export default function CityCard({ city, className }: CityCardProps) {
   const isUrgent = availabilityPercentage < 20;
 
   const handleClick = () => {
-    router.push(`/cities/${city.id}`);
+    router.push('/contact');
   };
 
   return (
@@ -105,11 +105,11 @@ export default function CityCard({ city, className }: CityCardProps) {
         <button
           onClick={(e) => {
             e.stopPropagation();
-            router.push(`/cities/${city.id}/inscription`);
+            router.push('/contact');
           }}
           className="px-4 py-2 bg-[#F58220] text-white font-bold text-sm rounded-full hover:bg-[#C4681A] transition-all duration-300 transform hover:scale-105"
         >
-          S'inscrire
+          Contactez-nous
         </button>
         <button
           onClick={handleClick}
