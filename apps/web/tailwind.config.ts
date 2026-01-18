@@ -18,6 +18,15 @@ const config: Config = {
           red: '#E74C3C', // Urgency color
           green: '#27AE60', // Success color
         },
+        // Expérience Collective brand colors
+        exp: {
+          yellow: '#FFD400',
+          black: '#1D1D1B',
+          white: '#FFFFFF',
+          gray: '#6B6B6B',
+          teal: '#4A8B9E',
+          green: '#2D5F3F',
+        },
         // Primary color palette (Bleu pétrole) - Uses CSS variables with fallbacks for theme support
         primary: {
           50: 'var(--color-primary-50, #E8F1F5)',
