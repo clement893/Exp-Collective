@@ -170,11 +170,6 @@ export function getNavigationConfig(isAdmin: boolean): NavigationConfig {
           icon: <GraduationCap className="w-5 h-5" />,
         },
         {
-          name: 'Logs',
-          href: '/admin-logs/testing',
-          icon: <FileText className="w-5 h-5" />,
-        },
-        {
           name: 'Thèmes',
           href: '/admin/themes',
           icon: <Palette className="w-5 h-5" />,
