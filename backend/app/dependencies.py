@@ -14,12 +14,6 @@ from app.models.role import Role, UserRole
 from app.api.v1.endpoints.auth import get_current_user as auth_get_current_user
 from app.services.subscription_service import SubscriptionService
 from app.services.stripe_service import StripeService
-from app.core.tenancy import (
-    TenancyConfig,
-    get_current_tenant,
-    set_current_tenant,
-    get_user_tenant_id,
-)
 
 
 def get_current_user(
@@ -175,76 +169,5 @@ def get_stripe_service(
     return StripeService(db)
 
 
-# ============================================================================
-# Tenancy Dependencies
-# ============================================================================
-
-async def get_tenant_scope(
-    current_user: Optional[User] = Depends(get_current_user),
-    db: Annotated[AsyncSession, Depends(get_db)] = None,
-) -> Optional[int]:
-    """
-    Get tenant scope for the current request.
-    
-    This dependency:
-    1. Checks if tenant is already set (from middleware/header)
-    2. If not, gets tenant from authenticated user's primary team
-    3. Sets tenant in context for query scoping
-    
-    Returns:
-        Tenant ID, or None if tenancy disabled or no tenant found
-    
-    Usage:
-        @router.get("/items")
-        async def get_items(
-            tenant_id: Optional[int] = Depends(get_tenant_scope),
-            db: AsyncSession = Depends(get_db)
-        ):
-            # tenant_id is automatically set in context
-            # Queries will be scoped to this tenant
-    """
-    # If tenancy is disabled, return None
-    if TenancyConfig.is_single_mode():
-        return None
-    
-    # Check if tenant is already set (from middleware/header)
-    tenant_id = get_current_tenant()
-    if tenant_id is not None:
-        return tenant_id
-    
-    # If user is authenticated, get their primary team
-    if current_user:
-        tenant_id = await get_user_tenant_id(current_user.id, db)
-        if tenant_id is not None:
-            set_current_tenant(tenant_id)
-            return tenant_id
-    
-    # No tenant found - this is OK for some endpoints
-    # (e.g., public endpoints, admin endpoints)
-    return None
-
-
-async def require_tenant(
-    tenant_id: Optional[int] = Depends(get_tenant_scope),
-) -> int:
-    """
-    Dependency that requires a tenant to be set.
-    
-    Raises HTTPException if no tenant is found.
-    
-    Usage:
-        @router.get("/items")
-        async def get_items(
-            tenant_id: int = Depends(require_tenant),
-            db: AsyncSession = Depends(get_db)
-        ):
-            # tenant_id is guaranteed to be set
-    """
-    if tenant_id is None:
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Tenant context required. Provide X-Tenant-ID header or authenticate with a user that has a team."
-        )
-    return tenant_id
 
 
