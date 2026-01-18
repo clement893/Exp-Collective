@@ -21,9 +21,6 @@ import {
   FileCheck, 
   Palette, 
   Cog,
-  Network,
-  Building2,
-  MessageSquare,
   GraduationCap
 } from 'lucide-react';
 
