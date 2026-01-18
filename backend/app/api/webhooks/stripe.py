@@ -17,12 +17,10 @@ from app.services.subscription_service import SubscriptionService
 from app.services.invoice_service import InvoiceService
 from app.services.email_service import EmailService
 from app.services.email_templates import EmailTemplates
-from app.services.booking_service import BookingService
 from app.utils.stripe_helpers import map_stripe_status, parse_timestamp
 from app.core.logging import logger
 from app.models import Subscription, WebhookEvent, User
 from app.models.invoice import InvoiceStatus
-from app.models.booking import Booking, BookingStatus, PaymentStatus
 
 router = APIRouter(prefix="/webhooks/stripe", tags=["webhooks"])
 
@@ -658,275 +656,33 @@ async def handle_payment_intent_succeeded(
     event_object: dict,
     db: AsyncSession,
 ):
-    """Handle payment_intent.succeeded event for bookings"""
+    """Handle payment_intent.succeeded event"""
     payment_intent_id = event_object.get("id")
     if not payment_intent_id:
         logger.warning("payment_intent.succeeded event missing payment intent ID")
         return
     
-    try:
-        metadata = event_object.get("metadata", {})
-        booking_id_str = metadata.get("booking_id")
-        booking_reference = metadata.get("booking_reference")
-        
-        if not booking_id_str and not booking_reference:
-            logger.warning(f"PaymentIntent {payment_intent_id} has no booking_id or booking_reference in metadata")
-            return
-        
-        booking_service = BookingService(db)
-        
-        # Find booking by payment_intent_id or booking_id or booking_reference
-        booking = None
-        if booking_id_str:
-            try:
-                booking_id = int(booking_id_str)
-                result = await db.execute(
-                    select(Booking).where(Booking.id == booking_id)
-                )
-                booking = result.scalar_one_or_none()
-            except (ValueError, TypeError):
-                pass
-        
-        if not booking and booking_reference:
-            booking = await booking_service.get_booking_by_reference(booking_reference)
-        
-        if not booking:
-            # Try finding by payment_intent_id
-            result = await db.execute(
-                select(Booking).where(Booking.payment_intent_id == payment_intent_id)
-            )
-            booking = result.scalar_one_or_none()
-        
-        if not booking:
-            logger.warning(f"Booking not found for PaymentIntent {payment_intent_id}")
-            return
-        
-        # Update booking status
-        booking.payment_status = PaymentStatus.PAID
-        booking.status = BookingStatus.CONFIRMED
-        booking.confirmed_at = datetime.now(timezone.utc)
-        
-        await db.commit()
-        await db.refresh(booking)
-        
-        logger.info(f"Booking {booking.id} ({booking.booking_reference}) confirmed and marked as paid")
-        
-        # Send confirmation email
-        try:
-            email_service = EmailService()
-            if email_service.is_configured():
-                # Load city_event for email details
-                from app.models.masterclass import CityEvent
-                from sqlalchemy.orm import selectinload
-                
-                result = await db.execute(
-                    select(CityEvent)
-                    .options(
-                        selectinload(CityEvent.city),
-                        selectinload(CityEvent.venue),
-                        selectinload(CityEvent.event),
-                    )
-                    .where(CityEvent.id == booking.city_event_id)
-                )
-                city_event = result.scalar_one_or_none()
-                
-                if city_event:
-                    # Format dates for email
-                    event_date = city_event.start_date.strftime("%d %B %Y")
-                    city_name = city_event.city.name_fr or city_event.city.name_en
-                    venue_name = city_event.venue.name if city_event.venue else "TBD"
-                    
-                    # Send booking confirmation email
-                    subject = f"Confirmation de réservation - {booking.booking_reference}"
-                    html_content = f"""
-                        <h2 style="color: #1a3a52; font-size: 24px; font-weight: 600; margin: 0 0 20px 0;">
-                            Confirmation de réservation
-                        </h2>
-                        <p style="color: #374151; font-size: 16px; line-height: 1.6; margin: 0 0 20px 0;">
-                            Bonjour {booking.attendee_name},
-                        </p>
-                        <p style="color: #374151; font-size: 16px; line-height: 1.6; margin: 0 0 20px 0;">
-                            Votre réservation pour la masterclass ACT avec Russ Harris a été confirmée !
-                        </p>
-                        <div style="background-color: #f0f9ff; border-left: 4px solid #1a3a52; padding: 16px; margin: 20px 0;">
-                            <p style="margin: 0 0 8px 0; color: #1a3a52; font-size: 16px; font-weight: 600;">
-                                Référence: {booking.booking_reference}
-                            </p>
-                            <p style="margin: 4px 0; color: #374151; font-size: 14px;">
-                                <strong>Ville:</strong> {city_name}
-                            </p>
-                            <p style="margin: 4px 0; color: #374151; font-size: 14px;">
-                                <strong>Date:</strong> {event_date}
-                            </p>
-                            <p style="margin: 4px 0; color: #374151; font-size: 14px;">
-                                <strong>Lieu:</strong> {venue_name}
-                            </p>
-                            <p style="margin: 4px 0; color: #374151; font-size: 14px;">
-                                <strong>Participants:</strong> {booking.quantity}
-                            </p>
-                            <p style="margin: 4px 0; color: #374151; font-size: 14px;">
-                                <strong>Total payé:</strong> {booking.total} EUR
-                            </p>
-                        </div>
-                        <p style="color: #374151; font-size: 16px; line-height: 1.6; margin: 20px 0;">
-                            Un email de rappel vous sera envoyé 30 jours avant l'événement avec toutes les informations pratiques.
-                        </p>
-                        <p style="color: #6b7280; font-size: 14px; line-height: 1.6; margin: 20px 0 0 0;">
-                            Si vous avez des questions, n'hésitez pas à nous contacter à contact@contextpsy.fr
-                        </p>
-                    """
-                    text_content = f"""
-Confirmation de réservation
-
-Bonjour {booking.attendee_name},
-
-Votre réservation pour la masterclass ACT avec Russ Harris a été confirmée !
-
-Référence: {booking.booking_reference}
-Ville: {city_name}
-Date: {event_date}
-Lieu: {venue_name}
-Participants: {booking.quantity}
-Total payé: {booking.total} EUR
-
-Un email de rappel vous sera envoyé 30 jours avant l'événement.
-
-Si vous avez des questions, contactez-nous à contact@contextpsy.fr
-
-Cordialement,
-L'équipe ContextPsy
-                    """
-                    
-                    email_service.send_email(
-                        to_email=booking.attendee_email,
-                        subject=subject,
-                        html_content=EmailTemplates.get_base_template(html_content),
-                        text_content=text_content.strip(),
-                    )
-                    logger.info(f"Booking confirmation email sent to {booking.attendee_email} for booking {booking.booking_reference}")
-            else:
-                logger.warning("Email service not configured, skipping booking confirmation email")
-        except Exception as email_error:
-            logger.error(f"Failed to send booking confirmation email: {email_error}", exc_info=True)
-            # Don't fail the webhook if email fails
-        
-    except Exception as e:
-        logger.error(f"Error handling payment_intent.succeeded event: {e}", exc_info=True)
-        raise
+    # Log successful payment intent for monitoring
+    logger.info(f"Payment intent succeeded: {payment_intent_id}")
+    
+    # For a simple CMS, we don't handle bookings
+    # This handler is kept for webhook compatibility but does not process bookings
 
 
 async def handle_payment_intent_failed(
     event_object: dict,
     db: AsyncSession,
 ):
-    """Handle payment_intent.payment_failed event for bookings"""
+    """Handle payment_intent.payment_failed event"""
     payment_intent_id = event_object.get("id")
     if not payment_intent_id:
         logger.warning("payment_intent.payment_failed event missing payment intent ID")
         return
     
-    try:
-        metadata = event_object.get("metadata", {})
-        booking_id_str = metadata.get("booking_id")
-        booking_reference = metadata.get("booking_reference")
-        
-        if not booking_id_str and not booking_reference:
-            logger.warning(f"PaymentIntent {payment_intent_id} has no booking_id or booking_reference in metadata")
-            return
-        
-        booking_service = BookingService(db)
-        
-        # Find booking
-        booking = None
-        if booking_id_str:
-            try:
-                booking_id = int(booking_id_str)
-                result = await db.execute(
-                    select(Booking).where(Booking.id == booking_id)
-                )
-                booking = result.scalar_one_or_none()
-            except (ValueError, TypeError):
-                pass
-        
-        if not booking and booking_reference:
-            booking = await booking_service.get_booking_by_reference(booking_reference)
-        
-        if not booking:
-            # Try finding by payment_intent_id
-            result = await db.execute(
-                select(Booking).where(Booking.payment_intent_id == payment_intent_id)
-            )
-            booking = result.scalar_one_or_none()
-        
-        if not booking:
-            logger.warning(f"Booking not found for PaymentIntent {payment_intent_id}")
-            return
-        
-        # Update booking status
-        booking.payment_status = PaymentStatus.FAILED
-        
-        await db.commit()
-        await db.refresh(booking)
-        
-        logger.warning(f"Booking {booking.id} ({booking.booking_reference}) payment failed")
-        
-        # Optionally send failure notification email
-        try:
-            email_service = EmailService()
-            if email_service.is_configured():
-                error_message = event_object.get("last_payment_error", {}).get("message", "Paiement échoué")
-                
-                subject = f"Échec du paiement - Réservation {booking.booking_reference}"
-                html_content = f"""
-                    <h2 style="color: #dc2626; font-size: 24px; font-weight: 600; margin: 0 0 20px 0;">
-                        Échec du paiement
-                    </h2>
-                    <p style="color: #374151; font-size: 16px; line-height: 1.6; margin: 0 0 20px 0;">
-                        Bonjour {booking.attendee_name},
-                    </p>
-                    <p style="color: #374151; font-size: 16px; line-height: 1.6; margin: 0 0 20px 0;">
-                        Le paiement de votre réservation a échoué.
-                    </p>
-                    <div style="background-color: #fef2f2; border-left: 4px solid #dc2626; padding: 16px; margin: 20px 0;">
-                        <p style="margin: 0; color: #991b1b; font-size: 14px;">
-                            <strong>Raison:</strong> {error_message}
-                        </p>
-                    </div>
-                    <p style="color: #374151; font-size: 16px; line-height: 1.6; margin: 20px 0;">
-                        Veuillez réessayer le paiement ou contacter notre équipe si le problème persiste.
-                    </p>
-                    <p style="color: #6b7280; font-size: 14px; line-height: 1.6; margin: 20px 0 0 0;">
-                        Contact: contact@contextpsy.fr
-                    </p>
-                """
-                text_content = f"""
-Échec du paiement
-
-Bonjour {booking.attendee_name},
-
-Le paiement de votre réservation a échoué.
-
-Raison: {error_message}
-
-Veuillez réessayer le paiement ou contacter notre équipe.
-
-Contact: contact@contextpsy.fr
-
-Cordialement,
-L'équipe ContextPsy
-                """
-                
-                email_service.send_email(
-                    to_email=booking.attendee_email,
-                    subject=subject,
-                    html_content=EmailTemplates.get_base_template(html_content),
-                    text_content=text_content.strip(),
-                )
-                logger.info(f"Payment failure notification sent to {booking.attendee_email}")
-        except Exception as email_error:
-            logger.error(f"Failed to send payment failure notification: {email_error}", exc_info=True)
-        
-    except Exception as e:
-        logger.error(f"Error handling payment_intent.payment_failed event: {e}", exc_info=True)
-        raise
+    # Log failed payment intent for monitoring
+    error_message = event_object.get("last_payment_error", {}).get("message", "Unknown error")
+    logger.warning(f"Payment intent failed: {payment_intent_id}, error: {error_message}")
+    
+    # For a simple CMS, we don't handle bookings
+    # This handler is kept for webhook compatibility but does not process bookings
 
