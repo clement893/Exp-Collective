@@ -5,7 +5,7 @@ import Card from '@/components/ui/Card';
 
 export const metadata: Metadata = {
   title: 'À Propos - Expérience Collective',
-  description: 'Découvrez l'histoire, la vision et l'équipe derrière Expérience Collective.',
+  description: "Découvrez l'histoire, la vision et l'équipe derrière Expérience Collective.",
 };
 
 const teamMembers = [
@@ -13,21 +13,21 @@ const teamMembers = [
     id: 1,
     name: 'Sophie Laval',
     role: 'Fondatrice & Stratège en chef',
-    bio: 'Avec plus de 15 ans d'expérience en marketing stratégique, Sophie guide les entreprises vers l'excellence.',
+    bio: "Avec plus de 15 ans d'expérience en marketing stratégique, Sophie guide les entreprises vers l'excellence.",
     linkedin: '#',
   },
   {
     id: 2,
     name: 'Marc Dubois',
     role: 'Directeur Créatif',
-    bio: 'Passionné par l'innovation et le design, Marc transforme les idées en expériences visuelles mémorables.',
+    bio: "Passionné par l'innovation et le design, Marc transforme les idées en expériences visuelles mémorables.",
     linkedin: '#',
   },
   {
     id: 3,
     name: 'Julie Chen',
     role: 'Experte en Transformation Digitale',
-    bio: 'Spécialiste de l'expérience client et des technologies émergentes, Julie pilote la transformation digitale.',
+    bio: "Spécialiste de l'expérience client et des technologies émergentes, Julie pilote la transformation digitale.",
     linkedin: '#',
   },
 ];
@@ -60,11 +60,11 @@ export default function AboutPage() {
                 </h2>
                 <p className="text-lg text-exp-gray leading-relaxed">
                   Fondée en 2018, <span className="font-bold text-exp-black">Expérience Collective</span> est née 
-                  d'une vision simple mais puissante : créer une agence où la stratégie, la créativité et les données 
+                  d&apos;une vision simple mais puissante : créer une agence où la stratégie, la créativité et les données 
                   se rencontrent pour générer un impact réel et mesurable.
                 </p>
                 <p className="text-lg text-exp-gray leading-relaxed">
-                  Depuis nos débuts, nous avons accompagné des dizaines d'entreprises dans leur transformation, 
+                  Depuis nos débuts, nous avons accompagné des dizaines d&apos;entreprises dans leur transformation, 
                   de la startup ambitieuse à la grande organisation établie. Chaque projet est une nouvelle 
                   opportunité d'apprendre, d'innover et de repousser les limites du possible.
                 </p>
@@ -135,7 +135,7 @@ export default function AboutPage() {
                   </div>
                   <h3 className="text-2xl font-bold text-exp-white">Excellence</h3>
                   <p className="text-exp-white/80">
-                    Nous visons l'excellence dans tout ce que nous faisons, avec rigueur et passion.
+                    Nous visons l&apos;excellence dans tout ce que nous faisons, avec rigueur et passion.
                   </p>
                 </div>
               </Card>
@@ -286,7 +286,7 @@ export default function AboutPage() {
           </p>
           <Link href="/exp/contact">
             <Button size="lg" className="bg-exp-black text-exp-white hover:bg-exp-black/90 font-bold px-12 py-6 text-lg">
-              Passez à l'action !
+              Passez à l&apos;action !
             </Button>
           </Link>
         </div>

@@ -13,7 +13,7 @@ const services = [
     id: 1,
     slug: 'accompagnement-strategique',
     title: 'Accompagnement stratégique global et CMO on demand',
-    description: 'Propulsez votre entreprise vers de nouveaux sommets avec notre accompagnement stratégique sur mesure. En tant que CMO on demand, nous vous offrons une expertise de haut niveau pour définir et exécuter votre vision stratégique, sans les coûts d'un poste à temps plein.',
+    description: "Propulsez votre entreprise vers de nouveaux sommets avec notre accompagnement stratégique sur mesure. En tant que CMO on demand, nous vous offrons une expertise de haut niveau pour définir et exécuter votre vision stratégique, sans les coûts d'un poste à temps plein.",
     icon: (
       <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
@@ -35,7 +35,7 @@ const services = [
     id: 3,
     slug: 'experience-client',
     title: 'Expérience client et transformation digitale',
-    description: 'Transformez votre entreprise pour l'ère numérique en plaçant vos clients au cœur de votre stratégie. Nous optimisons chaque point de contact pour créer des parcours clients mémorables et générer une fidélisation durable.',
+    description: "Transformez votre entreprise pour l'ère numérique en plaçant vos clients au cœur de votre stratégie. Nous optimisons chaque point de contact pour créer des parcours clients mémorables et générer une fidélisation durable.",
     icon: (
       <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
@@ -45,8 +45,8 @@ const services = [
   {
     id: 4,
     slug: 'mesure-performance',
-    title: 'Mesure de performance et outils d'analyse',
-    description: 'Prenez des décisions éclairées basées sur des données concrètes. Nos tableaux de bord personnalisés et nos outils d'analyse avancés vous permettent de mesurer précisément l'impact de vos actions et d'optimiser continuellement vos résultats.',
+    title: "Mesure de performance et outils d'analyse",
+    description: "Prenez des décisions éclairées basées sur des données concrètes. Nos tableaux de bord personnalisés et nos outils d'analyse avancés vous permettent de mesurer précisément l'impact de vos actions et d'optimiser continuellement vos résultats.",
     icon: (
       <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
@@ -56,8 +56,8 @@ const services = [
   {
     id: 5,
     slug: 'appels-offres',
-    title: 'Accompagnement pour la gestion des appels d'offres',
-    description: 'Maximisez vos chances de succès dans les appels d'offres avec notre accompagnement stratégique. De l'analyse des exigences à la rédaction de propositions percutantes, nous vous guidons à chaque étape pour vous démarquer de la concurrence.',
+    title: "Accompagnement pour la gestion des appels d'offres",
+    description: "Maximisez vos chances de succès dans les appels d'offres avec notre accompagnement stratégique. De l'analyse des exigences à la rédaction de propositions percutantes, nous vous guidons à chaque étape pour vous démarquer de la concurrence.",
     icon: (
       <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -144,7 +144,7 @@ export default function ServicesPage() {
             </p>
             <p className="text-xl text-exp-white/80 leading-relaxed">
               Que vous cherchiez à renforcer votre positionnement, à optimiser votre expérience client ou à mesurer 
-              l'impact de vos actions, nous sommes là pour vous accompagner à chaque étape de votre transformation.
+              l&apos;impact de vos actions, nous sommes là pour vous accompagner à chaque étape de votre transformation.
             </p>
           </div>
         </div>
@@ -169,7 +169,7 @@ export default function ServicesPage() {
                     ))}
                   </div>
                   <p className="text-lg text-exp-gray italic">
-                    "L'équipe d'Expérience Collective a transformé notre approche marketing. Leur expertise stratégique 
+                    "L&apos;équipe d&apos;Expérience Collective a transformé notre approche marketing. Leur expertise stratégique 
                     et leur créativité ont propulsé notre marque vers de nouveaux sommets."
                   </p>
                   <div>
@@ -214,7 +214,7 @@ export default function ServicesPage() {
           </p>
           <Link href="/exp/contact">
             <Button size="lg" className="bg-exp-black text-exp-white hover:bg-exp-black/90 font-bold px-12 py-6 text-lg">
-              Passez à l'action !
+              Passez à l&apos;action !
             </Button>
           </Link>
         </div>

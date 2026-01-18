@@ -16,7 +16,7 @@ const projects = [
     service: 'Expérience client',
     client: 'TechCorp Inc.',
     objective: 'Optimiser le parcours client et augmenter la conversion de 50%',
-    description: 'Refonte complète de l'expérience digitale avec une approche centrée sur l'utilisateur. Mise en place d'outils d'analyse avancés et optimisation continue basée sur les données.',
+    description: "Refonte complète de l'expérience digitale avec une approche centrée sur l'utilisateur. Mise en place d'outils d'analyse avancés et optimisation continue basée sur les données.",
   },
   {
     id: 2,
@@ -25,7 +25,7 @@ const projects = [
     service: 'Image de marque',
     client: 'InnovSolutions',
     objective: 'Créer une identité de marque moderne et différenciante',
-    description: 'Développement d'une nouvelle identité visuelle, stratégie de marque complète et campagne de lancement multi-canal. Résultat : +200% de notoriété en 6 mois.',
+    description: "Développement d'une nouvelle identité visuelle, stratégie de marque complète et campagne de lancement multi-canal. Résultat : +200% de notoriété en 6 mois.",
   },
   {
     id: 3,
@@ -33,8 +33,8 @@ const projects = [
     date: '2023',
     service: 'Accompagnement stratégique',
     client: 'GrowthLab',
-    objective: 'Accélérer la croissance et structurer l'organisation marketing',
-    description: 'CMO on demand pendant 12 mois pour définir et exécuter la stratégie de croissance. Mise en place d'une équipe marketing performante et de processus optimisés.',
+    objective: "Accélérer la croissance et structurer l'organisation marketing",
+    description: "CMO on demand pendant 12 mois pour définir et exécuter la stratégie de croissance. Mise en place d'une équipe marketing performante et de processus optimisés.",
   },
   {
     id: 4,
@@ -43,16 +43,16 @@ const projects = [
     service: 'Mesure de performance',
     client: 'DataFlow',
     objective: 'Centraliser et visualiser les KPIs critiques en temps réel',
-    description: 'Conception et développement d'un tableau de bord personnalisé intégrant toutes les sources de données. Automatisation des rapports et alertes intelligentes.',
+    description: "Conception et développement d'un tableau de bord personnalisé intégrant toutes les sources de données. Automatisation des rapports et alertes intelligentes.",
   },
   {
     id: 5,
-    title: 'Appel d'offres gouvernemental - PublicServices',
+    title: "Appel d'offres gouvernemental - PublicServices",
     date: '2023',
-    service: 'Appels d'offres',
+    service: "Appels d'offres",
     client: 'PublicServices',
     objective: 'Remporter un contrat gouvernemental stratégique',
-    description: 'Accompagnement complet de l'analyse des exigences à la rédaction de la proposition. Résultat : contrat remporté avec la note la plus élevée.',
+    description: "Accompagnement complet de l'analyse des exigences à la rédaction de la proposition. Résultat : contrat remporté avec la note la plus élevée.",
   },
   {
     id: 6,
@@ -265,7 +265,7 @@ export default function RealisationsPage() {
               </div>
               <div className="text-center">
                 <div className="text-5xl font-bold text-exp-yellow mb-2">6 ans</div>
-                <p className="text-exp-white/80">D'expérience</p>
+                <p className="text-exp-white/80">D&apos;expérience</p>
               </div>
             </div>
           </div>
@@ -307,7 +307,7 @@ export default function RealisationsPage() {
                     ))}
                   </div>
                   <p className="text-exp-gray italic text-sm">
-                    "Une équipe professionnelle et à l'écoute. Un vrai partenariat."
+                    "Une équipe professionnelle et à l&apos;écoute. Un vrai partenariat."
                   </p>
                   <p className="font-bold text-exp-black text-sm">Jean T., GrowthLab</p>
                 </div>
@@ -323,7 +323,7 @@ export default function RealisationsPage() {
                     ))}
                   </div>
                   <p className="text-exp-gray italic text-sm">
-                    "L'expertise et la créativité dont nous avions besoin."
+                    "L&apos;expertise et la créativité dont nous avions besoin."
                   </p>
                   <p className="font-bold text-exp-black text-sm">Sophie L., InnovSolutions</p>
                 </div>
@@ -344,7 +344,7 @@ export default function RealisationsPage() {
           </p>
           <Link href="/exp/contact">
             <Button size="lg" className="bg-exp-black text-exp-white hover:bg-exp-black/90 font-bold px-12 py-6 text-lg">
-              Passez à l'action !
+              Passez à l&apos;action !
             </Button>
           </Link>
         </div>
