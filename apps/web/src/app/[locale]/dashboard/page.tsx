@@ -12,7 +12,6 @@ import { Link } from '@/i18n/routing';
 import dynamicImport from 'next/dynamic';
 import { ErrorBoundary } from '@/components/errors/ErrorBoundary';
 import MotionDiv from '@/components/motion/MotionDiv';
-import { AnimatedStatCard } from '@/components/examples/AnimatedStatCard';
 import { microInteractions, combineAnimations } from '@/lib/animations/micro-interactions';
 import { 
   User, 
@@ -81,35 +80,50 @@ function DashboardContent() {
       {/* Quick Stats Grid */}
       <MotionDiv variant="slideUp" delay={200}>
         <Grid columns={{ mobile: 1, tablet: 2, desktop: 4 }} gap="normal">
-          <AnimatedStatCard
-            label="Resources"
-            value={0}
-            icon={Sparkles}
-            color="primary"
-            index={0}
-          />
-          <AnimatedStatCard
-            label="Files"
-            value={0}
-            icon={Zap}
-            color="secondary"
-            index={1}
-          />
-          <AnimatedStatCard
-            label="Activities"
-            value={0}
-            icon={Activity}
-            color="info"
-            index={2}
-          />
-          <AnimatedStatCard
-            label="Growth"
-            value="+12%"
-            icon={TrendingUp}
-            color="success"
-            index={3}
-            trend={{ value: 12, isPositive: true }}
-          />
+          <Card className="p-6">
+            <div className="flex items-center gap-4">
+              <div className="p-3 bg-primary-100 dark:bg-primary-900/30 rounded-lg">
+                <Sparkles className="w-6 h-6 text-primary-600 dark:text-primary-400" />
+              </div>
+              <div>
+                <p className="text-sm text-muted-foreground">Resources</p>
+                <p className="text-2xl font-bold text-foreground">0</p>
+              </div>
+            </div>
+          </Card>
+          <Card className="p-6">
+            <div className="flex items-center gap-4">
+              <div className="p-3 bg-secondary-100 dark:bg-secondary-900/30 rounded-lg">
+                <Zap className="w-6 h-6 text-secondary-600 dark:text-secondary-400" />
+              </div>
+              <div>
+                <p className="text-sm text-muted-foreground">Files</p>
+                <p className="text-2xl font-bold text-foreground">0</p>
+              </div>
+            </div>
+          </Card>
+          <Card className="p-6">
+            <div className="flex items-center gap-4">
+              <div className="p-3 bg-info-100 dark:bg-info-900/30 rounded-lg">
+                <Activity className="w-6 h-6 text-info-600 dark:text-info-400" />
+              </div>
+              <div>
+                <p className="text-sm text-muted-foreground">Activities</p>
+                <p className="text-2xl font-bold text-foreground">0</p>
+              </div>
+            </div>
+          </Card>
+          <Card className="p-6">
+            <div className="flex items-center gap-4">
+              <div className="p-3 bg-success-100 dark:bg-success-900/30 rounded-lg">
+                <TrendingUp className="w-6 h-6 text-success-600 dark:text-success-400" />
+              </div>
+              <div>
+                <p className="text-sm text-muted-foreground">Growth</p>
+                <p className="text-2xl font-bold text-success-600 dark:text-success-400">+12%</p>
+              </div>
+            </div>
+          </Card>
         </Grid>
       </MotionDiv>
 
