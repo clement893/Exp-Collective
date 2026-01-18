@@ -2,10 +2,7 @@
 API v1 router registration.
 """
 from fastapi import APIRouter
-from app.api.v1.endpoints import themes, theme_fonts, projects, websocket, admin, auth, two_factor, api_keys, users, health, db_health, newsletter, exports, imports, search, tags, activities, comments, favorites, templates, versions, shares, feature_flags, user_preferences, announcements, feedback, onboarding, documentation, scheduled_tasks, backups, email_templates, audit_trail, integrations, api_settings, organization_settings, general_settings, pages, forms, menus, support_tickets, seo, teams, invitations, rbac, notifications, api_connection_check, reports, media, insights, analytics, posts, subscriptions, masterclass, bookings
-from app.api.v1.endpoints.reseau import contacts as reseau_contacts
-from app.api.v1.endpoints.client import invoices_router, projects_router, tickets_router, dashboard_router
-from app.api.v1.endpoints.erp import invoices_router as erp_invoices_router, clients_router, orders_router, inventory_router, reports_router, dashboard_router as erp_dashboard_router
+from app.api.v1.endpoints import themes, theme_fonts, projects, websocket, admin, auth, two_factor, api_keys, users, health, db_health, newsletter, exports, imports, search, tags, activities, comments, favorites, templates, versions, shares, user_preferences, api_settings, organization_settings, general_settings, pages, forms, menus, support_tickets, seo, teams, invitations, rbac, notifications, api_connection_check, reports, media, insights, analytics, posts, subscriptions, bookings
 from app.api import ai as ai_router
 
 api_router = APIRouter()
@@ -200,80 +197,10 @@ api_router.include_router(
     tags=["shares"]
 )
 
-# Register feature flags endpoints
-api_router.include_router(
-    feature_flags.router,
-    prefix="/feature-flags",
-    tags=["feature-flags"]
-)
-
-# Register announcements endpoints
-api_router.include_router(
-    announcements.router,
-    prefix="/announcements",
-    tags=["announcements"]
-)
-
 # Register notifications endpoints
 api_router.include_router(
     notifications.router,
     tags=["notifications"]
-)
-
-# Register feedback endpoints
-api_router.include_router(
-    feedback.router,
-    prefix="/feedback",
-    tags=["feedback"]
-)
-
-# Register onboarding endpoints
-api_router.include_router(
-    onboarding.router,
-    prefix="/onboarding",
-    tags=["onboarding"]
-)
-
-# Register documentation endpoints
-api_router.include_router(
-    documentation.router,
-    prefix="/documentation",
-    tags=["documentation"]
-)
-
-# Register scheduled tasks endpoints
-api_router.include_router(
-    scheduled_tasks.router,
-    prefix="/scheduled-tasks",
-    tags=["scheduled-tasks"]
-)
-
-# Register backups endpoints
-api_router.include_router(
-    backups.router,
-    prefix="/backups",
-    tags=["backups"]
-)
-
-# Register email templates endpoints
-api_router.include_router(
-    email_templates.router,
-    prefix="/email-templates",
-    tags=["email-templates"]
-)
-
-# Register audit trail endpoints
-api_router.include_router(
-    audit_trail.router,
-    prefix="/audit-trail",
-    tags=["audit-trail"]
-)
-
-# Register integrations endpoints
-api_router.include_router(
-    integrations.router,
-    prefix="/integrations",
-    tags=["integrations"]
 )
 
 # Register API settings endpoints
@@ -357,75 +284,10 @@ api_router.include_router(
     tags=["posts"]
 )
 
-# Register client portal endpoints
-api_router.include_router(
-    invoices_router,
-    tags=["client-portal"]
-)
-
-api_router.include_router(
-    projects_router,
-    tags=["client-portal"]
-)
-
-api_router.include_router(
-    tickets_router,
-    tags=["client-portal"]
-)
-
-api_router.include_router(
-    dashboard_router,
-    tags=["client-portal"]
-)
-
-# Register ERP/Employee portal endpoints
-api_router.include_router(
-    erp_invoices_router,
-    tags=["erp-portal"]
-)
-
-api_router.include_router(
-    clients_router,
-    tags=["erp-portal"]
-)
-
-api_router.include_router(
-    orders_router,
-    tags=["erp-portal"]
-)
-
-api_router.include_router(
-    inventory_router,
-    tags=["erp-portal"]
-)
-
-api_router.include_router(
-    reports_router,
-    tags=["erp-portal"]
-)
-
-api_router.include_router(
-    erp_dashboard_router,
-    tags=["erp-portal"]
-)
-
 # Register API connection check endpoints
 api_router.include_router(
     api_connection_check.router,
     tags=["api-connection-check"]
-)
-
-# Register réseau endpoints
-api_router.include_router(
-    reseau_contacts.router,
-    tags=["reseau-contacts"]
-)
-
-# Register masterclass endpoints
-api_router.include_router(
-    masterclass.router,
-    prefix="/masterclass",
-    tags=["masterclass"]
 )
 
 # Register booking endpoints

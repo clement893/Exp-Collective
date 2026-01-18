@@ -1,3 +1,0 @@
-"""
-Réseau endpoints package
-"""
