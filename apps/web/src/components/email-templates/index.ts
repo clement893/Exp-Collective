@@ -1,0 +1,5 @@
+export { EmailTemplateManager } from './EmailTemplateManager';
+
+
+
+
