@@ -127,11 +127,11 @@ export default function MobileNavigation({
             <div className="absolute inset-x-0 top-0 bg-gradient-to-r from-transparent via-[#FF8C42]/5 to-transparent h-px"></div>
             {showCTA && (
               <Link
-                href="/cities"
+                href="/contact"
                 onClick={onClose}
                 className="relative inline-flex items-center justify-center gap-2 px-6 py-3.5 text-base font-semibold text-white bg-[#FF8C42] rounded-full hover:bg-[#FF7A29] transition-all duration-300 w-full transform hover:scale-105 active:scale-95 shadow-lg shadow-[#FF8C42]/30 hover:shadow-[#FF8C42]/50"
               >
-                <span className="relative z-10">{t('navigation.bookNow')}</span>
+                <span className="relative z-10">Contactez-nous</span>
                 <div className="absolute inset-0 rounded-full bg-white/20 opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
               </Link>
             )}

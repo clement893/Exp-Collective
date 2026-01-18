@@ -107,30 +107,6 @@ export function getNavigationConfig(isAdmin: boolean): NavigationConfig {
         collapsible: true,
         defaultOpen: false,
       },
-      // Réseau (collapsible group)
-      {
-        name: 'Réseau',
-        icon: <Network className="w-5 h-5" />,
-        items: [
-          {
-            name: 'Entreprises',
-            href: '/dashboard/reseau/entreprises',
-            icon: <Building2 className="w-5 h-5" />,
-          },
-          {
-            name: 'Contacts',
-            href: '/dashboard/reseau/contacts',
-            icon: <User className="w-5 h-5" />,
-          },
-          {
-            name: 'Témoignages',
-            href: '/dashboard/reseau/temoignages',
-            icon: <MessageSquare className="w-5 h-5" />,
-          },
-        ],
-        collapsible: true,
-        defaultOpen: false,
-      },
       // Paramètres (collapsible group)
       {
         name: 'Paramètres',
@@ -168,11 +144,6 @@ export function getNavigationConfig(isAdmin: boolean): NavigationConfig {
           name: 'Masterclass',
           href: '/admin/masterclass',
           icon: <GraduationCap className="w-5 h-5" />,
-        },
-        {
-          name: 'Logs',
-          href: '/admin-logs/testing',
-          icon: <FileText className="w-5 h-5" />,
         },
         {
           name: 'Thèmes',

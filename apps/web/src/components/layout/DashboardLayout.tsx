@@ -91,11 +91,6 @@ const createSidebarItems = (isAdmin: boolean) => [
   ...(isAdmin
     ? [
         {
-          label: 'Villes',
-          href: '/dashboard/cities',
-          icon: <MapPin className="w-5 h-5" />,
-        },
-        {
           label: 'Masterclass',
           href: '/admin/masterclass',
           icon: <GraduationCap className="w-5 h-5" />,

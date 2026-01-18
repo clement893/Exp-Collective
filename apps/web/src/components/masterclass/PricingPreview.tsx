@@ -125,7 +125,7 @@ export default function PricingPreview({
 
                 {/* CTA */}
                 <ButtonLink
-                  href="/pricing"
+                  href="/contact"
                   variant={option.popular ? 'primary' : 'outline'}
                   className={clsx(
                     'w-full px-6 py-3 font-black border-2 transition-all duration-200 rounded-none',
@@ -134,7 +134,7 @@ export default function PricingPreview({
                       : 'border-black hover:bg-black hover:text-white'
                   )}
                 >
-                  {option.id === 'group' ? 'Contacter pour groupe' : 'Voir les tarifs'}
+                  Contactez-nous
                 </ButtonLink>
               </SwissCard>
             ))}
@@ -143,7 +143,7 @@ export default function PricingPreview({
           {/* CTA */}
           <div className="text-center">
             <ButtonLink
-              href="/pricing"
+              href="/contact"
               variant="outline"
               className="px-8 py-4 text-lg font-black border-2 border-black hover:bg-black hover:text-white transition-all duration-200 rounded-none"
             >

@@ -70,7 +70,7 @@ export default function PricingCardSimple({
           )}
         </div>
 
-        <Link href={`/subscriptions?plan=${plan.id}&period=${billingPeriod}`}>
+        <Link href="/contact">
           <Button
             className={clsx('w-full mb-6', plan.popular && 'bg-primary-600 hover:bg-primary-700')}
             variant={plan.popular ? 'primary' : 'outline'}
