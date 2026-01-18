@@ -9,8 +9,7 @@ import React, { useEffect } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { reportWebVitals } from '@/lib/performance';
 import { logger } from '@/lib/logger';
-import { MasterclassNavigation } from '@/components/navigation';
-import MasterclassFooter from '@/components/layout/MasterclassFooter';
+import { ExpHeader, ExpFooter } from '@/components/exp';
 
 function AppContent({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -127,11 +126,11 @@ function AppContent({ children }: { children: React.ReactNode }) {
   // This allows individual pages to set their own backgrounds (gradients, etc.)
   return (
     <div className="flex flex-col min-h-screen">
-      <MasterclassNavigation variant="default" showCTA={true} />
-      <main id="main-content" className="flex-1">
+      <ExpHeader />
+      <main id="main-content" className="flex-1 pt-20">
         {children}
       </main>
-      <MasterclassFooter />
+      <ExpFooter />
     </div>
   );
 }

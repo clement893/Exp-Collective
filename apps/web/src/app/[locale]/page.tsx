@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { Link } from '@/i18n/routing';
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
-import { ExpHeader, ExpFooter } from '@/components/exp';
+
 
 export const metadata: Metadata = {
   title: 'Expérience Collective - Agence de marketing et stratégie',
@@ -12,7 +12,6 @@ export const metadata: Metadata = {
 export default function ExpHomePage() {
   return (
     <div className="min-h-screen bg-exp-white">
-      <ExpHeader />
       
       {/* Hero Section - Full Screen avec animation */}
       <section className="relative h-screen flex items-center justify-center bg-gradient-to-br from-exp-black via-exp-black to-exp-teal overflow-hidden">
@@ -332,7 +331,6 @@ export default function ExpHomePage() {
         </div>
       </section>
 
-      <ExpFooter />
     </div>
   );
 }
