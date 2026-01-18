@@ -194,24 +194,23 @@ export default function ContactPage() {
 
                   {/* Subject */}
                   <div>
-                    <label htmlFor="subject" className="block text-sm font-bold text-exp-black mb-2">
-                      Sujet *
-                    </label>
                     <Select
                       id="subject"
+                      label="Sujet"
                       required
                       value={formData.subject}
                       onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                       className="w-full"
-                    >
-                      <option value="">Sélectionnez un sujet</option>
-                      <option value="accompagnement-strategique">Accompagnement stratégique</option>
-                      <option value="image-de-marque">Image de marque et marketing</option>
-                      <option value="experience-client">Expérience client</option>
-                      <option value="mesure-performance">Mesure de performance</option>
-                      <option value="appels-offres">Appels d'offres</option>
-                      <option value="autre">Autre</option>
-                    </Select>
+                      placeholder="Sélectionnez un sujet"
+                      options={[
+                        { label: 'Accompagnement stratégique', value: 'accompagnement-strategique' },
+                        { label: 'Image de marque et marketing', value: 'image-de-marque' },
+                        { label: 'Expérience client', value: 'experience-client' },
+                        { label: 'Mesure de performance', value: 'mesure-performance' },
+                        { label: "Appels d'offres", value: 'appels-offres' },
+                        { label: 'Autre', value: 'autre' },
+                      ]}
+                    />
                   </div>
 
                   {/* Message */}

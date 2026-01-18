@@ -118,40 +118,40 @@ export default function RealisationsPage() {
 
               {/* Service Filter */}
               <div>
-                <label htmlFor="service" className="block text-sm font-bold text-exp-black mb-2">
-                  Service
-                </label>
                 <Select
                   id="service"
+                  label="Service"
                   value={selectedService}
                   onChange={(e) => setSelectedService(e.target.value)}
                   className="w-full"
-                >
-                  <option value="all">Tous les services</option>
-                  <option value="Accompagnement stratégique">Accompagnement stratégique</option>
-                  <option value="Image de marque">Image de marque</option>
-                  <option value="Expérience client">Expérience client</option>
-                  <option value="Mesure de performance">Mesure de performance</option>
-                  <option value="Appels d'offres">Appels d'offres</option>
-                </Select>
+                  placeholder="Tous les services"
+                  options={[
+                    { label: 'Tous les services', value: 'all' },
+                    { label: 'Accompagnement stratégique', value: 'Accompagnement stratégique' },
+                    { label: 'Image de marque', value: 'Image de marque' },
+                    { label: 'Expérience client', value: 'Expérience client' },
+                    { label: 'Mesure de performance', value: 'Mesure de performance' },
+                    { label: "Appels d'offres", value: "Appels d'offres" },
+                  ]}
+                />
               </div>
 
               {/* Year Filter */}
               <div>
-                <label htmlFor="year" className="block text-sm font-bold text-exp-black mb-2">
-                  Année
-                </label>
                 <Select
                   id="year"
+                  label="Année"
                   value={selectedYear}
                   onChange={(e) => setSelectedYear(e.target.value)}
                   className="w-full"
-                >
-                  <option value="all">Toutes les années</option>
-                  <option value="2024">2024</option>
-                  <option value="2023">2023</option>
-                  <option value="2022">2022</option>
-                </Select>
+                  placeholder="Toutes les années"
+                  options={[
+                    { label: 'Toutes les années', value: 'all' },
+                    { label: '2024', value: '2024' },
+                    { label: '2023', value: '2023' },
+                    { label: '2022', value: '2022' },
+                  ]}
+                />
               </div>
             </div>
 
