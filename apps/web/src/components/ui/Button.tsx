@@ -22,6 +22,8 @@
  * </Button>
  * ```
  */
+'use client';
+
 import { ButtonHTMLAttributes, ReactNode, memo } from 'react';
 import { clsx } from 'clsx';
 import { ButtonVariant, Size } from './types';
