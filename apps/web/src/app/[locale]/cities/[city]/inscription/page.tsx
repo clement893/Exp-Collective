@@ -77,9 +77,8 @@ export default function CityInscriptionPage() {
   };
 
   const handleContinue = () => {
-    if (selectedEventId) {
-      router.push(`/book/checkout?cityEventId=${selectedEventId}`);
-    }
+    // Redirect to contact page instead of booking checkout
+    router.push('/contact');
   };
 
   const selectedEvent = cityEvents.find((e) => e.id === selectedEventId);
@@ -103,7 +102,7 @@ export default function CityInscriptionPage() {
                 Inscription {city ? city.name_fr || city.name_en : ''}
               </h1>
               <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                Réservez votre place pour la masterclass ACT avec Dr. Russ Harris
+                Contactez-nous pour plus d'informations sur la masterclass ACT avec Dr. Russ Harris
               </p>
             </div>
           </div>
@@ -297,7 +296,7 @@ export default function CityInscriptionPage() {
                           onClick={handleContinue}
                           className="w-full bg-[#F58220] hover:bg-[#C4681A] text-white font-semibold py-3 text-lg rounded-full transition-all duration-300 transform hover:scale-105"
                         >
-                          Continuer l'inscription
+                          Contactez-nous
                         </Button>
                       </>
                     ) : (

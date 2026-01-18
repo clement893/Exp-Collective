@@ -184,10 +184,10 @@ export default function CityDetailPage() {
                                 Inscription
                               </button>
                               <button
-                                onClick={() => router.push(`/book?cityEventId=${event.id}`)}
+                                onClick={() => router.push('/contact')}
                                 className="px-6 py-2.5 bg-black text-white font-bold hover:bg-gray-900 transition-colors rounded-full"
                               >
-                                Réserver
+                                Contactez-nous
                               </button>
                             </div>
                           </div>

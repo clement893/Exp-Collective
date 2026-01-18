@@ -25,9 +25,6 @@ function AppContent({ children }: { children: React.ReactNode }) {
   
   // Check if it's an auth page (login, register, etc.) - these should have their own backgrounds
   const isAuthPage = pathname?.includes('/auth/');
-  
-  // Check if it's a booking page - these should have minimal navigation
-  const isBookingPage = pathname?.includes('/book/');
 
   useEffect(() => {
     // Track page views
@@ -123,19 +120,6 @@ function AppContent({ children }: { children: React.ReactNode }) {
   // For auth pages, don't wrap with Header/Footer or background - let them handle their own styling
   if (isAuthPage) {
     return <>{children}</>;
-  }
-
-  // For booking pages, show minimal navigation (logo only, no full menu)
-  if (isBookingPage) {
-    return (
-      <div className="flex flex-col min-h-screen">
-        <MasterclassNavigation variant="default" showCTA={false} />
-        <main id="main-content" className="flex-1">
-          {children}
-        </main>
-        {/* No footer on booking pages for focus */}
-      </div>
-    );
   }
 
   // For public pages, show MasterclassNavigation and Footer
