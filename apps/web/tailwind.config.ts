@@ -363,6 +363,8 @@ const config: Config = {
         'fade-in-up-delay-2': 'fadeInUpHero 1s ease-out 0.4s forwards',
         'fade-in-up-delay-3': 'fadeInUpHero 1s ease-out 0.6s forwards',
         'paint-highlight': 'paintHighlight 0.8s ease-out 0.8s forwards',
+        'ink-spread': 'inkSpread 8s ease-in-out infinite',
+        'pulse-slow': 'pulseSlow 6s ease-in-out infinite',
       },
       keyframes: {
         fadeIn: {
@@ -409,6 +411,14 @@ const config: Config = {
         paintHighlight: {
           '0%': { width: '0%' },
           '100%': { width: '100%' },
+        },
+        inkSpread: {
+          '0%, 100%': { transform: 'scale(1)', opacity: '0.1' },
+          '50%': { transform: 'scale(1.2)', opacity: '0.15' },
+        },
+        pulseSlow: {
+          '0%, 100%': { opacity: '0.08' },
+          '50%': { opacity: '0.12' },
         },
         slideInRight: {
           '0%': { opacity: '0', transform: 'translateX(100%)' },
