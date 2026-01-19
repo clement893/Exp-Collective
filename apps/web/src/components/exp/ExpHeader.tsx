@@ -16,24 +16,22 @@ export default function ExpHeader() {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-exp-white/95 backdrop-blur-sm border-b-2 border-exp-yellow">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
       <nav className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3 group">
             <div className="relative">
               {/* Logo "exp" avec fond jaune */}
-              <div className="bg-exp-yellow text-exp-black font-bold text-2xl px-4 py-2 rounded-lg transform group-hover:scale-105 transition-transform duration-300">
+              <div className="bg-exp-yellow text-exp-black font-bold text-xl px-3 py-1.5 rounded-lg transform group-hover:scale-105 transition-transform duration-300">
                 exp
               </div>
-              {/* Petit élément décoratif */}
-              <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-exp-teal rounded-full"></div>
             </div>
             <div className="hidden md:block">
-              <div className="font-bold text-exp-black text-lg">
+              <div className="font-medium text-exp-black text-base">
                 expérience collective
               </div>
-              <div className="text-xs text-exp-gray italic">
+              <div className="text-xs text-gray-500 italic">
                 L'encre jaune qui se dilue
               </div>
             </div>
@@ -45,15 +43,15 @@ export default function ExpHeader() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-exp-black font-medium hover:text-exp-yellow transition-colors duration-200 relative group"
+                className="text-gray-700 font-normal hover:text-exp-black transition-colors duration-200 relative group"
               >
                 {item.name}
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-exp-yellow group-hover:w-full transition-all duration-300"></span>
               </Link>
             ))}
             <Link href="/contact">
-              <Button className="bg-exp-yellow text-exp-black hover:bg-exp-yellow/90 font-bold px-6 py-2 shadow-lg hover:shadow-xl transition-all duration-300">
-                Passez à l'action !
+              <Button className="bg-exp-black text-white hover:bg-exp-yellow hover:text-exp-black font-medium px-6 py-2.5 rounded-lg transition-all duration-300 border border-exp-black">
+                Passez à l'action
               </Button>
             </Link>
           </div>
@@ -97,14 +95,14 @@ export default function ExpHeader() {
                   key={item.name}
                   href={item.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="text-exp-black font-medium hover:text-exp-yellow transition-colors py-2 px-4 hover:bg-exp-yellow/10 rounded-lg"
+                  className="text-gray-700 font-normal hover:text-exp-black transition-colors py-2 px-4 hover:bg-gray-50 rounded-lg"
                 >
                   {item.name}
                 </Link>
               ))}
               <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
-                <Button className="w-full bg-exp-yellow text-exp-black hover:bg-exp-yellow/90 font-bold">
-                  Passez à l'action !
+                <Button className="w-full bg-exp-black text-white hover:bg-exp-yellow hover:text-exp-black font-medium rounded-lg transition-all duration-300">
+                  Passez à l'action
                 </Button>
               </Link>
             </div>
