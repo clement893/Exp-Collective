@@ -12,11 +12,12 @@ export default function ExpHomePage() {
   return (
     <div className="min-h-screen bg-white">
       
-      {/* Hero Section - Minimaliste et élégant */}
-      <section className="relative min-h-screen flex items-center justify-center bg-white overflow-hidden">
+      {/* Hero Section - Fond noir élégant */}
+      <section className="relative min-h-screen flex items-center justify-center bg-exp-black overflow-hidden">
         {/* Forme fluide subtile en background */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-exp-yellow/5 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-exp-yellow/10 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-1/4 left-1/4 w-[500px] h-[500px] bg-exp-teal/5 rounded-full blur-3xl animate-pulse"></div>
         </div>
 
         {/* Content */}
@@ -28,7 +29,7 @@ export default function ExpHomePage() {
                 <span className="text-5xl font-bold text-exp-black">exp</span>
               </div>
               <div className="text-left">
-                <h1 className="text-5xl font-light text-exp-black">
+                <h1 className="text-5xl font-light text-white">
                   érience<br/>collective
                 </h1>
                 <p className="text-exp-yellow text-lg font-light italic mt-1">
@@ -39,16 +40,16 @@ export default function ExpHomePage() {
           </div>
 
           {/* Tagline avec mots surlignés subtilement */}
-          <h2 className="text-4xl font-light text-exp-black mb-16 leading-relaxed max-w-4xl mx-auto">
+          <h2 className="text-4xl font-light text-white mb-16 leading-relaxed max-w-4xl mx-auto">
             Comprendre pour{' '}
             <span className="relative inline-block">
               <span className="relative z-10">oser</span>
-              <span className="absolute bottom-1 left-0 w-full h-3 bg-exp-yellow/30 -z-0"></span>
+              <span className="absolute bottom-1 left-0 w-full h-3 bg-exp-yellow/40 -z-0"></span>
             </span>
             , oser pour{' '}
             <span className="relative inline-block">
               <span className="relative z-10">comprendre</span>
-              <span className="absolute bottom-1 left-0 w-full h-3 bg-exp-yellow/30 -z-0"></span>
+              <span className="absolute bottom-1 left-0 w-full h-3 bg-exp-yellow/40 -z-0"></span>
             </span>
           </h2>
 
@@ -58,7 +59,7 @@ export default function ExpHomePage() {
               <Button
                 variant="primary"
                 size="lg"
-                className="bg-exp-black hover:bg-exp-yellow text-white hover:text-exp-black px-10 py-4 text-base font-medium rounded-lg transition-all duration-300 border border-exp-black"
+                className="bg-exp-yellow hover:bg-white text-exp-black px-10 py-4 text-base font-medium rounded-lg transition-all duration-300 border border-exp-yellow"
               >
                 Passez à l'action
               </Button>
@@ -67,7 +68,7 @@ export default function ExpHomePage() {
               <Button
                 variant="secondary"
                 size="lg"
-                className="bg-white hover:bg-exp-yellow/10 text-exp-black px-10 py-4 text-base font-medium rounded-lg border border-gray-200 hover:border-exp-yellow transition-all duration-300"
+                className="bg-transparent hover:bg-exp-yellow/10 text-white hover:text-exp-yellow px-10 py-4 text-base font-medium rounded-lg border border-white hover:border-exp-yellow transition-all duration-300"
               >
                 Découvrir nos services
               </Button>
