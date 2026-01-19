@@ -46,20 +46,7 @@ const config: Config = {
           light: '#B4D6FF',
           lightDark: '#1e3a8a', // Dark mode version
         },
-        // Secondary color palette (Orange) - Uses CSS variables with fallbacks for theme support
-        secondary: {
-          50: 'var(--color-secondary-50, #FFF4E6)',
-          100: 'var(--color-secondary-100, #FFE0B3)',
-          200: 'var(--color-secondary-200, #FFCC80)',
-          300: 'var(--color-secondary-300, #FFB84D)',
-          400: 'var(--color-secondary-400, #FFA41A)',
-          500: 'var(--color-secondary-500, #F58220)',
-          600: 'var(--color-secondary-600, #C4681A)',
-          700: 'var(--color-secondary-700, #934E13)',
-          800: 'var(--color-secondary-800, #62340D)',
-          900: 'var(--color-secondary-900, #311A06)',
-          950: 'var(--color-secondary-950, #311A06)',
-        },
+
         // Danger color palette - Uses CSS variables with fallbacks for theme support
         danger: {
           50: 'var(--color-danger-50, #fef2f2)',
