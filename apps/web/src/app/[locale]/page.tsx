@@ -15,24 +15,13 @@ export default function HomePage() {
       
       {/* Hero Section - Noir avec forme organique jaune animée */}
       <section className="relative min-h-screen flex items-center justify-center bg-exp-black overflow-hidden">
-        {/* Forme organique jaune en arrière-plan - fumée animée */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] opacity-50">
+        {/* Forme organique jaune en arrière-plan - statique */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] opacity-40">
           <Image
             src="/assets/e infusion/e infusion V3 copie.png"
             alt=""
             fill
-            className="object-contain animate-smoke-flow"
-            priority
-          />
-        </div>
-
-        {/* Deuxième couche de fumée pour plus de profondeur */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] opacity-30">
-          <Image
-            src="/assets/e infusion/e infusion V2 copie.png"
-            alt=""
-            fill
-            className="object-contain animate-smoke-flow-delay"
+            className="object-contain"
             priority
           />
         </div>
