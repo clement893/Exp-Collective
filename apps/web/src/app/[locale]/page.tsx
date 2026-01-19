@@ -92,14 +92,14 @@ export default function ExpHomePage() {
               Nos{' '}
               <span className="relative inline-block">
                 <span className="relative z-10 font-medium">Services</span>
-                <span className="absolute bottom-2 left-0 w-full h-4 bg-exp-yellow/30 -z-0"></span>
+                <span className="absolute inset-0 bg-exp-yellow -z-0"></span>
               </span>
             </h2>
             <p className="text-xl text-gray-600 font-light max-w-2xl mx-auto mt-8 leading-relaxed">
               Des solutions{' '}
               <span className="relative inline-block">
                 <span className="relative z-10">complètes</span>
-                <span className="absolute bottom-0 left-0 w-full h-2 bg-exp-yellow/20 -z-0"></span>
+                <span className="absolute inset-0 bg-exp-yellow -z-0"></span>
               </span>
               {' '}pour propulser votre entreprise vers de nouveaux sommets
             </p>
@@ -121,7 +121,7 @@ export default function ExpHomePage() {
                 Accompagnement{' '}
                 <span className="relative inline-block">
                   <span className="relative z-10">stratégique</span>
-                  <span className="absolute bottom-0 left-0 w-full h-1 bg-exp-yellow/20 -z-0"></span>
+                  <span className="absolute inset-0 bg-exp-yellow -z-0"></span>
                 </span>
                 {' '}global et CMO on demand pour définir et exécuter votre vision.
               </p>
@@ -147,7 +147,7 @@ export default function ExpHomePage() {
                 Création d'identités visuelles{' '}
                 <span className="relative inline-block">
                   <span className="relative z-10">distinctives</span>
-                  <span className="absolute bottom-0 left-0 w-full h-1 bg-exp-yellow/20 -z-0"></span>
+                  <span className="absolute inset-0 bg-exp-yellow -z-0"></span>
                 </span>
                 {' '}et stratégies de marque percutantes.
               </p>
@@ -173,7 +173,7 @@ export default function ExpHomePage() {
                 Transformation digitale et optimisation de l'expérience client pour des parcours{' '}
                 <span className="relative inline-block">
                   <span className="relative z-10">mémorables</span>
-                  <span className="absolute bottom-0 left-0 w-full h-1 bg-exp-yellow/20 -z-0"></span>
+                  <span className="absolute inset-0 bg-exp-yellow -z-0"></span>
                 </span>
                 .
               </p>
@@ -199,7 +199,7 @@ export default function ExpHomePage() {
                 Outils d'analyse et tableaux de bord pour mesurer l'impact de vos actions en{' '}
                 <span className="relative inline-block">
                   <span className="relative z-10">temps réel</span>
-                  <span className="absolute bottom-0 left-0 w-full h-1 bg-exp-yellow/20 -z-0"></span>
+                  <span className="absolute inset-0 bg-exp-yellow -z-0"></span>
                 </span>
                 .
               </p>
@@ -225,7 +225,7 @@ export default function ExpHomePage() {
                 Accompagnement{' '}
                 <span className="relative inline-block">
                   <span className="relative z-10">stratégique</span>
-                  <span className="absolute bottom-0 left-0 w-full h-1 bg-exp-yellow/20 -z-0"></span>
+                  <span className="absolute inset-0 bg-exp-yellow -z-0"></span>
                 </span>
                 {' '}pour la gestion et la réponse aux appels d'offres complexes.
               </p>
@@ -243,7 +243,7 @@ export default function ExpHomePage() {
                 Besoin d'un service{' '}
                 <span className="relative inline-block">
                   <span className="relative z-10">sur mesure</span>
-                  <span className="absolute bottom-0 left-0 w-full h-2 bg-exp-yellow/30 -z-0"></span>
+                  <span className="absolute inset-0 bg-exp-yellow -z-0"></span>
                 </span>
                 {' '}?
               </h3>
@@ -278,19 +278,19 @@ export default function ExpHomePage() {
                 Notre{' '}
                 <span className="relative inline-block">
                   <span className="relative z-10 font-medium">Raison d'Être</span>
-                  <span className="absolute bottom-2 left-0 w-full h-4 bg-exp-yellow/30 -z-0"></span>
+                  <span className="absolute inset-0 bg-exp-yellow -z-0"></span>
                 </span>
               </h2>
               <p className="text-xl text-gray-700 mb-8 leading-loose font-light">
                 Nous sommes plus qu'une agence : nous sommes vos{' '}
                 <span className="relative inline-block">
                   <span className="relative z-10 font-medium">partenaires stratégiques</span>
-                  <span className="absolute bottom-0 left-0 w-full h-2 bg-exp-yellow/20 -z-0"></span>
+                  <span className="absolute inset-0 bg-exp-yellow -z-0"></span>
                 </span>
                 , déterminés à transformer vos ambitions en{' '}
                 <span className="relative inline-block">
                   <span className="relative z-10 font-medium">succès tangibles</span>
-                  <span className="absolute bottom-0 left-0 w-full h-2 bg-exp-yellow/20 -z-0"></span>
+                  <span className="absolute inset-0 bg-exp-yellow -z-0"></span>
                 </span>
                 .
               </p>
@@ -299,7 +299,7 @@ export default function ExpHomePage() {
                 pour créer des expériences qui marquent les esprits et génèrent des{' '}
                 <span className="relative inline-block">
                   <span className="relative z-10">résultats mesurables</span>
-                  <span className="absolute bottom-0 left-0 w-full h-1 bg-exp-yellow/20 -z-0"></span>
+                  <span className="absolute inset-0 bg-exp-yellow -z-0"></span>
                 </span>
                 .
               </p>
@@ -331,7 +331,7 @@ export default function ExpHomePage() {
                       Voir au-delà de l'évident pour révéler le{' '}
                       <span className="relative inline-block">
                         <span className="relative z-10">potentiel inexploité</span>
-                        <span className="absolute bottom-0 left-0 w-full h-1 bg-exp-yellow/20 -z-0"></span>
+                        <span className="absolute inset-0 bg-exp-yellow -z-0"></span>
                       </span>
                     </p>
                   </div>
@@ -352,7 +352,7 @@ export default function ExpHomePage() {
                       Transformer les idées en réalité avec{' '}
                       <span className="relative inline-block">
                         <span className="relative z-10">agilité et détermination</span>
-                        <span className="absolute bottom-0 left-0 w-full h-1 bg-exp-yellow/20 -z-0"></span>
+                        <span className="absolute inset-0 bg-exp-yellow -z-0"></span>
                       </span>
                     </p>
                   </div>
@@ -373,7 +373,7 @@ export default function ExpHomePage() {
                       Créer des{' '}
                       <span className="relative inline-block">
                         <span className="relative z-10">résultats mesurables</span>
-                        <span className="absolute bottom-0 left-0 w-full h-1 bg-exp-yellow/20 -z-0"></span>
+                        <span className="absolute inset-0 bg-exp-yellow -z-0"></span>
                       </span>
                       {' '}qui dépassent les attentes
                     </p>
