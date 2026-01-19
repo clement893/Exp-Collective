@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { Link } from '@/i18n/routing';
-import Button from '@/components/ui/Button';
 
 export default function ExpHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
