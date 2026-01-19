@@ -1,4 +1,4 @@
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 import { Link } from '@/i18n/routing';
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
@@ -69,78 +69,73 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Section Services - Fond blanc avec navigation dynamique */}
-      <section id="services" className="py-40 px-6 bg-white">
+      {/* Section Services - Scroll fixe avec numéros à gauche */}
+      <section id="services" className="py-24 px-6 bg-[#F5F3F0]">
         <div className="max-w-7xl mx-auto">
-          <div className="mb-32 text-center">
-            <h2 className="text-6xl font-thin text-exp-black mb-6 leading-tight tracking-tight">
-              Services
+          {/* Titre de section */}
+          <div className="mb-16">
+            <h2 className="text-5xl font-light text-exp-black leading-tight">
+              Des services personnalisés<br />à vos ambitions
             </h2>
-            <p className="text-xl text-gray-500 font-light max-w-2xl mx-auto">
-              Des solutions sur mesure pour transformer votre vision en{' '}
-            <span className="relative inline-block">
-              <span className="relative z-10">impact</span>
-              <span className="absolute inset-x-0 top-0 h-full bg-exp-yellow/40 -z-0"></span>
-            </span>
-            </p>
           </div>
 
-          <div className="relative">
-            {/* Navigation sticky avec chiffres */}
-            <div className="sticky top-32 float-left mr-16 hidden lg:block">
-              <div className="space-y-8">
-                <a href="#service-1" className="block text-gray-400 hover:text-exp-yellow transition-colors duration-500 text-sm font-light tracking-wider">
+          {/* Layout avec numéros sticky à gauche */}
+          <div className="flex gap-12">
+            {/* Numéros sticky à gauche */}
+            <div className="hidden lg:block w-20 flex-shrink-0">
+              <div className="sticky top-32 space-y-6">
+                <a href="#service-1" className="block text-2xl font-light text-gray-400 hover:text-exp-black transition-colors duration-300">
                   01
                 </a>
-                <a href="#service-2" className="block text-gray-400 hover:text-exp-yellow transition-colors duration-500 text-sm font-light tracking-wider">
+                <a href="#service-2" className="block text-2xl font-light text-gray-400 hover:text-exp-black transition-colors duration-300">
                   02
                 </a>
-                <a href="#service-3" className="block text-gray-400 hover:text-exp-yellow transition-colors duration-500 text-sm font-light tracking-wider">
+                <a href="#service-3" className="block text-2xl font-light text-gray-400 hover:text-exp-black transition-colors duration-300">
                   03
                 </a>
-                <a href="#service-4" className="block text-gray-400 hover:text-exp-yellow transition-colors duration-500 text-sm font-light tracking-wider">
+                <a href="#service-4" className="block text-2xl font-light text-gray-400 hover:text-exp-black transition-colors duration-300">
                   04
                 </a>
-                <a href="#service-5" className="block text-gray-400 hover:text-exp-yellow transition-colors duration-500 text-sm font-light tracking-wider">
+                <a href="#service-5" className="block text-2xl font-light text-gray-400 hover:text-exp-black transition-colors duration-300">
                   05
                 </a>
               </div>
             </div>
 
-            <div className="space-y-32 lg:ml-24">
+            {/* Contenu scrollable à droite */}
+            <div className="flex-1 space-y-12">
               {/* Service 1 - Image de marque */}
               <div id="service-1" className="scroll-mt-32">
                 <Link href="/services/image-de-marque">
-                  <div className="group cursor-pointer">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                      <div className="relative h-[500px] rounded-3xl overflow-hidden bg-gradient-to-br from-exp-black to-gray-900">
-                        {/* Lettre en fumée */}
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <Image
-                            src="/assets/e infusion/e infusion V2 copie.png"
-                            alt=""
-                            fill
-                            className="object-contain opacity-40 group-hover:opacity-60 animate-smoke-flow transition-opacity duration-1000"
-                          />
-                        </div>
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <span className="text-[200px] font-thin text-white/20 group-hover:text-white/30 transition-colors duration-1000">I</span>
-                        </div>
+                  <div className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
+                      {/* Image */}
+                      <div className="relative h-80 md:h-auto overflow-hidden">
+                        <Image
+                          src="/assets/photos/FREDERICXAnnieClaudePhotographie-22.jpg"
+                          alt="Image de marque et marketing"
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-700"
+                        />
                       </div>
-                      <div className="space-y-6">
-                        <div className="text-exp-teal text-sm font-light tracking-widest uppercase">01 — Image</div>
-                        <h3 className="text-4xl font-light text-exp-black group-hover:text-exp-teal transition-colors duration-700 leading-tight">
-                          Image de marque et marketing
-                        </h3>
-                        <p className="text-lg text-gray-600 leading-relaxed font-light">
-                          Construire ou réinventer l'image de marque pour créer une identité forte et cohérente qui résonne avec votre audience.
-                        </p>
-                        <div className="pt-4 inline-flex items-center text-exp-teal text-sm font-light tracking-wider uppercase group-hover:gap-4 gap-2 transition-all duration-700">
-                          <span>Explorer</span>
-                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                          </svg>
+                      {/* Contenu */}
+                      <div className="p-8 flex flex-col justify-center">
+                        <div className="flex items-center gap-3 mb-4">
+                          <span className="text-sm font-light text-gray-400">01</span>
+                          <h3 className="text-2xl font-light text-exp-black">
+                            Image de marque et marketing
+                          </h3>
                         </div>
+                        <p className="text-base text-gray-600 leading-relaxed mb-4 font-light">
+                          Construire ou réinventer l'image de marque
+                        </p>
+                        <p className="text-sm text-gray-500 leading-relaxed mb-6 font-light">
+                          Publicité et visibilité<br />
+                          Faire briller votre offre avec des campagnes qui captivent
+                        </p>
+                        <button className="inline-flex items-center text-exp-black text-sm font-light border border-exp-black px-6 py-2 rounded-full hover:bg-exp-black hover:text-white transition-all duration-300">
+                          Voir plus
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -150,35 +145,33 @@ export default function HomePage() {
               {/* Service 2 - Stratégie */}
               <div id="service-2" className="scroll-mt-32">
                 <Link href="/services/strategie-cmo">
-                  <div className="group cursor-pointer">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                      <div className="lg:order-2 relative h-[500px] rounded-3xl overflow-hidden bg-gradient-to-br from-exp-black to-gray-900">
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <Image
-                            src="/assets/e infusion/e infusion V1 copie.png"
-                            alt=""
-                            fill
-                            className="object-contain opacity-40 group-hover:opacity-60 animate-smoke-flow-delay transition-opacity duration-1000"
-                          />
-                        </div>
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <span className="text-[200px] font-thin text-white/20 group-hover:text-white/30 transition-colors duration-1000">S</span>
-                        </div>
+                  <div className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
+                      <div className="relative h-80 md:h-auto overflow-hidden">
+                        <Image
+                          src="/assets/photos/FREDERICXAnnieClaudePhotographie-22.jpg"
+                          alt="Accompagnement stratégique"
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-700"
+                        />
                       </div>
-                      <div className="lg:order-1 space-y-6">
-                        <div className="text-exp-teal text-sm font-light tracking-widest uppercase">02 — Stratégie</div>
-                        <h3 className="text-4xl font-light text-exp-black group-hover:text-exp-teal transition-colors duration-700 leading-tight">
-                          Accompagnement stratégique global
-                        </h3>
-                        <p className="text-lg text-gray-600 leading-relaxed font-light">
-                          Vision stratégique et exécution tactique pour propulser votre croissance avec un CMO on demand.
-                        </p>
-                        <div className="pt-4 inline-flex items-center text-exp-teal text-sm font-light tracking-wider uppercase group-hover:gap-4 gap-2 transition-all duration-700">
-                          <span>Explorer</span>
-                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                          </svg>
+                      <div className="p-8 flex flex-col justify-center">
+                        <div className="flex items-center gap-3 mb-4">
+                          <span className="text-sm font-light text-gray-400">02</span>
+                          <h3 className="text-2xl font-light text-exp-black">
+                            Accompagnement stratégique global
+                          </h3>
                         </div>
+                        <p className="text-base text-gray-600 leading-relaxed mb-4 font-light">
+                          Vision stratégique et exécution tactique
+                        </p>
+                        <p className="text-sm text-gray-500 leading-relaxed mb-6 font-light">
+                          CMO on demand<br />
+                          Propulser votre croissance avec expertise
+                        </p>
+                        <button className="inline-flex items-center text-exp-black text-sm font-light border border-exp-black px-6 py-2 rounded-full hover:bg-exp-black hover:text-white transition-all duration-300">
+                          Voir plus
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -188,35 +181,33 @@ export default function HomePage() {
               {/* Service 3 - Expérience */}
               <div id="service-3" className="scroll-mt-32">
                 <Link href="/services/experience-client">
-                  <div className="group cursor-pointer">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                      <div className="relative h-[500px] rounded-3xl overflow-hidden bg-gradient-to-br from-exp-black to-gray-900">
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <Image
-                            src="/assets/e infusion/e infusion V3 copie.png"
-                            alt=""
-                            fill
-                            className="object-contain opacity-40 group-hover:opacity-60 animate-smoke-flow transition-opacity duration-1000"
-                          />
-                        </div>
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <span className="text-[200px] font-thin text-white/20 group-hover:text-white/30 transition-colors duration-1000">E</span>
-                        </div>
+                  <div className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
+                      <div className="relative h-80 md:h-auto overflow-hidden">
+                        <Image
+                          src="/assets/photos/FREDERICXAnnieClaudePhotographie-22.jpg"
+                          alt="Expérience client"
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-700"
+                        />
                       </div>
-                      <div className="space-y-6">
-                        <div className="text-exp-teal text-sm font-light tracking-widest uppercase">03 — Expérience</div>
-                        <h3 className="text-4xl font-light text-exp-black group-hover:text-exp-teal transition-colors duration-700 leading-tight">
-                          Expérience client et transformation digitale
-                        </h3>
-                        <p className="text-lg text-gray-600 leading-relaxed font-light">
-                          Optimiser chaque point de contact pour créer des expériences mémorables et engageantes.
-                        </p>
-                        <div className="pt-4 inline-flex items-center text-exp-teal text-sm font-light tracking-wider uppercase group-hover:gap-4 gap-2 transition-all duration-700">
-                          <span>Explorer</span>
-                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                          </svg>
+                      <div className="p-8 flex flex-col justify-center">
+                        <div className="flex items-center gap-3 mb-4">
+                          <span className="text-sm font-light text-gray-400">03</span>
+                          <h3 className="text-2xl font-light text-exp-black">
+                            Expérience client et design
+                          </h3>
                         </div>
+                        <p className="text-base text-gray-600 leading-relaxed mb-4 font-light">
+                          Créer des parcours mémorables
+                        </p>
+                        <p className="text-sm text-gray-500 leading-relaxed mb-6 font-light">
+                          Design centré utilisateur<br />
+                          Transformer chaque interaction en moment fort
+                        </p>
+                        <button className="inline-flex items-center text-exp-black text-sm font-light border border-exp-black px-6 py-2 rounded-full hover:bg-exp-black hover:text-white transition-all duration-300">
+                          Voir plus
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -226,35 +217,33 @@ export default function HomePage() {
               {/* Service 4 - Mesure */}
               <div id="service-4" className="scroll-mt-32">
                 <Link href="/services/mesure-performance">
-                  <div className="group cursor-pointer">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                      <div className="lg:order-2 relative h-[500px] rounded-3xl overflow-hidden bg-gradient-to-br from-exp-black to-gray-900">
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <Image
-                            src="/assets/e infusion/e infusion V2 copie.png"
-                            alt=""
-                            fill
-                            className="object-contain opacity-40 group-hover:opacity-60 animate-smoke-flow-delay transition-opacity duration-1000"
-                          />
-                        </div>
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <span className="text-[200px] font-thin text-white/20 group-hover:text-white/30 transition-colors duration-1000">M</span>
-                        </div>
+                  <div className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
+                      <div className="relative h-80 md:h-auto overflow-hidden">
+                        <Image
+                          src="/assets/photos/FREDERICXAnnieClaudePhotographie-22.jpg"
+                          alt="Mesure de performance"
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-700"
+                        />
                       </div>
-                      <div className="lg:order-1 space-y-6">
-                        <div className="text-exp-teal text-sm font-light tracking-widest uppercase">04 — Mesure</div>
-                        <h3 className="text-4xl font-light text-exp-black group-hover:text-exp-teal transition-colors duration-700 leading-tight">
-                          Mesure de performance et analyse
-                        </h3>
-                        <p className="text-lg text-gray-600 leading-relaxed font-light">
-                          Données en temps réel et insights actionnables pour des décisions stratégiques éclairées.
-                        </p>
-                        <div className="pt-4 inline-flex items-center text-exp-teal text-sm font-light tracking-wider uppercase group-hover:gap-4 gap-2 transition-all duration-700">
-                          <span>Explorer</span>
-                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                          </svg>
+                      <div className="p-8 flex flex-col justify-center">
+                        <div className="flex items-center gap-3 mb-4">
+                          <span className="text-sm font-light text-gray-400">04</span>
+                          <h3 className="text-2xl font-light text-exp-black">
+                            Mesure de performance
+                          </h3>
                         </div>
+                        <p className="text-base text-gray-600 leading-relaxed mb-4 font-light">
+                          Données et insights actionnables
+                        </p>
+                        <p className="text-sm text-gray-500 leading-relaxed mb-6 font-light">
+                          Analytics et optimisation<br />
+                          Prendre des décisions éclairées basées sur les données
+                        </p>
+                        <button className="inline-flex items-center text-exp-black text-sm font-light border border-exp-black px-6 py-2 rounded-full hover:bg-exp-black hover:text-white transition-all duration-300">
+                          Voir plus
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -264,35 +253,33 @@ export default function HomePage() {
               {/* Service 5 - Appels d'offres */}
               <div id="service-5" className="scroll-mt-32">
                 <Link href="/services/appels-offres">
-                  <div className="group cursor-pointer">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                      <div className="relative h-[500px] rounded-3xl overflow-hidden bg-gradient-to-br from-exp-black to-gray-900">
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <Image
-                            src="/assets/e infusion/e infusion V1 copie.png"
-                            alt=""
-                            fill
-                            className="object-contain opacity-40 group-hover:opacity-60 animate-smoke-flow transition-opacity duration-1000"
-                          />
-                        </div>
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <span className="text-[200px] font-thin text-white/20 group-hover:text-white/30 transition-colors duration-1000">A</span>
-                        </div>
+                  <div className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
+                      <div className="relative h-80 md:h-auto overflow-hidden">
+                        <Image
+                          src="/assets/photos/FREDERICXAnnieClaudePhotographie-22.jpg"
+                          alt="Appels d'offres"
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-700"
+                        />
                       </div>
-                      <div className="space-y-6">
-                        <div className="text-exp-teal text-sm font-light tracking-widest uppercase">05 — Appels d'offres</div>
-                        <h3 className="text-4xl font-light text-exp-black group-hover:text-exp-teal transition-colors duration-700 leading-tight">
-                          Gestion des appels d'offres
-                        </h3>
-                        <p className="text-lg text-gray-600 leading-relaxed font-light">
-                          Accompagnement stratégique pour maximiser vos chances de succès et remporter les opportunités clés.
-                        </p>
-                        <div className="pt-4 inline-flex items-center text-exp-teal text-sm font-light tracking-wider uppercase group-hover:gap-4 gap-2 transition-all duration-700">
-                          <span>Explorer</span>
-                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                          </svg>
+                      <div className="p-8 flex flex-col justify-center">
+                        <div className="flex items-center gap-3 mb-4">
+                          <span className="text-sm font-light text-gray-400">05</span>
+                          <h3 className="text-2xl font-light text-exp-black">
+                            Appels d'offres et soumissions
+                          </h3>
                         </div>
+                        <p className="text-base text-gray-600 leading-relaxed mb-4 font-light">
+                          Gagner les contrats stratégiques
+                        </p>
+                        <p className="text-sm text-gray-500 leading-relaxed mb-6 font-light">
+                          Rédaction et stratégie<br />
+                          Maximiser vos chances de succès
+                        </p>
+                        <button className="inline-flex items-center text-exp-black text-sm font-light border border-exp-black px-6 py-2 rounded-full hover:bg-exp-black hover:text-white transition-all duration-300">
+                          Voir plus
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -303,10 +290,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Section Raison d'Être - Fond noir avec design élégant */}
+      {/* Section Raison d'être - Fond noir */}
       <section className="py-40 px-6 bg-exp-black">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-6xl font-thin text-white mb-20 leading-tight tracking-tight text-center">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-5xl font-thin text-white mb-12 leading-tight tracking-tight">
             Notre{' '}
             <span className="relative inline-block">
               <span className="relative z-10">raison</span>
@@ -314,143 +301,104 @@ export default function HomePage() {
             </span>
             {' '}d'être
           </h2>
-
-          <p className="text-2xl text-gray-300 leading-loose font-light mb-24 text-center max-w-4xl mx-auto">
-            Chez Expérience Collective, nous accompagnons nos partenaires à chaque étape de leur croissance, en élaborant des stratégies sur mesure qui allient innovation, efficacité et créativité.
+          <p className="text-2xl text-gray-300 font-light leading-relaxed">
+            Nous croyons que chaque organisation a une histoire unique à raconter. 
+            Notre mission est de vous aider à la révéler, à la partager et à la faire vivre 
+            à travers des expériences qui marquent les esprits et transforment les intentions en actions.
           </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            <Card className="bg-transparent p-10 rounded-3xl border border-gray-800 hover:border-exp-yellow/50 transition-all duration-700 group">
-              <div className="text-exp-yellow text-xs font-light mb-6 tracking-widest uppercase">Innovation</div>
-              <p className="text-gray-400 text-base leading-relaxed font-light">
-                Nous repoussons les limites du possible en intégrant les dernières technologies et approches créatives pour donner vie à vos projets.
-              </p>
-            </Card>
-
-            <Card className="bg-transparent p-10 rounded-3xl border border-gray-800 hover:border-exp-yellow/50 transition-all duration-700 group">
-              <div className="text-exp-yellow text-xs font-light mb-6 tracking-widest uppercase">Efficacité</div>
-              <p className="text-gray-400 text-base leading-relaxed font-light">
-                Chaque action est pensée pour maximiser l'impact et générer des résultats mesurables qui propulsent votre croissance.
-              </p>
-            </Card>
-
-            <Card className="bg-transparent p-10 rounded-3xl border border-gray-800 hover:border-exp-yellow/50 transition-all duration-700 group">
-              <div className="text-exp-yellow text-xs font-light mb-6 tracking-widest uppercase">Créativité</div>
-              <p className="text-gray-400 text-base leading-relaxed font-light">
-                Nous transformons les idées audacieuses en réalités tangibles grâce à une approche originale et sur mesure.
-              </p>
-            </Card>
-          </div>
         </div>
       </section>
 
-      {/* Section Image avec texte superposé - Inspiration brand guide */}
-      <section className="relative h-[600px] overflow-hidden">
+      {/* Section Photo avec texte superposé */}
+      <section className="relative h-screen">
         <Image
-          src="/assets/FREDERICXAnnieClaudePhotographie-22.jpg"
+          src="/assets/photos/FREDERICXAnnieClaudePhotographie-22.jpg"
           alt="Les yeux, les oreilles grand ouverts"
           fill
           className="object-cover"
         />
         <div className="absolute inset-0 bg-exp-black/40"></div>
-        <div className="relative z-10 h-full flex items-center justify-center px-6">
-          <div className="text-center">
-            <h2 className="text-6xl font-thin text-white leading-tight tracking-tight">
-              Les yeux, les oreilles
-              <br />
-              <span className="relative inline-block mt-2">
-                <span className="relative z-10">grand ouverts</span>
-                <span className="absolute inset-x-0 top-0 h-full bg-exp-yellow/50 -z-0"></span>
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="text-center px-6">
+            <h2 className="text-6xl font-thin text-white mb-6 leading-tight tracking-tight">
+              Les yeux, les oreilles{' '}
+              <span className="relative inline-block">
+                <span className="relative z-10 text-white">grand ouverts</span>
+                <span className="absolute inset-x-0 top-0 h-full bg-exp-yellow/40 -z-0"></span>
               </span>
             </h2>
+            <p className="text-xl text-white/90 font-light max-w-2xl mx-auto">
+              Nous écoutons, observons et comprenons avant d'agir. 
+              C'est dans cette attention que naissent les meilleures solutions.
+            </p>
           </div>
         </div>
       </section>
 
-      {/* Section Témoignages - Fond blanc */}
+      {/* Section Témoignages */}
       <section className="py-40 px-6 bg-white">
         <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-20">
-            <h2 className="text-5xl font-thin text-exp-black tracking-tight">
-              Témoignages
-            </h2>
-            <div className="flex gap-4">
-              <Link href="/realisations">
-                <Button variant="secondary" size="sm" className="text-exp-black border-exp-black hover:bg-exp-black hover:text-white transition-all duration-500 rounded-full px-8 text-sm font-light tracking-wider uppercase">
-                  Réalisations
-                </Button>
-              </Link>
-              <Link href="/contact">
-                <Button variant="primary" size="sm" className="bg-exp-yellow text-exp-black hover:bg-exp-black hover:text-white transition-all duration-500 rounded-full px-8 text-sm font-light tracking-wider uppercase border-0">
-                  Contact
-                </Button>
-              </Link>
+          <h2 className="text-5xl font-thin text-exp-black mb-20 text-center leading-tight tracking-tight">
+            Ce qu'ils disent de nous
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            {/* Témoignage 1 */}
+            <div className="space-y-6">
+              <div className="flex items-center gap-4">
+                <div className="w-16 h-16 rounded-full bg-exp-teal flex items-center justify-center text-white text-2xl font-light">
+                  M
+                </div>
+                <div>
+                  <div className="font-medium text-exp-black">Marie Tremblay</div>
+                  <div className="text-sm text-gray-500 font-light">Directrice Marketing, TechCorp</div>
+                </div>
+              </div>
+              <p className="text-lg text-gray-600 leading-relaxed font-light italic">
+                "Expérience Collective a transformé notre approche marketing. 
+                Leur capacité à comprendre nos enjeux et à proposer des solutions innovantes 
+                a dépassé toutes nos attentes."
+              </p>
             </div>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-            <Card className="bg-gray-50 p-10 rounded-3xl border-0 hover:shadow-xl transition-all duration-500">
-              <p className="text-gray-700 text-base leading-relaxed font-light mb-8 italic">
-                "Une approche stratégique qui a transformé notre vision en résultats concrets. L'équipe a su comprendre nos enjeux et proposer des solutions innovantes."
-              </p>
+            {/* Témoignage 2 */}
+            <div className="space-y-6">
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-exp-teal"></div>
+                <div className="w-16 h-16 rounded-full bg-exp-green flex items-center justify-center text-white text-2xl font-light">
+                  J
+                </div>
                 <div>
-                  <p className="text-exp-black text-sm font-medium">Marie Dubois</p>
-                  <p className="text-gray-500 text-xs font-light">Directrice Marketing</p>
+                  <div className="font-medium text-exp-black">Jean Dubois</div>
+                  <div className="text-sm text-gray-500 font-light">PDG, Innovation Plus</div>
                 </div>
               </div>
-            </Card>
-
-            <Card className="bg-gray-50 p-10 rounded-3xl border-0 hover:shadow-xl transition-all duration-500">
-              <p className="text-gray-700 text-base leading-relaxed font-light mb-8 italic">
-                "Un accompagnement sur mesure qui a dépassé nos attentes. La créativité et l'expertise se sont parfaitement combinées pour créer un impact durable."
+              <p className="text-lg text-gray-600 leading-relaxed font-light italic">
+                "Une équipe à l'écoute, créative et stratégique. 
+                Ils ont su donner vie à notre vision et créer une identité de marque 
+                qui nous ressemble vraiment."
               </p>
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-exp-yellow"></div>
-                <div>
-                  <p className="text-exp-black text-sm font-medium">Jean Tremblay</p>
-                  <p className="text-gray-500 text-xs font-light">PDG</p>
-                </div>
-              </div>
-            </Card>
-
-            <Card className="bg-gray-50 p-10 rounded-3xl border-0 hover:shadow-xl transition-all duration-500">
-              <p className="text-gray-700 text-base leading-relaxed font-light mb-8 italic">
-                "Une collaboration fluide et des résultats mesurables. L'équipe a su nous guider avec professionnalisme et créativité à chaque étape."
-              </p>
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-pink-500"></div>
-                <div>
-                  <p className="text-exp-black text-sm font-medium">Sophie Martin</p>
-                  <p className="text-gray-500 text-xs font-light">Directrice Générale</p>
-                </div>
-              </div>
-            </Card>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Section CTA Final - Fond noir */}
+      {/* CTA Final */}
       <section className="py-32 px-6 bg-exp-black">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-6xl font-thin text-white mb-8 leading-tight tracking-tight">
-            Prêt à transformer
-            <br />
-            votre{' '}
+          <h2 className="text-5xl font-thin text-white mb-8 leading-tight tracking-tight">
+            Prêt à transformer votre{' '}
             <span className="relative inline-block">
               <span className="relative z-10">vision</span>
               <span className="absolute inset-x-0 top-0 h-full bg-exp-yellow/40 -z-0"></span>
             </span>
-            {' '}?
+            {' '}en réalité ?
           </h2>
-          <p className="text-xl text-gray-400 font-light mb-12 leading-relaxed">
-            Discutons de vos ambitions et créons ensemble l'impact que vous méritez.
+          <p className="text-xl text-gray-300 font-light mb-12">
+            Discutons de vos ambitions et découvrons ensemble comment nous pouvons vous aider.
           </p>
           <Link href="/contact">
-            <Button variant="primary" size="lg" className="bg-exp-yellow text-exp-black hover:bg-white transition-all duration-500 rounded-full px-12 py-4 text-base font-light tracking-wider uppercase border-0">
-              Démarrons la conversation
-            </Button>
+            <button className="bg-exp-yellow text-exp-black px-10 py-4 rounded-full text-lg font-medium hover:bg-white transition-all duration-300 transform hover:scale-105">
+              Contactez-nous
+            </button>
           </Link>
         </div>
       </section>

@@ -13,14 +13,17 @@ export default function ExpFooter() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           {/* Logo vertical et baseline - 3 colonnes */}
           <div className="lg:col-span-3 space-y-6">
-            <div className="w-48">
-              <Image
-                src="/assets/Logo/Final/ExpC_Lc inv.png"
-                alt="Expérience Collective"
-                width={400}
-                height={200}
-                className="w-full h-auto"
-              />
+            {/* Logo vertical CSS */}
+            <div className="flex flex-col items-start">
+              <div className="flex flex-col text-white font-light text-2xl leading-none tracking-tight">
+                <div className="flex items-start">
+                  <span className="bg-exp-yellow text-exp-black px-2 py-1 font-medium">exp</span>
+                  <span>érience</span>
+                </div>
+                <div className="mt-1">
+                  <span>collective</span>
+                </div>
+              </div>
             </div>
             <p className="text-white/80 text-sm leading-relaxed font-light">
               Discipline, créativité et stratégie à la hauteur de vos ambitions
