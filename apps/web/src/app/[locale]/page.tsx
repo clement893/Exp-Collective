@@ -39,9 +39,19 @@ export default function HomePage() {
 
         <div className="relative z-10 text-center px-6 max-w-6xl mx-auto py-32">
           <div className="mb-20">
-            <h1 className="text-8xl font-thin text-white mb-8 leading-[1.1] tracking-tight">
-              expérience collective
-            </h1>
+            {/* Logo Expérience Collective */}
+            <div className="mb-8 flex justify-center">
+              <div className="relative w-full max-w-4xl">
+                <Image
+                  src="/assets/Logo/Final/ExpC_Lc inv.png"
+                  alt="Expérience Collective"
+                  width={1200}
+                  height={400}
+                  className="w-full h-auto"
+                  priority
+                />
+              </div>
+            </div>
             <div className="inline-block relative">
               <p className="text-3xl text-gray-400 font-light tracking-wide">
                 Comprendre pour{' '}
