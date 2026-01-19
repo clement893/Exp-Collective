@@ -1,7 +1,6 @@
 'use client';
 
 import { Link } from '@/i18n/routing';
-import Image from 'next/image';
 
 export default function ExpFooter() {
   const currentYear = new Date().getFullYear();
