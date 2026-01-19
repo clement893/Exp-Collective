@@ -13,50 +13,53 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-white">
       
-      {/* Hero Section - Noir avec forme organique jaune animée */}
+      {/* Hero Section - Grand 'e' jaune avec logo superposé */}
       <section className="relative min-h-screen flex items-center justify-center bg-exp-black overflow-hidden">
-        {/* Forme organique jaune en arrière-plan - statique */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] opacity-40">
-          <Image
-            src="/assets/e infusion/e infusion V3 copie.png"
-            alt=""
-            fill
-            className="object-contain"
-            priority
-          />
+        {/* Grand 'e' jaune en arrière-plan */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="relative w-[80%] h-[80%] max-w-[1200px]">
+            <Image
+              src="/assets/e infusion/e infusion V3 copie.png"
+              alt=""
+              fill
+              className="object-contain opacity-90"
+              priority
+            />
+          </div>
         </div>
 
-        <div className="relative z-10 text-center px-6 max-w-6xl mx-auto py-32">
-          <div className="mb-20">
-            {/* Logo Expérience Collective */}
-            <div className="mb-8 flex justify-center">
-              <div className="relative w-full max-w-4xl">
+        {/* Contenu superposé */}
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 py-32">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            {/* Logo à gauche */}
+            <div className="flex justify-center lg:justify-start">
+              <div className="w-full max-w-2xl">
                 <Image
                   src="/assets/Logo/Final/ExpC_Lc inv.png"
                   alt="Expérience Collective"
-                  width={1200}
-                  height={400}
+                  width={800}
+                  height={300}
                   className="w-full h-auto"
                   priority
                 />
               </div>
             </div>
-            <div className="inline-block relative">
-              <p className="text-3xl text-gray-400 font-light tracking-wide">
-                Comprendre pour{' '}
-                <span className="relative inline-block">
-                  <span className="relative z-10">oser</span>
-                  <span className="absolute inset-x-0 top-0 h-full bg-exp-yellow/40 -z-0"></span>
-                </span>
-                . Oser pour comprendre.
+
+            {/* Tagline à droite */}
+            <div className="text-left">
+              <p className="text-3xl lg:text-4xl text-exp-yellow font-light leading-relaxed">
+                Comprendre pour oser,
+                <br />
+                oser pour comprendre.
               </p>
             </div>
           </div>
 
-          <div className="mt-24">
+          {/* Bouton découvrir en bas */}
+          <div className="absolute bottom-16 left-1/2 -translate-x-1/2">
             <a href="#services">
-              <button className="text-white text-sm font-light tracking-widest uppercase hover:text-exp-yellow transition-colors duration-700 flex items-center gap-3 mx-auto group">
-                <span>Découvrir</span>
+              <button className="text-white text-sm font-light tracking-widest uppercase hover:text-exp-yellow transition-colors duration-700 flex items-center gap-3 group">
+                <span>Découvrez plus</span>
                 <svg className="w-5 h-5 transform group-hover:translate-y-1 transition-transform duration-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
                 </svg>
