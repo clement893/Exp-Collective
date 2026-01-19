@@ -355,6 +355,14 @@ const config: Config = {
         'shake': `shake 0.5s ease-in-out`,
         // Optimized blob animation - slower and smoother for better performance
         'blob': 'blob 20s ease-in-out infinite',
+        // Expérience Collective animations - élégantes et subtiles
+        'float': 'float 30s ease-in-out infinite',
+        'float-slow': 'float 40s ease-in-out infinite',
+        'fade-in-up-hero': 'fadeInUpHero 1s ease-out forwards',
+        'fade-in-up-delay-1': 'fadeInUpHero 1s ease-out 0.2s forwards',
+        'fade-in-up-delay-2': 'fadeInUpHero 1s ease-out 0.4s forwards',
+        'fade-in-up-delay-3': 'fadeInUpHero 1s ease-out 0.6s forwards',
+        'paint-highlight': 'paintHighlight 0.8s ease-out 0.8s forwards',
       },
       keyframes: {
         fadeIn: {
@@ -386,6 +394,21 @@ const config: Config = {
         fadeInUp: {
           '0%': { opacity: '0', transform: 'translateY(20px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        // Expérience Collective keyframes
+        float: {
+          '0%, 100%': { transform: 'translate(0, 0) scale(1)', opacity: '0.1' },
+          '25%': { transform: 'translate(20px, -20px) scale(1.05)', opacity: '0.12' },
+          '50%': { transform: 'translate(-15px, 15px) scale(0.95)', opacity: '0.08' },
+          '75%': { transform: 'translate(15px, 10px) scale(1.02)', opacity: '0.11' },
+        },
+        fadeInUpHero: {
+          '0%': { opacity: '0', transform: 'translateY(20px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        paintHighlight: {
+          '0%': { width: '0%' },
+          '100%': { width: '100%' },
         },
         slideInRight: {
           '0%': { opacity: '0', transform: 'translateX(100%)' },

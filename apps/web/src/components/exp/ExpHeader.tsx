@@ -16,7 +16,7 @@ export default function ExpHeader() {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm border-b border-gray-100 dark:border-gray-800">
       <nav className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
@@ -28,10 +28,10 @@ export default function ExpHeader() {
               </div>
             </div>
             <div className="hidden md:block">
-              <div className="font-medium text-exp-black text-base">
+              <div className="font-medium text-exp-black dark:text-white text-base">
                 expérience collective
               </div>
-              <div className="text-xs text-gray-500 italic">
+              <div className="text-xs text-gray-500 dark:text-gray-400 italic">
                 L'encre jaune qui se dilue
               </div>
             </div>
@@ -43,7 +43,7 @@ export default function ExpHeader() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-gray-700 font-normal hover:text-exp-black transition-colors duration-200 relative group"
+                className="text-gray-700 dark:text-gray-300 font-normal hover:text-exp-black dark:hover:text-exp-yellow transition-colors duration-200 relative group"
               >
                 {item.name}
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-exp-yellow group-hover:w-full transition-all duration-300"></span>
