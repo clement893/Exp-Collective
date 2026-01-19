@@ -49,11 +49,6 @@ export default function ExpHeader() {
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-exp-yellow group-hover:w-full transition-all duration-300"></span>
               </Link>
             ))}
-            <Link href="/contact">
-              <Button className="bg-exp-black text-white hover:bg-exp-yellow hover:text-exp-black font-medium px-6 py-2.5 rounded-lg transition-all duration-300 border border-exp-black">
-                Passez à l'action
-              </Button>
-            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -100,11 +95,6 @@ export default function ExpHeader() {
                   {item.name}
                 </Link>
               ))}
-              <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
-                <Button className="w-full bg-exp-black text-white hover:bg-exp-yellow hover:text-exp-black font-medium rounded-lg transition-all duration-300">
-                  Passez à l'action
-                </Button>
-              </Link>
             </div>
           </div>
         )}

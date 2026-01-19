@@ -27,20 +27,7 @@ const config: Config = {
           teal: '#4A8B9E',
           green: '#2D5F3F',
         },
-        // Primary color palette (Bleu pétrole) - Uses CSS variables with fallbacks for theme support
-        primary: {
-          50: 'var(--color-primary-50, #E8F1F5)',
-          100: 'var(--color-primary-100, #C2DCE6)',
-          200: 'var(--color-primary-200, #9BC7D7)',
-          300: 'var(--color-primary-300, #74B2C8)',
-          400: 'var(--color-primary-400, #4D9DB9)',
-          500: 'var(--color-primary-500, #2B5F7A)',
-          600: 'var(--color-primary-600, #234E63)',
-          700: 'var(--color-primary-700, #1B3D4C)',
-          800: 'var(--color-primary-800, #132C35)',
-          900: 'var(--color-primary-900, #0B1B1E)',
-          950: 'var(--color-primary-950, #0B1B1E)',
-        },
+
         // Custom blue light color (#B4D6FF) - darker in dark mode
         blue: {
           light: '#B4D6FF',
