@@ -68,6 +68,8 @@ const nextConfig = {
     // Build traces are automatically managed by Next.js
     // Enable partial prerendering for better performance
     ppr: false, // Can be enabled when stable
+    // Optimize build performance
+    webpackBuildWorker: true, // Use worker threads for faster builds
   },
 
   // Image optimization - enhanced for better performance
@@ -103,6 +105,9 @@ const nextConfig = {
         compression: 'gzip',
         // Cache more aggressively
         maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
+        // Optimize cache performance
+        idleTimeout: 2000, // Reduce idle timeout for faster cache operations
+        idleTimeoutForInitialStore: 10000, // Initial store timeout
       };
       
       // Optimize module resolution cache
@@ -110,6 +115,17 @@ const nextConfig = {
         ...config.resolve,
         cache: true,
         cacheWithContext: false, // Faster cache lookups
+        // Use symlinks for faster resolution
+        symlinks: false,
+      };
+      
+      // Optimize build performance
+      config.optimization = {
+        ...config.optimization,
+        // Reduce module concatenation overhead
+        moduleIds: 'deterministic',
+        // Faster chunk IDs
+        chunkIds: 'deterministic',
       };
     }
 

@@ -17,10 +17,12 @@ COPY packages/types/package.json ./packages/types/
 # Sharp will automatically download prebuilt binaries (faster than building from source)
 # Railway automatically caches .pnpm-store via railway.json configuration (no BuildKit cache mounts needed)
 # Configure pnpm to use a cache directory that Railway can cache (relative to workdir)
-RUN pnpm config set store-dir .pnpm-store
+RUN pnpm config set store-dir .pnpm-store && \
+    pnpm config set fetch-retries 2 && \
+    pnpm config set fetch-retry-factor 2 && \
+    pnpm config set fetch-timeout 60000
 RUN pnpm install --frozen-lockfile || \
-    (echo "Retrying installation with relaxed lockfile..." && sleep 5 && pnpm install --no-frozen-lockfile) || \
-    (echo "Final retry..." && pnpm install --no-frozen-lockfile)
+    (echo "Retrying installation with relaxed lockfile..." && sleep 2 && pnpm install --no-frozen-lockfile)
 
 # Build application
 FROM base AS builder
@@ -38,7 +40,8 @@ COPY --from=deps /app/packages/types/package.json ./packages/types/package.json
 # Railway caches .pnpm-store automatically via railway.json, so pnpm will reuse cached packages
 # Use --prefer-offline to use cache if available, but don't fail if not
 # Use --frozen-lockfile for faster installs (lockfile is already validated in deps stage)
-RUN pnpm install --prefer-offline --frozen-lockfile || pnpm install --prefer-offline --no-frozen-lockfile
+RUN pnpm install --prefer-offline --frozen-lockfile || \
+    pnpm install --prefer-offline --no-frozen-lockfile
 
 # Copy and build types package first (required for web app build)
 # Copy tsconfig.base.json first (required by packages/types/tsconfig.json)
@@ -97,10 +100,8 @@ ENV SKIP_TYPE_CHECK=${SKIP_TYPE_CHECK}
 RUN cd apps/web && node scripts/validate-build.js || echo "⚠️  Validation failed but continuing build..."
 
 # Build Next.js application
-# Uses Webpack by default in production (more stable with next-auth catch-all routes)
-# Turbopack has issues with vendored Next.js modules in catch-all routes
-# Next.js will read variables from .env.local (created above) or ENV
-# To use Turbopack instead, set USE_TURBOPACK=true in Railway environment variables
+# Use Turbopack by default for faster builds (~2-3x faster than Webpack)
+# Fallback to Webpack if Turbopack fails (set USE_WEBPACK=true to force Webpack)
 # Disable Next.js telemetry for faster builds (no network calls during build)
 # Skip type check (already done in validate-build.js) and skip lib check for speed
 ENV NEXT_TELEMETRY_DISABLED=1
@@ -108,7 +109,9 @@ ENV SKIP_TYPE_CHECK=true
 ENV TSC_COMPILE_ON_ERROR=true
 # Disable build traces collection (saves ~30-45 seconds)
 ENV NEXT_PRIVATE_STANDALONE=true
-RUN cd apps/web && USE_WEBPACK=true pnpm build
+# Use Turbopack for faster builds (can fallback to Webpack if needed)
+# Turbopack is significantly faster (~2-3x) than Webpack in Next.js 16
+RUN cd apps/web && pnpm build || (echo "⚠️  Turbopack build failed, retrying with Webpack..." && USE_WEBPACK=true pnpm build)
 
 # Production image
 FROM base AS runner

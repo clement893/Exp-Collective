@@ -17,7 +17,7 @@ importers:
       '@axe-core/react':
         specifier: ^4.11.0
         version: 4.11.0
-      '@modele/types':
+      '@exp-collective/types':
         specifier: workspace:*
         version: link:../../packages/types
       '@sentry/nextjs':

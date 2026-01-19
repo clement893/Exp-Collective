@@ -49,6 +49,9 @@ try {
     env: {
       ...process.env,
       NEXT_BUILDER: bundler, // Pass bundler info to Next.js
+      // Optimize build performance
+      NODE_OPTIONS: '--max-old-space-size=4096', // Increase memory for faster builds
+      NEXT_TELEMETRY_DISABLED: '1', // Disable telemetry
     },
   });
   
