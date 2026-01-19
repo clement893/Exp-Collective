@@ -1,6 +1,5 @@
 'use client';
 
-import type { Metadata } from 'next';
 import { Link } from '@/i18n/routing';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
