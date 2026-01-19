@@ -365,6 +365,8 @@ const config: Config = {
         'paint-highlight': 'paintHighlight 0.8s ease-out 0.8s forwards',
         'ink-spread': 'inkSpread 8s ease-in-out infinite',
         'pulse-slow': 'pulseSlow 6s ease-in-out infinite',
+        'smoke-flow': 'smokeFlow 15s ease-in-out infinite',
+        'smoke-flow-delay': 'smokeFlow 18s ease-in-out 2s infinite',
       },
       keyframes: {
         fadeIn: {
@@ -419,6 +421,24 @@ const config: Config = {
         pulseSlow: {
           '0%, 100%': { opacity: '0.08' },
           '50%': { opacity: '0.12' },
+        },
+        smokeFlow: {
+          '0%, 100%': { 
+            transform: 'translate(0, 0) scale(1) rotate(0deg)', 
+            opacity: '0.3' 
+          },
+          '25%': { 
+            transform: 'translate(30px, -40px) scale(1.15) rotate(5deg)', 
+            opacity: '0.4' 
+          },
+          '50%': { 
+            transform: 'translate(-20px, -60px) scale(1.25) rotate(-3deg)', 
+            opacity: '0.5' 
+          },
+          '75%': { 
+            transform: 'translate(40px, -30px) scale(1.1) rotate(8deg)', 
+            opacity: '0.35' 
+          },
         },
         slideInRight: {
           '0%': { opacity: '0', transform: 'translateX(100%)' },

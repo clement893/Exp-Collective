@@ -13,15 +13,26 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-white">
       
-      {/* Hero Section - Noir avec forme organique jaune subtile */}
+      {/* Hero Section - Noir avec forme organique jaune animée */}
       <section className="relative min-h-screen flex items-center justify-center bg-exp-black overflow-hidden">
-        {/* Forme organique jaune en arrière-plan - comme de l'encre qui se dilue */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] opacity-20">
+        {/* Forme organique jaune en arrière-plan - fumée animée */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] opacity-50">
           <Image
             src="/assets/e infusion/e infusion V3 copie.png"
             alt=""
             fill
-            className="object-contain animate-pulse-slow"
+            className="object-contain animate-smoke-flow"
+            priority
+          />
+        </div>
+
+        {/* Deuxième couche de fumée pour plus de profondeur */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] opacity-30">
+          <Image
+            src="/assets/e infusion/e infusion V2 copie.png"
+            alt=""
+            fill
+            className="object-contain animate-smoke-flow-delay"
             priority
           />
         </div>
@@ -44,19 +55,19 @@ export default function HomePage() {
           </div>
 
           <div className="mt-24">
-            <Link href="#services">
+            <a href="#services">
               <button className="text-white text-sm font-light tracking-widest uppercase hover:text-exp-yellow transition-colors duration-700 flex items-center gap-3 mx-auto group">
                 <span>Découvrir</span>
                 <svg className="w-5 h-5 transform group-hover:translate-y-1 transition-transform duration-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
                 </svg>
               </button>
-            </Link>
+            </a>
           </div>
         </div>
       </section>
 
-      {/* Section Services - Fond blanc avec design épuré */}
+      {/* Section Services - Fond blanc avec navigation dynamique */}
       <section id="services" className="py-40 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="mb-32 text-center">
@@ -72,161 +83,220 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="space-y-24">
-            {/* Service 1 */}
-            <Link href="/services/image-de-marque">
-              <div className="group cursor-pointer">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                  <div className="relative h-[500px] rounded-3xl overflow-hidden bg-gradient-to-br from-exp-black to-gray-900">
-                    <Image
-                      src="/assets/e infusion/e infusion V2 copie.png"
-                      alt=""
-                      fill
-                      className="object-contain opacity-60 group-hover:opacity-90 group-hover:scale-105 transition-all duration-1000"
-                    />
-                  </div>
-                  <div className="space-y-6">
-                    <div className="text-exp-teal text-sm font-light tracking-widest uppercase">01</div>
-                    <h3 className="text-4xl font-light text-exp-black group-hover:text-exp-teal transition-colors duration-700 leading-tight">
-                      Image de marque et marketing
-                    </h3>
-                    <p className="text-lg text-gray-600 leading-relaxed font-light">
-                      Construire ou réinventer l'image de marque pour créer une identité forte et cohérente qui résonne avec votre audience.
-                    </p>
-                    <div className="pt-4 inline-flex items-center text-exp-teal text-sm font-light tracking-wider uppercase group-hover:gap-4 gap-2 transition-all duration-700">
-                      <span>Explorer</span>
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
-                    </div>
-                  </div>
-                </div>
+          <div className="relative">
+            {/* Navigation sticky avec chiffres */}
+            <div className="sticky top-32 float-left mr-16 hidden lg:block">
+              <div className="space-y-8">
+                <a href="#service-1" className="block text-gray-400 hover:text-exp-yellow transition-colors duration-500 text-sm font-light tracking-wider">
+                  01
+                </a>
+                <a href="#service-2" className="block text-gray-400 hover:text-exp-yellow transition-colors duration-500 text-sm font-light tracking-wider">
+                  02
+                </a>
+                <a href="#service-3" className="block text-gray-400 hover:text-exp-yellow transition-colors duration-500 text-sm font-light tracking-wider">
+                  03
+                </a>
+                <a href="#service-4" className="block text-gray-400 hover:text-exp-yellow transition-colors duration-500 text-sm font-light tracking-wider">
+                  04
+                </a>
+                <a href="#service-5" className="block text-gray-400 hover:text-exp-yellow transition-colors duration-500 text-sm font-light tracking-wider">
+                  05
+                </a>
               </div>
-            </Link>
+            </div>
 
-            {/* Service 2 */}
-            <Link href="/services/strategie-cmo">
-              <div className="group cursor-pointer">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                  <div className="lg:order-2 relative h-[500px] rounded-3xl overflow-hidden bg-gradient-to-br from-exp-black to-gray-900">
-                    <Image
-                      src="/assets/e infusion/e infusion V1 copie.png"
-                      alt=""
-                      fill
-                      className="object-contain opacity-60 group-hover:opacity-90 group-hover:scale-105 transition-all duration-1000"
-                    />
-                  </div>
-                  <div className="lg:order-1 space-y-6">
-                    <div className="text-exp-teal text-sm font-light tracking-widest uppercase">02</div>
-                    <h3 className="text-4xl font-light text-exp-black group-hover:text-exp-teal transition-colors duration-700 leading-tight">
-                      Accompagnement stratégique global
-                    </h3>
-                    <p className="text-lg text-gray-600 leading-relaxed font-light">
-                      Vision stratégique et exécution tactique pour propulser votre croissance avec un CMO on demand.
-                    </p>
-                    <div className="pt-4 inline-flex items-center text-exp-teal text-sm font-light tracking-wider uppercase group-hover:gap-4 gap-2 transition-all duration-700">
-                      <span>Explorer</span>
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
+            <div className="space-y-32 lg:ml-24">
+              {/* Service 1 - Image de marque */}
+              <div id="service-1" className="scroll-mt-32">
+                <Link href="/services/image-de-marque">
+                  <div className="group cursor-pointer">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                      <div className="relative h-[500px] rounded-3xl overflow-hidden bg-gradient-to-br from-exp-black to-gray-900">
+                        {/* Lettre en fumée */}
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <Image
+                            src="/assets/e infusion/e infusion V2 copie.png"
+                            alt=""
+                            fill
+                            className="object-contain opacity-40 group-hover:opacity-60 animate-smoke-flow transition-opacity duration-1000"
+                          />
+                        </div>
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <span className="text-[200px] font-thin text-white/20 group-hover:text-white/30 transition-colors duration-1000">I</span>
+                        </div>
+                      </div>
+                      <div className="space-y-6">
+                        <div className="text-exp-teal text-sm font-light tracking-widest uppercase">01 — Image</div>
+                        <h3 className="text-4xl font-light text-exp-black group-hover:text-exp-teal transition-colors duration-700 leading-tight">
+                          Image de marque et marketing
+                        </h3>
+                        <p className="text-lg text-gray-600 leading-relaxed font-light">
+                          Construire ou réinventer l'image de marque pour créer une identité forte et cohérente qui résonne avec votre audience.
+                        </p>
+                        <div className="pt-4 inline-flex items-center text-exp-teal text-sm font-light tracking-wider uppercase group-hover:gap-4 gap-2 transition-all duration-700">
+                          <span>Explorer</span>
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                          </svg>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </Link>
               </div>
-            </Link>
 
-            {/* Service 3 */}
-            <Link href="/services/experience-client">
-              <div className="group cursor-pointer">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                  <div className="relative h-[500px] rounded-3xl overflow-hidden bg-gradient-to-br from-exp-black to-gray-900">
-                    <Image
-                      src="/assets/e infusion/e infusion V3 copie.png"
-                      alt=""
-                      fill
-                      className="object-contain opacity-60 group-hover:opacity-90 group-hover:scale-105 transition-all duration-1000"
-                    />
-                  </div>
-                  <div className="space-y-6">
-                    <div className="text-exp-teal text-sm font-light tracking-widest uppercase">03</div>
-                    <h3 className="text-4xl font-light text-exp-black group-hover:text-exp-teal transition-colors duration-700 leading-tight">
-                      Expérience client et transformation digitale
-                    </h3>
-                    <p className="text-lg text-gray-600 leading-relaxed font-light">
-                      Optimiser chaque point de contact pour créer des expériences mémorables et engageantes.
-                    </p>
-                    <div className="pt-4 inline-flex items-center text-exp-teal text-sm font-light tracking-wider uppercase group-hover:gap-4 gap-2 transition-all duration-700">
-                      <span>Explorer</span>
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
+              {/* Service 2 - Stratégie */}
+              <div id="service-2" className="scroll-mt-32">
+                <Link href="/services/strategie-cmo">
+                  <div className="group cursor-pointer">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                      <div className="lg:order-2 relative h-[500px] rounded-3xl overflow-hidden bg-gradient-to-br from-exp-black to-gray-900">
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <Image
+                            src="/assets/e infusion/e infusion V1 copie.png"
+                            alt=""
+                            fill
+                            className="object-contain opacity-40 group-hover:opacity-60 animate-smoke-flow-delay transition-opacity duration-1000"
+                          />
+                        </div>
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <span className="text-[200px] font-thin text-white/20 group-hover:text-white/30 transition-colors duration-1000">S</span>
+                        </div>
+                      </div>
+                      <div className="lg:order-1 space-y-6">
+                        <div className="text-exp-teal text-sm font-light tracking-widest uppercase">02 — Stratégie</div>
+                        <h3 className="text-4xl font-light text-exp-black group-hover:text-exp-teal transition-colors duration-700 leading-tight">
+                          Accompagnement stratégique global
+                        </h3>
+                        <p className="text-lg text-gray-600 leading-relaxed font-light">
+                          Vision stratégique et exécution tactique pour propulser votre croissance avec un CMO on demand.
+                        </p>
+                        <div className="pt-4 inline-flex items-center text-exp-teal text-sm font-light tracking-wider uppercase group-hover:gap-4 gap-2 transition-all duration-700">
+                          <span>Explorer</span>
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                          </svg>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </Link>
               </div>
-            </Link>
 
-            {/* Service 4 */}
-            <Link href="/services/mesure-performance">
-              <div className="group cursor-pointer">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                  <div className="lg:order-2 relative h-[500px] rounded-3xl overflow-hidden bg-gradient-to-br from-exp-black to-gray-900">
-                    <Image
-                      src="/assets/e infusion/e infusion V2 copie.png"
-                      alt=""
-                      fill
-                      className="object-contain opacity-60 group-hover:opacity-90 group-hover:scale-105 transition-all duration-1000"
-                    />
-                  </div>
-                  <div className="lg:order-1 space-y-6">
-                    <div className="text-exp-teal text-sm font-light tracking-widest uppercase">04</div>
-                    <h3 className="text-4xl font-light text-exp-black group-hover:text-exp-teal transition-colors duration-700 leading-tight">
-                      Mesure de performance et analyse
-                    </h3>
-                    <p className="text-lg text-gray-600 leading-relaxed font-light">
-                      Données en temps réel et insights actionnables pour des décisions stratégiques éclairées.
-                    </p>
-                    <div className="pt-4 inline-flex items-center text-exp-teal text-sm font-light tracking-wider uppercase group-hover:gap-4 gap-2 transition-all duration-700">
-                      <span>Explorer</span>
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
+              {/* Service 3 - Expérience */}
+              <div id="service-3" className="scroll-mt-32">
+                <Link href="/services/experience-client">
+                  <div className="group cursor-pointer">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                      <div className="relative h-[500px] rounded-3xl overflow-hidden bg-gradient-to-br from-exp-black to-gray-900">
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <Image
+                            src="/assets/e infusion/e infusion V3 copie.png"
+                            alt=""
+                            fill
+                            className="object-contain opacity-40 group-hover:opacity-60 animate-smoke-flow transition-opacity duration-1000"
+                          />
+                        </div>
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <span className="text-[200px] font-thin text-white/20 group-hover:text-white/30 transition-colors duration-1000">E</span>
+                        </div>
+                      </div>
+                      <div className="space-y-6">
+                        <div className="text-exp-teal text-sm font-light tracking-widest uppercase">03 — Expérience</div>
+                        <h3 className="text-4xl font-light text-exp-black group-hover:text-exp-teal transition-colors duration-700 leading-tight">
+                          Expérience client et transformation digitale
+                        </h3>
+                        <p className="text-lg text-gray-600 leading-relaxed font-light">
+                          Optimiser chaque point de contact pour créer des expériences mémorables et engageantes.
+                        </p>
+                        <div className="pt-4 inline-flex items-center text-exp-teal text-sm font-light tracking-wider uppercase group-hover:gap-4 gap-2 transition-all duration-700">
+                          <span>Explorer</span>
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                          </svg>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </Link>
               </div>
-            </Link>
 
-            {/* Service 5 */}
-            <Link href="/services/appels-offres">
-              <div className="group cursor-pointer">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                  <div className="relative h-[500px] rounded-3xl overflow-hidden bg-gradient-to-br from-exp-black to-gray-900">
-                    <Image
-                      src="/assets/e infusion/e infusion V1 copie.png"
-                      alt=""
-                      fill
-                      className="object-contain opacity-60 group-hover:opacity-90 group-hover:scale-105 transition-all duration-1000"
-                    />
-                  </div>
-                  <div className="space-y-6">
-                    <div className="text-exp-teal text-sm font-light tracking-widest uppercase">05</div>
-                    <h3 className="text-4xl font-light text-exp-black group-hover:text-exp-teal transition-colors duration-700 leading-tight">
-                      Gestion des appels d'offres
-                    </h3>
-                    <p className="text-lg text-gray-600 leading-relaxed font-light">
-                      Accompagnement stratégique pour maximiser vos chances de succès et remporter les opportunités clés.
-                    </p>
-                    <div className="pt-4 inline-flex items-center text-exp-teal text-sm font-light tracking-wider uppercase group-hover:gap-4 gap-2 transition-all duration-700">
-                      <span>Explorer</span>
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
+              {/* Service 4 - Mesure */}
+              <div id="service-4" className="scroll-mt-32">
+                <Link href="/services/mesure-performance">
+                  <div className="group cursor-pointer">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                      <div className="lg:order-2 relative h-[500px] rounded-3xl overflow-hidden bg-gradient-to-br from-exp-black to-gray-900">
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <Image
+                            src="/assets/e infusion/e infusion V2 copie.png"
+                            alt=""
+                            fill
+                            className="object-contain opacity-40 group-hover:opacity-60 animate-smoke-flow-delay transition-opacity duration-1000"
+                          />
+                        </div>
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <span className="text-[200px] font-thin text-white/20 group-hover:text-white/30 transition-colors duration-1000">M</span>
+                        </div>
+                      </div>
+                      <div className="lg:order-1 space-y-6">
+                        <div className="text-exp-teal text-sm font-light tracking-widest uppercase">04 — Mesure</div>
+                        <h3 className="text-4xl font-light text-exp-black group-hover:text-exp-teal transition-colors duration-700 leading-tight">
+                          Mesure de performance et analyse
+                        </h3>
+                        <p className="text-lg text-gray-600 leading-relaxed font-light">
+                          Données en temps réel et insights actionnables pour des décisions stratégiques éclairées.
+                        </p>
+                        <div className="pt-4 inline-flex items-center text-exp-teal text-sm font-light tracking-wider uppercase group-hover:gap-4 gap-2 transition-all duration-700">
+                          <span>Explorer</span>
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                          </svg>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </Link>
               </div>
-            </Link>
+
+              {/* Service 5 - Appels d'offres */}
+              <div id="service-5" className="scroll-mt-32">
+                <Link href="/services/appels-offres">
+                  <div className="group cursor-pointer">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                      <div className="relative h-[500px] rounded-3xl overflow-hidden bg-gradient-to-br from-exp-black to-gray-900">
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <Image
+                            src="/assets/e infusion/e infusion V1 copie.png"
+                            alt=""
+                            fill
+                            className="object-contain opacity-40 group-hover:opacity-60 animate-smoke-flow transition-opacity duration-1000"
+                          />
+                        </div>
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <span className="text-[200px] font-thin text-white/20 group-hover:text-white/30 transition-colors duration-1000">A</span>
+                        </div>
+                      </div>
+                      <div className="space-y-6">
+                        <div className="text-exp-teal text-sm font-light tracking-widest uppercase">05 — Appels d'offres</div>
+                        <h3 className="text-4xl font-light text-exp-black group-hover:text-exp-teal transition-colors duration-700 leading-tight">
+                          Gestion des appels d'offres
+                        </h3>
+                        <p className="text-lg text-gray-600 leading-relaxed font-light">
+                          Accompagnement stratégique pour maximiser vos chances de succès et remporter les opportunités clés.
+                        </p>
+                        <div className="pt-4 inline-flex items-center text-exp-teal text-sm font-light tracking-wider uppercase group-hover:gap-4 gap-2 transition-all duration-700">
+                          <span>Explorer</span>
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>
