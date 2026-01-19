@@ -125,7 +125,7 @@ export default function ExpHomePage() {
                 {' '}global et CMO on demand pour définir et exécuter votre vision.
               </p>
               <Link href="/services/strategie-cmo">
-                <Button variant="link" className="text-exp-teal group-hover:text-exp-yellow font-medium text-sm transition-colors duration-500 relative group/link">
+                <Button variant="ghost" className="text-exp-teal group-hover:text-exp-yellow font-medium text-sm transition-colors duration-500 relative group/link">
                   En savoir plus
                   <span className="inline-block ml-1 transition-transform duration-300 group-hover/link:translate-x-2">→</span>
                 </Button>
@@ -151,7 +151,7 @@ export default function ExpHomePage() {
                 {' '}et stratégies de marque percutantes.
               </p>
               <Link href="/services/image-de-marque">
-                <Button variant="link" className="text-exp-teal group-hover:text-exp-yellow font-medium text-sm transition-colors duration-500 relative group/link">
+                <Button variant="ghost" className="text-exp-teal group-hover:text-exp-yellow font-medium text-sm transition-colors duration-500 relative group/link">
                   En savoir plus
                   <span className="inline-block ml-1 transition-transform duration-300 group-hover/link:translate-x-2">→</span>
                 </Button>
@@ -177,7 +177,7 @@ export default function ExpHomePage() {
                 .
               </p>
               <Link href="/services/experience-client">
-                <Button variant="link" className="text-exp-teal group-hover:text-exp-yellow font-medium text-sm transition-colors duration-500 relative group/link">
+                <Button variant="ghost" className="text-exp-teal group-hover:text-exp-yellow font-medium text-sm transition-colors duration-500 relative group/link">
                   En savoir plus
                   <span className="inline-block ml-1 transition-transform duration-300 group-hover/link:translate-x-2">→</span>
                 </Button>
@@ -203,7 +203,7 @@ export default function ExpHomePage() {
                 .
               </p>
               <Link href="/services/mesure-performance">
-                <Button variant="link" className="text-exp-teal group-hover:text-exp-yellow font-medium text-sm transition-colors duration-500 relative group/link">
+                <Button variant="ghost" className="text-exp-teal group-hover:text-exp-yellow font-medium text-sm transition-colors duration-500 relative group/link">
                   En savoir plus
                   <span className="inline-block ml-1 transition-transform duration-300 group-hover/link:translate-x-2">→</span>
                 </Button>
@@ -229,7 +229,7 @@ export default function ExpHomePage() {
                 {' '}pour la gestion et la réponse aux appels d'offres complexes.
               </p>
               <Link href="/services/appels-offres">
-                <Button variant="link" className="text-exp-teal group-hover:text-exp-yellow font-medium text-sm transition-colors duration-500 relative group/link">
+                <Button variant="ghost" className="text-exp-teal group-hover:text-exp-yellow font-medium text-sm transition-colors duration-500 relative group/link">
                   En savoir plus
                   <span className="inline-block ml-1 transition-transform duration-300 group-hover/link:translate-x-2">→</span>
                 </Button>
