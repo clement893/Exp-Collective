@@ -21,7 +21,7 @@ const config: Config = {
         // Expérience Collective brand colors
         exp: {
           yellow: '#FFD400',
-          black: '#1D1D1B',
+          black: '#000000',
           white: '#FFFFFF',
           gray: '#6B6B6B',
           teal: '#4A8B9E',
