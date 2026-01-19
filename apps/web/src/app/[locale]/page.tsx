@@ -109,7 +109,7 @@ export default function ExpHomePage() {
                 Accompagnement stratégique global et CMO on demand pour définir et exécuter votre vision.
               </p>
               <Link href="/services/strategie-cmo">
-                <Button variant="link" className="text-exp-teal group-hover:text-exp-yellow font-medium text-sm transition-colors">
+                <Button variant="ghost" className="text-exp-teal group-hover:text-exp-yellow font-medium text-sm transition-colors">
                   En savoir plus →
                 </Button>
               </Link>
@@ -129,7 +129,7 @@ export default function ExpHomePage() {
                 Création d'identités visuelles distinctives et stratégies de marque percutantes.
               </p>
               <Link href="/services/image-de-marque">
-                <Button variant="link" className="text-exp-teal group-hover:text-exp-yellow font-medium text-sm transition-colors">
+                <Button variant="ghost" className="text-exp-teal group-hover:text-exp-yellow font-medium text-sm transition-colors">
                   En savoir plus →
                 </Button>
               </Link>
@@ -149,7 +149,7 @@ export default function ExpHomePage() {
                 Transformation digitale et optimisation de l'expérience client pour des parcours mémorables.
               </p>
               <Link href="/services/experience-client">
-                <Button variant="link" className="text-exp-teal group-hover:text-exp-yellow font-medium text-sm transition-colors">
+                <Button variant="ghost" className="text-exp-teal group-hover:text-exp-yellow font-medium text-sm transition-colors">
                   En savoir plus →
                 </Button>
               </Link>
@@ -169,7 +169,7 @@ export default function ExpHomePage() {
                 Outils d'analyse et tableaux de bord pour mesurer l'impact de vos actions en temps réel.
               </p>
               <Link href="/services/mesure-performance">
-                <Button variant="link" className="text-exp-teal group-hover:text-exp-yellow font-medium text-sm transition-colors">
+                <Button variant="ghost" className="text-exp-teal group-hover:text-exp-yellow font-medium text-sm transition-colors">
                   En savoir plus →
                 </Button>
               </Link>
@@ -189,7 +189,7 @@ export default function ExpHomePage() {
                 Accompagnement stratégique pour la gestion et la réponse aux appels d'offres complexes.
               </p>
               <Link href="/services/appels-offres">
-                <Button variant="link" className="text-exp-teal group-hover:text-exp-yellow font-medium text-sm transition-colors">
+                <Button variant="ghost" className="text-exp-teal group-hover:text-exp-yellow font-medium text-sm transition-colors">
                   En savoir plus →
                 </Button>
               </Link>
