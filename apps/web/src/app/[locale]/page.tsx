@@ -10,8 +10,7 @@ export const metadata: Metadata = {
 
 export default function ExpHomePage() {
   return (
-    <div className="min-h-screen bg-white
-      
+    <div className="min-h-screen bg-white">
       {/* Hero Section - Fond noir élégant avec animations et "l'encre qui se dilue" */}
       <section className="relative min-h-screen flex items-center justify-center bg-exp-black overflow-hidden">
         {/* Gradient "encre qui se dilue" - concept central du guide de marque */}
@@ -84,7 +83,7 @@ export default function ExpHomePage() {
       </section>
 
       {/* Section Services - Fond gris ultra-léger avec adaptation dark mode */}
-      <section className="py-48 px-6 bg-gray-50
+      <section className="py-48 px-6 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           {/* Titre élégant avec surlignage */}
           <div className="text-center mb-24">
