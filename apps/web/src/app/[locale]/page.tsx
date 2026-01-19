@@ -36,7 +36,7 @@ export default function HomePage() {
                 Comprendre pour{' '}
                 <span className="relative inline-block">
                   <span className="relative z-10">oser</span>
-                  <span className="absolute inset-x-0 bottom-1 h-2 bg-exp-yellow/40 -z-0"></span>
+                  <span className="absolute inset-x-0 top-0 h-full bg-exp-yellow/40 -z-0"></span>
                 </span>
                 . Oser pour comprendre.
               </p>
@@ -65,10 +65,10 @@ export default function HomePage() {
             </h2>
             <p className="text-xl text-gray-500 font-light max-w-2xl mx-auto">
               Des solutions sur mesure pour transformer votre vision en{' '}
-              <span className="relative inline-block">
-                <span className="relative z-10">impact</span>
-                <span className="absolute inset-x-0 bottom-0 h-2 bg-exp-yellow/40 -z-0"></span>
-              </span>
+            <span className="relative inline-block">
+              <span className="relative z-10">impact</span>
+              <span className="absolute inset-x-0 top-0 h-full bg-exp-yellow/40 -z-0"></span>
+            </span>
             </p>
           </div>
 
@@ -238,7 +238,7 @@ export default function HomePage() {
             Notre{' '}
             <span className="relative inline-block">
               <span className="relative z-10">raison</span>
-              <span className="absolute inset-x-0 bottom-1 h-2 bg-exp-yellow/40 -z-0"></span>
+              <span className="absolute inset-x-0 top-0 h-full bg-exp-yellow/40 -z-0"></span>
             </span>
             {' '}d'être
           </h2>
@@ -288,7 +288,7 @@ export default function HomePage() {
               <br />
               <span className="relative inline-block mt-2">
                 <span className="relative z-10">grand ouverts</span>
-                <span className="absolute inset-x-0 bottom-1 h-3 bg-exp-yellow/50 -z-0"></span>
+                <span className="absolute inset-x-0 top-0 h-full bg-exp-yellow/50 -z-0"></span>
               </span>
             </h2>
           </div>
@@ -368,7 +368,7 @@ export default function HomePage() {
             votre{' '}
             <span className="relative inline-block">
               <span className="relative z-10">vision</span>
-              <span className="absolute inset-x-0 bottom-1 h-3 bg-exp-yellow/40 -z-0"></span>
+              <span className="absolute inset-x-0 top-0 h-full bg-exp-yellow/40 -z-0"></span>
             </span>
             {' '}?
           </h2>
