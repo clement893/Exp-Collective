@@ -1,7 +1,5 @@
 import { Metadata } from 'next';
 import { Link } from '@/i18n/routing';
-import Button from '@/components/ui/Button';
-import Card from '@/components/ui/Card';
 
 export const metadata: Metadata = {
   title: 'Nos Services - Expérience Collective',
@@ -68,15 +66,15 @@ const services = [
 
 export default function ServicesPage() {
   return (
-    <div className="min-h-screen bg-exp-white">
+    <div className="min-h-screen" style={{ backgroundColor: '#FFFFFF' }}>
       {/* Hero Section */}
-      <section className="py-20 bg-exp-black text-exp-white">
+      <section className="py-20" style={{ backgroundColor: '#000000', color: '#FFFFFF' }}>
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Des services personnalisés à <span className="bg-exp-yellow text-exp-black px-2">vos ambitions</span>
+            <h1 className="text-4xl md:text-6xl font-bold mb-6" style={{ color: '#FFFFFF' }}>
+              Des services personnalisés à <span className="px-2" style={{ backgroundColor: '#FFD400', color: '#000000' }}>vos ambitions</span>
             </h1>
-            <p className="text-xl text-exp-white/80">
+            <p className="text-xl" style={{ color: 'rgba(255, 255, 255, 0.8)' }}>
               Nous transformons vos défis en opportunités de croissance
             </p>
           </div>
@@ -84,65 +82,78 @@ export default function ServicesPage() {
       </section>
 
       {/* Services Section */}
-      <section className="py-20">
+      <section className="py-20" style={{ backgroundColor: '#FFFFFF' }}>
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto space-y-16">
             {services.map((service, index) => (
-              <Card 
-                key={service.id} 
-                className={`group hover:shadow-2xl transition-all duration-300 border-2 border-transparent hover:border-exp-yellow ${
-                  index % 2 === 0 ? '' : 'bg-exp-black/5'
-                }`}
+              <div
+                key={service.id}
+                className="group rounded-lg border-2 border-transparent hover:border-[#FFD400] transition-all duration-300 shadow-sm hover:shadow-2xl"
+                style={{
+                  backgroundColor: index % 2 === 0 ? '#FFFFFF' : 'rgba(0, 0, 0, 0.05)',
+                  borderColor: 'transparent',
+                }}
               >
                 <div className="p-8 md:p-12">
                   <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
                     <div className="md:col-span-2">
-                      <div className="w-16 h-16 bg-exp-yellow rounded-lg flex items-center justify-center text-exp-black">
+                      <div className="w-16 h-16 rounded-lg flex items-center justify-center" style={{ backgroundColor: '#FFD400', color: '#000000' }}>
                         {service.icon}
                       </div>
                     </div>
                     
                     <div className="md:col-span-7 space-y-4">
-                      <h2 className="text-3xl font-bold text-exp-black">
+                      <h2 className="text-3xl font-bold" style={{ color: '#000000' }}>
                         {service.title}
                       </h2>
-                      <p className="text-lg text-exp-gray leading-relaxed">
+                      <p className="text-lg leading-relaxed" style={{ color: '#6B6B6B' }}>
                         {service.description}
                       </p>
                     </div>
                     
                     <div className="md:col-span-3 flex justify-end">
                       <Link href={`/exp/services/${service.slug}`}>
-                        <Button 
-                          size="lg" 
-                          className="bg-exp-black text-exp-white hover:bg-exp-yellow hover:text-exp-black font-bold group-hover:scale-105 transition-transform"
+                        <button
+                          className="px-6 py-3 font-bold transition-all duration-300 group-hover:scale-105 rounded-lg"
+                          style={{
+                            backgroundColor: '#000000',
+                            color: '#FFFFFF',
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.backgroundColor = '#FFD400';
+                            e.currentTarget.style.color = '#000000';
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.backgroundColor = '#000000';
+                            e.currentTarget.style.color = '#FFFFFF';
+                          }}
                         >
                           En savoir plus →
-                        </Button>
+                        </button>
                       </Link>
                     </div>
                   </div>
                 </div>
-              </Card>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       {/* Expertise Section */}
-      <section className="py-20 bg-exp-black text-exp-white">
+      <section className="py-20" style={{ backgroundColor: '#000000', color: '#FFFFFF' }}>
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center space-y-8">
-            <h2 className="text-4xl md:text-5xl font-bold">
-              Notre <span className="bg-exp-yellow text-exp-black px-2">expertise</span>
+            <h2 className="text-4xl md:text-5xl font-bold" style={{ color: '#FFFFFF' }}>
+              Notre <span className="px-2" style={{ backgroundColor: '#FFD400', color: '#000000' }}>expertise</span>
             </h2>
-            <p className="text-xl text-exp-white/80 leading-relaxed">
-              Chez Expérience Collective, nous combinons <span className="text-exp-yellow">stratégie</span>, 
-              <span className="text-exp-yellow"> créativité</span> et <span className="text-exp-yellow">données</span> pour 
+            <p className="text-xl leading-relaxed" style={{ color: 'rgba(255, 255, 255, 0.8)' }}>
+              Chez Expérience Collective, nous combinons <span style={{ color: '#FFD400' }}>stratégie</span>, 
+              <span style={{ color: '#FFD400' }}> créativité</span> et <span style={{ color: '#FFD400' }}>données</span> pour 
               propulser votre entreprise vers de nouveaux sommets. Notre approche collaborative et notre expertise 
               multidisciplinaire nous permettent de relever les défis les plus complexes.
             </p>
-            <p className="text-xl text-exp-white/80 leading-relaxed">
+            <p className="text-xl leading-relaxed" style={{ color: 'rgba(255, 255, 255, 0.8)' }}>
               Que vous cherchiez à renforcer votre positionnement, à optimiser votre expérience client ou à mesurer 
               l&apos;impact de vos actions, nous sommes là pour vous accompagner à chaque étape de votre transformation.
             </p>
@@ -154,68 +165,80 @@ export default function ServicesPage() {
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-4xl font-bold text-exp-black mb-12 text-center">
-              Ce que disent nos <span className="bg-exp-yellow px-2">clients</span>
+            <h2 className="text-4xl font-bold mb-12 text-center" style={{ color: '#000000' }}>
+              Ce que disent nos <span className="px-2" style={{ backgroundColor: '#FFD400' }}>clients</span>
             </h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <Card className="p-8 border-2 border-exp-gray/20">
+              <div className="p-8 rounded-lg border-2" style={{ backgroundColor: '#FFFFFF', borderColor: 'rgba(107, 107, 107, 0.2)' }}>
                 <div className="space-y-4">
-                  <div className="flex gap-1 text-exp-yellow">
+                  <div className="flex gap-1" style={{ color: '#FFD400' }}>
                     {[...Array(5)].map((_, i) => (
                       <svg key={i} className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                       </svg>
                     ))}
                   </div>
-                  <p className="text-lg text-exp-gray italic">
+                  <p className="text-lg italic" style={{ color: '#6B6B6B' }}>
                     "L&apos;équipe d&apos;Expérience Collective a transformé notre approche marketing. Leur expertise stratégique 
                     et leur créativité ont propulsé notre marque vers de nouveaux sommets."
                   </p>
                   <div>
-                    <p className="font-bold text-exp-black">Marie Dubois</p>
-                    <p className="text-sm text-exp-gray">Directrice Marketing, TechCorp</p>
+                    <p className="font-bold" style={{ color: '#000000' }}>Marie Dubois</p>
+                    <p className="text-sm" style={{ color: '#6B6B6B' }}>Directrice Marketing, TechCorp</p>
                   </div>
                 </div>
-              </Card>
+              </div>
 
-              <Card className="p-8 border-2 border-exp-gray/20">
+              <div className="p-8 rounded-lg border-2" style={{ backgroundColor: '#FFFFFF', borderColor: 'rgba(107, 107, 107, 0.2)' }}>
                 <div className="space-y-4">
-                  <div className="flex gap-1 text-exp-yellow">
+                  <div className="flex gap-1" style={{ color: '#FFD400' }}>
                     {[...Array(5)].map((_, i) => (
                       <svg key={i} className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                       </svg>
                     ))}
                   </div>
-                  <p className="text-lg text-exp-gray italic">
+                  <p className="text-lg italic" style={{ color: '#6B6B6B' }}>
                     "Un partenariat exceptionnel ! Leur accompagnement sur notre transformation digitale a dépassé 
                     toutes nos attentes. Des résultats concrets et mesurables."
                   </p>
                   <div>
-                    <p className="font-bold text-exp-black">Jean Tremblay</p>
-                    <p className="text-sm text-exp-gray">PDG, InnovSolutions</p>
+                    <p className="font-bold" style={{ color: '#000000' }}>Jean Tremblay</p>
+                    <p className="text-sm" style={{ color: '#6B6B6B' }}>PDG, InnovSolutions</p>
                   </div>
                 </div>
-              </Card>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-exp-yellow">
+      <section className="py-20" style={{ backgroundColor: '#FFD400' }}>
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-exp-black mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6" style={{ color: '#000000' }}>
             Faites le premier pas vers vos objectifs
           </h2>
-          <p className="text-xl text-exp-black/80 mb-8 max-w-2xl mx-auto">
+          <p className="text-xl mb-8 max-w-2xl mx-auto" style={{ color: 'rgba(0, 0, 0, 0.8)' }}>
             Discutons de vos défis et découvrons ensemble comment nous pouvons vous aider
           </p>
           <Link href="/exp/contact">
-            <Button size="lg" className="bg-exp-black text-exp-white hover:bg-exp-black/90 font-bold px-12 py-6 text-lg">
+            <button
+              className="px-12 py-6 text-lg font-bold rounded-lg transition-all duration-300"
+              style={{
+                backgroundColor: '#000000',
+                color: '#FFFFFF',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = '#000000';
+              }}
+            >
               Passez à l&apos;action !
-            </Button>
+            </button>
           </Link>
         </div>
       </section>

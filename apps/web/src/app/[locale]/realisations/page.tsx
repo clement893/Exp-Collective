@@ -2,10 +2,6 @@
 
 import { useState } from 'react';
 import { Link } from '@/i18n/routing';
-import Button from '@/components/ui/Button';
-import Card from '@/components/ui/Card';
-import Select from '@/components/ui/Select';
-import Input from '@/components/ui/Input';
 
 const projects = [
   {
@@ -80,15 +76,15 @@ export default function RealisationsPage() {
   });
 
   return (
-    <div className="min-h-screen bg-exp-white">
+    <div className="min-h-screen" style={{ backgroundColor: '#FFFFFF' }}>
       {/* Hero Section */}
-      <section className="py-20 bg-exp-black text-exp-white">
+      <section className="py-20" style={{ backgroundColor: '#000000', color: '#FFFFFF' }}>
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              De la vision à <span className="bg-exp-yellow text-exp-black px-2">la réussite</span>
+            <h1 className="text-4xl md:text-6xl font-bold mb-6" style={{ color: '#FFFFFF' }}>
+              De la vision à <span className="px-2" style={{ backgroundColor: '#FFD400', color: '#000000' }}>la réussite</span>
             </h1>
-            <p className="text-xl text-exp-white/80">
+            <p className="text-xl" style={{ color: 'rgba(255, 255, 255, 0.8)' }}>
               Découvrez comment nous avons aidé nos clients à atteindre leurs objectifs
             </p>
           </div>
@@ -96,78 +92,102 @@ export default function RealisationsPage() {
       </section>
 
       {/* Filters Section */}
-      <section className="py-12 bg-exp-black/5 border-b border-exp-gray/20">
+      <section className="py-12 border-b" style={{ backgroundColor: 'rgba(0, 0, 0, 0.05)', borderColor: 'rgba(107, 107, 107, 0.2)' }}>
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {/* Search */}
               <div>
-                <label htmlFor="search" className="block text-sm font-bold text-exp-black mb-2">
+                <label htmlFor="search" className="block text-sm font-bold mb-2" style={{ color: '#000000' }}>
                   Rechercher
                 </label>
-                <Input
+                <input
                   id="search"
                   type="text"
                   placeholder="Mot-clé, client..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full"
+                  className="w-full px-3 py-2 rounded-lg border"
+                  style={{
+                    backgroundColor: '#FFFFFF',
+                    color: '#000000',
+                    borderColor: '#E2E8F0',
+                  }}
                 />
               </div>
 
               {/* Service Filter */}
               <div>
-                <Select
+                <label htmlFor="service" className="block text-sm font-bold mb-2" style={{ color: '#000000' }}>
+                  Service
+                </label>
+                <select
                   id="service"
-                  label="Service"
                   value={selectedService}
                   onChange={(e) => setSelectedService(e.target.value)}
-                  className="w-full"
-                  placeholder="Tous les services"
-                  options={[
-                    { label: 'Tous les services', value: 'all' },
-                    { label: 'Accompagnement stratégique', value: 'Accompagnement stratégique' },
-                    { label: 'Image de marque', value: 'Image de marque' },
-                    { label: 'Expérience client', value: 'Expérience client' },
-                    { label: 'Mesure de performance', value: 'Mesure de performance' },
-                    { label: "Appels d'offres", value: "Appels d'offres" },
-                  ]}
-                />
+                  className="w-full px-3 py-2 rounded-lg border"
+                  style={{
+                    backgroundColor: '#FFFFFF',
+                    color: '#000000',
+                    borderColor: '#E2E8F0',
+                  }}
+                >
+                  <option value="all">Tous les services</option>
+                  <option value="Accompagnement stratégique">Accompagnement stratégique</option>
+                  <option value="Image de marque">Image de marque</option>
+                  <option value="Expérience client">Expérience client</option>
+                  <option value="Mesure de performance">Mesure de performance</option>
+                  <option value="Appels d'offres">Appels d'offres</option>
+                </select>
               </div>
 
               {/* Year Filter */}
               <div>
-                <Select
+                <label htmlFor="year" className="block text-sm font-bold mb-2" style={{ color: '#000000' }}>
+                  Année
+                </label>
+                <select
                   id="year"
-                  label="Année"
                   value={selectedYear}
                   onChange={(e) => setSelectedYear(e.target.value)}
-                  className="w-full"
-                  placeholder="Toutes les années"
-                  options={[
-                    { label: 'Toutes les années', value: 'all' },
-                    { label: '2024', value: '2024' },
-                    { label: '2023', value: '2023' },
-                    { label: '2022', value: '2022' },
-                  ]}
-                />
+                  className="w-full px-3 py-2 rounded-lg border"
+                  style={{
+                    backgroundColor: '#FFFFFF',
+                    color: '#000000',
+                    borderColor: '#E2E8F0',
+                  }}
+                >
+                  <option value="all">Toutes les années</option>
+                  <option value="2024">2024</option>
+                  <option value="2023">2023</option>
+                  <option value="2022">2022</option>
+                </select>
               </div>
             </div>
 
             {/* Reset Button */}
             {(searchTerm || selectedService !== 'all' || selectedYear !== 'all') && (
               <div className="mt-4 text-center">
-                <Button
-                  variant="ghost"
+                <button
                   onClick={() => {
                     setSearchTerm('');
                     setSelectedService('all');
                     setSelectedYear('all');
                   }}
-                  className="text-exp-gray hover:text-exp-black"
+                  className="px-4 py-2 rounded-lg transition-colors"
+                  style={{
+                    backgroundColor: 'transparent',
+                    color: '#6B6B6B',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.color = '#000000';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.color = '#6B6B6B';
+                  }}
                 >
                   Réinitialiser les filtres
-                </Button>
+                </button>
               </div>
             )}
           </div>
@@ -175,65 +195,93 @@ export default function RealisationsPage() {
       </section>
 
       {/* Projects Grid */}
-      <section className="py-20">
+      <section className="py-20" style={{ backgroundColor: '#FFFFFF' }}>
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             {filteredProjects.length === 0 ? (
               <div className="text-center py-16">
-                <p className="text-xl text-exp-gray">Aucun projet ne correspond à vos critères de recherche.</p>
+                <p className="text-xl" style={{ color: '#6B6B6B' }}>Aucun projet ne correspond à vos critères de recherche.</p>
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {filteredProjects.map((project) => (
-                  <Card key={project.id} className="group hover:shadow-2xl transition-all duration-300 border-2 border-transparent hover:border-exp-yellow">
+                  <div
+                    key={project.id}
+                    className="group rounded-lg border-2 border-transparent hover:border-[#FFD400] transition-all duration-300 shadow-sm hover:shadow-2xl"
+                    style={{
+                      backgroundColor: '#FFFFFF',
+                      borderColor: 'transparent',
+                    }}
+                  >
                     <div className="p-6 space-y-4">
                       {/* Project Image Placeholder */}
-                      <div className="w-full h-48 bg-gradient-to-br from-exp-yellow/20 to-exp-teal/20 rounded-lg flex items-center justify-center">
+                      <div className="w-full h-48 rounded-lg flex items-center justify-center" style={{ background: 'linear-gradient(to bottom right, rgba(255, 212, 0, 0.2), rgba(74, 139, 158, 0.2))' }}>
                         <div className="text-center">
-                          <div className="text-4xl font-bold text-exp-yellow mb-2">
-                            <span className="bg-exp-yellow text-exp-black px-3 py-1 rounded">exp</span>
+                          <div className="text-4xl font-bold mb-2" style={{ color: '#FFD400' }}>
+                            <span className="px-3 py-1 rounded" style={{ backgroundColor: '#FFD400', color: '#000000' }}>exp</span>
                           </div>
-                          <p className="text-sm text-exp-gray">Image du projet</p>
+                          <p className="text-sm" style={{ color: '#6B6B6B' }}>Image du projet</p>
                         </div>
                       </div>
 
                       {/* Project Info */}
                       <div className="space-y-2">
                         <div className="flex items-center justify-between">
-                          <span className="inline-block px-3 py-1 bg-exp-yellow text-exp-black text-xs font-bold rounded-full">
+                          <span className="inline-block px-3 py-1 text-xs font-bold rounded-full" style={{ backgroundColor: '#FFD400', color: '#000000' }}>
                             {project.service}
                           </span>
-                          <span className="text-sm text-exp-gray">{project.date}</span>
+                          <span className="text-sm" style={{ color: '#6B6B6B' }}>{project.date}</span>
                         </div>
                         
-                        <h3 className="text-2xl font-bold text-exp-black group-hover:text-exp-yellow transition-colors">
+                        <h3
+                          className="text-2xl font-bold transition-colors"
+                          style={{ color: '#000000' }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.color = '#FFD400';
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.color = '#000000';
+                          }}
+                        >
                           {project.title}
                         </h3>
                         
-                        <p className="text-sm text-exp-gray">
+                        <p className="text-sm" style={{ color: '#6B6B6B' }}>
                           <span className="font-semibold">Client :</span> {project.client}
                         </p>
                         
-                        <p className="text-sm text-exp-gray">
+                        <p className="text-sm" style={{ color: '#6B6B6B' }}>
                           <span className="font-semibold">Objectif :</span> {project.objective}
                         </p>
                         
-                        <p className="text-exp-gray leading-relaxed">
+                        <p className="leading-relaxed" style={{ color: '#6B6B6B' }}>
                           {project.description}
                         </p>
                       </div>
 
                       {/* CTA */}
                       <div className="pt-4">
-                        <Button 
-                          variant="ghost" 
-                          className="text-exp-black hover:text-exp-yellow group-hover:translate-x-2 transition-transform"
+                        <button
+                          className="transition-all duration-300 group-hover:translate-x-2"
+                          style={{
+                            backgroundColor: 'transparent',
+                            color: '#000000',
+                            border: 'none',
+                            padding: 0,
+                            cursor: 'pointer',
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.color = '#FFD400';
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.color = '#000000';
+                          }}
                         >
                           Voir le détail →
-                        </Button>
+                        </button>
                       </div>
                     </div>
-                  </Card>
+                  </div>
                 ))}
               </div>
             )}
@@ -242,29 +290,29 @@ export default function RealisationsPage() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 bg-exp-black text-exp-white">
+      <section className="py-20" style={{ backgroundColor: '#000000', color: '#FFFFFF' }}>
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-4xl font-bold mb-12 text-center">
-              Preuves & <span className="bg-exp-yellow text-exp-black px-2">Résultats</span>
+            <h2 className="text-4xl font-bold mb-12 text-center" style={{ color: '#FFFFFF' }}>
+              Preuves & <span className="px-2" style={{ backgroundColor: '#FFD400', color: '#000000' }}>Résultats</span>
             </h2>
             
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
               <div className="text-center">
-                <div className="text-5xl font-bold text-exp-yellow mb-2">50+</div>
-                <p className="text-exp-white/80">Projets réalisés</p>
+                <div className="text-5xl font-bold mb-2" style={{ color: '#FFD400' }}>50+</div>
+                <p style={{ color: 'rgba(255, 255, 255, 0.8)' }}>Projets réalisés</p>
               </div>
               <div className="text-center">
-                <div className="text-5xl font-bold text-exp-yellow mb-2">95%</div>
-                <p className="text-exp-white/80">Clients satisfaits</p>
+                <div className="text-5xl font-bold mb-2" style={{ color: '#FFD400' }}>95%</div>
+                <p style={{ color: 'rgba(255, 255, 255, 0.8)' }}>Clients satisfaits</p>
               </div>
               <div className="text-center">
-                <div className="text-5xl font-bold text-exp-yellow mb-2">+150%</div>
-                <p className="text-exp-white/80">Croissance moyenne</p>
+                <div className="text-5xl font-bold mb-2" style={{ color: '#FFD400' }}>+150%</div>
+                <p style={{ color: 'rgba(255, 255, 255, 0.8)' }}>Croissance moyenne</p>
               </div>
               <div className="text-center">
-                <div className="text-5xl font-bold text-exp-yellow mb-2">6 ans</div>
-                <p className="text-exp-white/80">D&apos;expérience</p>
+                <div className="text-5xl font-bold mb-2" style={{ color: '#FFD400' }}>6 ans</div>
+                <p style={{ color: 'rgba(255, 255, 255, 0.8)' }}>D&apos;expérience</p>
               </div>
             </div>
           </div>
@@ -272,79 +320,91 @@ export default function RealisationsPage() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-20">
+      <section className="py-20" style={{ backgroundColor: '#FFFFFF' }}>
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-4xl font-bold text-exp-black mb-12 text-center">
-              Ce que disent nos <span className="bg-exp-yellow px-2">clients</span>
+            <h2 className="text-4xl font-bold mb-12 text-center" style={{ color: '#000000' }}>
+              Ce que disent nos <span className="px-2" style={{ backgroundColor: '#FFD400' }}>clients</span>
             </h2>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <Card className="p-6 border-2 border-exp-gray/20">
+              <div className="p-6 rounded-lg border-2" style={{ backgroundColor: '#FFFFFF', borderColor: 'rgba(107, 107, 107, 0.2)' }}>
                 <div className="space-y-4">
-                  <div className="flex gap-1 text-exp-yellow">
+                  <div className="flex gap-1" style={{ color: '#FFD400' }}>
                     {[...Array(5)].map((_, i) => (
                       <svg key={i} className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                       </svg>
                     ))}
                   </div>
-                  <p className="text-exp-gray italic text-sm">
+                  <p className="italic text-sm" style={{ color: '#6B6B6B' }}>
                     "Des résultats exceptionnels qui ont dépassé toutes nos attentes."
                   </p>
-                  <p className="font-bold text-exp-black text-sm">Marie D., TechCorp</p>
+                  <p className="font-bold text-sm" style={{ color: '#000000' }}>Marie D., TechCorp</p>
                 </div>
-              </Card>
+              </div>
 
-              <Card className="p-6 border-2 border-exp-gray/20">
+              <div className="p-6 rounded-lg border-2" style={{ backgroundColor: '#FFFFFF', borderColor: 'rgba(107, 107, 107, 0.2)' }}>
                 <div className="space-y-4">
-                  <div className="flex gap-1 text-exp-yellow">
+                  <div className="flex gap-1" style={{ color: '#FFD400' }}>
                     {[...Array(5)].map((_, i) => (
                       <svg key={i} className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                       </svg>
                     ))}
                   </div>
-                  <p className="text-exp-gray italic text-sm">
+                  <p className="italic text-sm" style={{ color: '#6B6B6B' }}>
                     "Une équipe professionnelle et à l&apos;écoute. Un vrai partenariat."
                   </p>
-                  <p className="font-bold text-exp-black text-sm">Jean T., GrowthLab</p>
+                  <p className="font-bold text-sm" style={{ color: '#000000' }}>Jean T., GrowthLab</p>
                 </div>
-              </Card>
+              </div>
 
-              <Card className="p-6 border-2 border-exp-gray/20">
+              <div className="p-6 rounded-lg border-2" style={{ backgroundColor: '#FFFFFF', borderColor: 'rgba(107, 107, 107, 0.2)' }}>
                 <div className="space-y-4">
-                  <div className="flex gap-1 text-exp-yellow">
+                  <div className="flex gap-1" style={{ color: '#FFD400' }}>
                     {[...Array(5)].map((_, i) => (
                       <svg key={i} className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                       </svg>
                     ))}
                   </div>
-                  <p className="text-exp-gray italic text-sm">
+                  <p className="italic text-sm" style={{ color: '#6B6B6B' }}>
                     "L&apos;expertise et la créativité dont nous avions besoin."
                   </p>
-                  <p className="font-bold text-exp-black text-sm">Sophie L., InnovSolutions</p>
+                  <p className="font-bold text-sm" style={{ color: '#000000' }}>Sophie L., InnovSolutions</p>
                 </div>
-              </Card>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-exp-yellow">
+      <section className="py-20" style={{ backgroundColor: '#FFD400' }}>
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-exp-black mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6" style={{ color: '#000000' }}>
             Prêt à écrire votre histoire de succès ?
           </h2>
-          <p className="text-xl text-exp-black/80 mb-8 max-w-2xl mx-auto">
+          <p className="text-xl mb-8 max-w-2xl mx-auto" style={{ color: 'rgba(0, 0, 0, 0.8)' }}>
             Faites le premier pas vers vos objectifs
           </p>
           <Link href="/exp/contact">
-            <Button size="lg" className="bg-exp-black text-exp-white hover:bg-exp-black/90 font-bold px-12 py-6 text-lg">
+            <button
+              className="px-12 py-6 text-lg font-bold rounded-lg transition-all duration-300"
+              style={{
+                backgroundColor: '#000000',
+                color: '#FFFFFF',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = '#000000';
+              }}
+            >
               Passez à l&apos;action !
-            </Button>
+            </button>
           </Link>
         </div>
       </section>
