@@ -1,20 +1,14 @@
 'use client';
 
-import { useEffect, useRef, useState, useMemo } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from '@/i18n/routing';
 import Image from 'next/image';
 
 export default function ServicesSection() {
   const [activeService, setActiveService] = useState<number>(1);
-  const [scrollProgress, setScrollProgress] = useState<number>(0);
   const sectionRef = useRef<HTMLElement | null>(null);
-  const stickyContainerRef = useRef<HTMLDivElement | null>(null);
+  const scrollContainerRef = useRef<HTMLDivElement | null>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
-
-  // Configuration de l'animation
-  const CARD_HEIGHT = 400; // Hauteur approximative d'une carte (réduite pour design plus compact)
-  const CARD_GAP = 32; // Espacement entre les cartes (réduit)
-  const SECTION_MULTIPLIER = 4; // Multiplicateur de viewport pour la hauteur de la section (réduit)
 
   const services = [
     {
@@ -69,42 +63,40 @@ export default function ServicesSection() {
     },
   ];
 
-  // Calculer la hauteur totale nécessaire pour toutes les cartes
-  const totalCardsHeight = useMemo(() => {
-    return services.length * CARD_HEIGHT + (services.length - 1) * CARD_GAP;
-  }, []);
-
-  // Écouter le scroll de la page pour calculer la progression
+  // Contrôler le scroll du conteneur interne avec le scroll de la page
   useEffect(() => {
     let rafId: number | null = null;
 
     const handleScroll = () => {
-      if (!sectionRef.current) return;
+      if (!sectionRef.current || !scrollContainerRef.current) return;
 
       const section = sectionRef.current;
+      const scrollContainer = scrollContainerRef.current;
       const windowHeight = window.innerHeight;
       const scrollY = window.scrollY;
       const sectionTop = section.offsetTop;
       const sectionHeight = section.offsetHeight;
 
-      // Calculer la progression (0 à 1) du scroll dans la section
-      // La section commence quand le haut du viewport atteint le haut de la section
-      // La section se termine quand on a scrollé toute la hauteur de la section
-      const scrollStart = sectionTop - windowHeight; // Quand la section entre dans le viewport
-      const scrollEnd = sectionTop + sectionHeight - windowHeight; // Quand on a fini de scroller la section
+      // Calculer quand la section entre dans le viewport
+      const scrollStart = sectionTop - windowHeight;
+      const scrollEnd = sectionTop + sectionHeight - windowHeight;
       const scrollRange = scrollEnd - scrollStart;
-      
-      let progress = 0;
-      if (scrollY >= scrollStart && scrollY <= scrollEnd) {
-        // On est dans la section
-        progress = (scrollY - scrollStart) / scrollRange;
-        progress = Math.max(0, Math.min(1, progress)); // Clamp entre 0 et 1
-      } else if (scrollY > scrollEnd) {
-        // On a dépassé la section
-        progress = 1;
-      }
 
-      setScrollProgress(progress);
+      if (scrollY >= scrollStart && scrollY <= scrollEnd) {
+        // On est dans la section - calculer le progress (0 à 1)
+        const progress = Math.max(0, Math.min(1, (scrollY - scrollStart) / scrollRange));
+        
+        // Calculer le scrollTop du conteneur interne
+        const maxScroll = scrollContainer.scrollHeight - scrollContainer.clientHeight;
+        const targetScroll = progress * maxScroll;
+        
+        // Appliquer le scroll de manière fluide
+        scrollContainer.scrollTop = targetScroll;
+      } else if (scrollY < scrollStart) {
+        scrollContainer.scrollTop = 0;
+      } else if (scrollY > scrollEnd) {
+        scrollContainer.scrollTop = scrollContainer.scrollHeight;
+      }
     };
 
     const onScroll = () => {
@@ -116,7 +108,7 @@ export default function ServicesSection() {
 
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', handleScroll, { passive: true });
-    handleScroll(); // Appel initial
+    handleScroll();
 
     return () => {
       window.removeEventListener('scroll', onScroll);
@@ -129,7 +121,7 @@ export default function ServicesSection() {
 
   // Intersection Observer pour highlight des numéros
   useEffect(() => {
-    if (!stickyContainerRef.current) return;
+    if (!scrollContainerRef.current) return;
 
     const observers: IntersectionObserver[] = [];
 
@@ -140,7 +132,7 @@ export default function ServicesSection() {
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
-              const containerRect = stickyContainerRef.current?.getBoundingClientRect();
+              const containerRect = scrollContainerRef.current?.getBoundingClientRect();
               const cardRect = entry.boundingClientRect;
               
               if (containerRect) {
@@ -148,8 +140,8 @@ export default function ServicesSection() {
                 const cardCenter = cardRect.top + cardRect.height / 2;
                 const distanceFromCenter = Math.abs(cardCenter - containerCenter);
 
-                // Active le service si la carte est dans la zone centrale (40% du conteneur)
-                if (distanceFromCenter < containerRect.height * 0.2) {
+                // Active le service si la carte est dans la zone centrale
+                if (distanceFromCenter < containerRect.height * 0.25) {
                   setActiveService(index + 1);
                 }
               }
@@ -157,9 +149,9 @@ export default function ServicesSection() {
           });
         },
         {
-          root: stickyContainerRef.current,
-          threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
-          rootMargin: '-30% 0px -30% 0px',
+          root: scrollContainerRef.current,
+          threshold: [0, 0.25, 0.5, 0.75, 1],
+          rootMargin: '-35% 0px -35% 0px',
         }
       );
 
@@ -172,44 +164,8 @@ export default function ServicesSection() {
     };
   }, []);
 
-  // Calculer le translateY pour chaque carte selon la progression du scroll
-  const getCardTransform = (index: number) => {
-    if (typeof window === 'undefined') return 0;
-    
-    const viewportHeight = window.innerHeight;
-    const titleHeight = 100; // Hauteur approximative du titre + padding (réduite)
-    const availableHeight = viewportHeight - titleHeight;
-    
-    // Chaque carte doit passer par le centre du viewport disponible
-    // On veut que les cartes défilent une par une
-    const progressPerCard = 1 / services.length;
-    const cardStartProgress = index * progressPerCard;
-    const cardEndProgress = (index + 1) * progressPerCard;
-    
-    // Calculer la progression relative de cette carte (0 à 1)
-    let cardProgress = 0;
-    if (scrollProgress >= cardEndProgress) {
-      cardProgress = 1; // Carte complètement passée
-    } else if (scrollProgress > cardStartProgress) {
-      cardProgress = (scrollProgress - cardStartProgress) / progressPerCard;
-    }
-    
-    // Position initiale : la carte commence en bas du conteneur (hors vue)
-    const initialY = availableHeight + 50; // Réduit de 100 à 50
-    
-    // Position finale : la carte remonte jusqu'à être centrée puis continue
-    // On veut que chaque carte passe par le centre du viewport disponible
-    const centerY = availableHeight / 2 - CARD_HEIGHT / 2;
-    const finalY = -index * (CARD_HEIGHT + CARD_GAP) + centerY - (CARD_HEIGHT + CARD_GAP);
-    
-    // Interpolation entre position initiale et finale avec easing
-    const easeInOut = (t: number) => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
-    const easedProgress = easeInOut(cardProgress);
-    
-    const translateY = initialY + (finalY - initialY) * easedProgress;
-    
-    return translateY;
-  };
+  // Calculer la hauteur de la section (basée sur le nombre de cartes)
+  const sectionHeight = services.length * 100; // 100vh par carte
 
   return (
     <section 
@@ -217,15 +173,12 @@ export default function ServicesSection() {
       id="services" 
       className="relative bg-[#F5F3F0]"
       style={{ 
-        height: `${SECTION_MULTIPLIER * 100}vh`,
-        minHeight: `${SECTION_MULTIPLIER * 100}vh`
+        height: `${sectionHeight}vh`,
+        minHeight: `${sectionHeight}vh`
       }}
     >
       {/* Sticky container qui reste fixe pendant le scroll */}
-      <div 
-        ref={stickyContainerRef}
-        className="sticky top-0 h-screen overflow-hidden"
-      >
+      <div className="sticky top-0 h-screen overflow-hidden">
         <div className="max-w-7xl mx-auto w-full h-full px-4 lg:px-6 py-4 lg:py-6 flex flex-col">
           {/* Titre de section - fixe en haut */}
           <div className="mb-4 flex-shrink-0 z-10">
@@ -234,8 +187,8 @@ export default function ServicesSection() {
             </h2>
           </div>
 
-          {/* Layout avec numéros sticky à gauche et cartes animées */}
-          <div className="flex gap-6 lg:gap-8 flex-1 min-h-0 relative">
+          {/* Layout avec numéros sticky à gauche et cartes scrollables */}
+          <div className="flex gap-6 lg:gap-8 flex-1 min-h-0">
             {/* Numéros sticky à gauche */}
             <div className="hidden lg:block w-16 flex-shrink-0 z-20">
               <div className="sticky top-24 space-y-4">
@@ -243,9 +196,14 @@ export default function ServicesSection() {
                   <button
                     key={service.id}
                     onClick={() => {
-                      // Scroll vers la section services
-                      sectionRef.current?.scrollIntoView({ behavior: 'smooth' });
-                      // On pourrait aussi ajuster le scroll progress ici si nécessaire
+                      const card = cardRefs.current[index];
+                      if (card && scrollContainerRef.current) {
+                        const container = scrollContainerRef.current;
+                        const cardRect = card.getBoundingClientRect();
+                        const containerRect = container.getBoundingClientRect();
+                        const targetScroll = container.scrollTop + cardRect.top - containerRect.top - (containerRect.height / 2) + (cardRect.height / 2);
+                        container.scrollTo({ top: targetScroll, behavior: 'smooth' });
+                      }
                     }}
                     className={`block text-xl lg:text-2xl font-light transition-all duration-300 ${
                       activeService === index + 1
@@ -259,24 +217,30 @@ export default function ServicesSection() {
               </div>
             </div>
 
-            {/* Conteneur des cartes - position relative pour les cartes en absolute */}
-            <div className="flex-1 relative" style={{ minHeight: totalCardsHeight }}>
-              {services.map((service, index) => {
-                const translateY = getCardTransform(index);
-                
-                return (
+            {/* Conteneur scrollable masqué - les cartes défilent ici */}
+            <div 
+              ref={scrollContainerRef}
+              className="flex-1 overflow-y-auto"
+              style={{
+                scrollbarWidth: 'none', // Firefox
+                msOverflowStyle: 'none', // IE/Edge
+              }}
+            >
+              <style jsx>{`
+                div::-webkit-scrollbar {
+                  display: none; /* Chrome/Safari */
+                }
+              `}</style>
+              
+              <div className="space-y-6">
+                {services.map((service, index) => (
                   <div
                     key={service.id}
                     id={service.id}
                     ref={(el) => {
                       cardRefs.current[index] = el;
                     }}
-                    className="absolute left-0 right-0"
-                    style={{
-                      transform: `translateY(${translateY}px)`,
-                      willChange: 'transform',
-                      top: 0,
-                    }}
+                    className="scroll-mt-24"
                   >
                     <Link href={service.href}>
                       <div className="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-500">
@@ -312,8 +276,8 @@ export default function ServicesSection() {
                       </div>
                     </Link>
                   </div>
-                );
-              })}
+                ))}
+              </div>
             </div>
           </div>
         </div>
