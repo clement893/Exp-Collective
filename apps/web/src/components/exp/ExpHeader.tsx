@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Link } from '@/i18n/routing';
+import Image from 'next/image';
 
 export default function ExpHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -19,20 +20,16 @@ export default function ExpHeader() {
       <nav className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-3 group">
-            <div className="relative">
-              {/* Logo "exp" avec fond jaune */}
-              <div className="bg-exp-yellow text-exp-black font-bold text-xl px-3 py-1.5 rounded-lg transform group-hover:scale-105 transition-transform duration-300">
-                exp
-              </div>
-            </div>
-            <div className="hidden md:block">
-              <div className="font-medium text-exp-black text-base">
-                expérience collective
-              </div>
-              <div className="text-xs text-gray-500 italic">
-                L'encre jaune qui se dilue
-              </div>
+          <Link href="/" className="flex items-center group">
+            <div className="relative h-12 w-auto">
+              <Image
+                src="/assets/Logo/Final/ExpC_Lc inv.png"
+                alt="Expérience Collective"
+                width={200}
+                height={75}
+                className="h-full w-auto object-contain transform group-hover:scale-105 transition-transform duration-300"
+                priority
+              />
             </div>
           </Link>
 
