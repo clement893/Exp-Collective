@@ -12,9 +12,9 @@ export default function ServicesSection() {
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   // Configuration de l'animation
-  const CARD_HEIGHT = 600; // Hauteur approximative d'une carte
-  const CARD_GAP = 48; // Espacement entre les cartes (space-y-12 = 3rem = 48px)
-  const SECTION_MULTIPLIER = 5; // Multiplicateur de viewport pour la hauteur de la section
+  const CARD_HEIGHT = 400; // Hauteur approximative d'une carte (réduite pour design plus compact)
+  const CARD_GAP = 32; // Espacement entre les cartes (réduit)
+  const SECTION_MULTIPLIER = 4; // Multiplicateur de viewport pour la hauteur de la section (réduit)
 
   const services = [
     {
@@ -177,7 +177,7 @@ export default function ServicesSection() {
     if (typeof window === 'undefined') return 0;
     
     const viewportHeight = window.innerHeight;
-    const titleHeight = 120; // Hauteur approximative du titre + padding
+    const titleHeight = 100; // Hauteur approximative du titre + padding (réduite)
     const availableHeight = viewportHeight - titleHeight;
     
     // Chaque carte doit passer par le centre du viewport disponible
@@ -195,7 +195,7 @@ export default function ServicesSection() {
     }
     
     // Position initiale : la carte commence en bas du conteneur (hors vue)
-    const initialY = availableHeight + 100;
+    const initialY = availableHeight + 50; // Réduit de 100 à 50
     
     // Position finale : la carte remonte jusqu'à être centrée puis continue
     // On veut que chaque carte passe par le centre du viewport disponible
@@ -226,19 +226,19 @@ export default function ServicesSection() {
         ref={stickyContainerRef}
         className="sticky top-0 h-screen overflow-hidden"
       >
-        <div className="max-w-7xl mx-auto w-full h-full px-6 py-12 flex flex-col">
+        <div className="max-w-7xl mx-auto w-full h-full px-4 lg:px-6 py-4 lg:py-6 flex flex-col">
           {/* Titre de section - fixe en haut */}
-          <div className="mb-8 flex-shrink-0 z-10">
-            <h2 className="text-5xl font-light text-exp-black leading-tight">
+          <div className="mb-4 flex-shrink-0 z-10">
+            <h2 className="text-4xl lg:text-5xl font-light text-exp-black leading-tight">
               Des services personnalisés<br />à vos ambitions
             </h2>
           </div>
 
           {/* Layout avec numéros sticky à gauche et cartes animées */}
-          <div className="flex gap-12 flex-1 min-h-0 relative">
+          <div className="flex gap-6 lg:gap-8 flex-1 min-h-0 relative">
             {/* Numéros sticky à gauche */}
-            <div className="hidden lg:block w-20 flex-shrink-0 z-20">
-              <div className="sticky top-32 space-y-6">
+            <div className="hidden lg:block w-16 flex-shrink-0 z-20">
+              <div className="sticky top-24 space-y-4">
                 {services.map((service, index) => (
                   <button
                     key={service.id}
@@ -247,9 +247,9 @@ export default function ServicesSection() {
                       sectionRef.current?.scrollIntoView({ behavior: 'smooth' });
                       // On pourrait aussi ajuster le scroll progress ici si nécessaire
                     }}
-                    className={`block text-2xl font-light transition-all duration-300 ${
+                    className={`block text-xl lg:text-2xl font-light transition-all duration-300 ${
                       activeService === index + 1
-                        ? 'text-exp-black scale-110'
+                        ? 'text-exp-black scale-105'
                         : 'text-gray-400 hover:text-exp-black'
                     }`}
                   >
@@ -279,10 +279,10 @@ export default function ServicesSection() {
                     }}
                   >
                     <Link href={service.href}>
-                      <div className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500">
+                      <div className="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-500">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
                           {/* Image */}
-                          <div className="relative h-80 md:h-auto overflow-hidden">
+                          <div className="relative h-64 md:h-72 overflow-hidden">
                             <Image
                               src={service.image}
                               alt={service.alt}
@@ -291,20 +291,20 @@ export default function ServicesSection() {
                             />
                           </div>
                           {/* Contenu */}
-                          <div className="p-8 flex flex-col justify-center">
-                            <div className="flex items-center gap-3 mb-4">
-                              <span className="text-sm font-light text-gray-400">{service.number}</span>
-                              <h3 className="text-2xl font-light text-exp-black">
+                          <div className="p-6 flex flex-col justify-center">
+                            <div className="flex items-center gap-2 mb-3">
+                              <span className="text-xs font-light text-gray-400">{service.number}</span>
+                              <h3 className="text-xl lg:text-2xl font-light text-exp-black">
                                 {service.title}
                               </h3>
                             </div>
-                            <p className="text-base text-gray-600 leading-relaxed mb-4 font-light">
+                            <p className="text-sm lg:text-base text-gray-600 leading-relaxed mb-3 font-light">
                               {service.description}
                             </p>
-                            <p className="text-sm text-gray-500 leading-relaxed mb-6 font-light whitespace-pre-line">
+                            <p className="text-xs lg:text-sm text-gray-500 leading-relaxed mb-4 font-light whitespace-pre-line">
                               {service.details}
                             </p>
-                            <button className="inline-flex items-center text-exp-black text-sm font-light border border-exp-black px-6 py-2 rounded-full hover:bg-exp-black hover:text-white transition-all duration-300">
+                            <button className="inline-flex items-center text-exp-black text-xs lg:text-sm font-light border border-exp-black px-5 py-1.5 rounded-full hover:bg-exp-black hover:text-white transition-all duration-300 w-fit">
                               Voir plus
                             </button>
                           </div>
