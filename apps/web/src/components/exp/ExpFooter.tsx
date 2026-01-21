@@ -8,16 +8,30 @@ export default function ExpFooter() {
       {/* Main Footer Content */}
       <div className="container mx-auto px-6 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-          {/* Logo à gauche - 2 colonnes */}
+          {/* Logo à gauche - 2 colonnes - Vertical */}
           <div className="lg:col-span-2">
-            <div className="flex flex-col items-start">
-              <div className="flex flex-col text-white font-light text-2xl leading-none tracking-tight uppercase">
-                <div className="bg-exp-yellow text-exp-black px-2 py-1 font-medium">
-                  experience
-                </div>
-                <div className="mt-1 text-white">
-                  collective
-                </div>
+            <div className="flex items-start">
+              {/* experience - vertical avec exp en jaune */}
+              <div className="flex flex-col text-white font-light text-2xl leading-tight tracking-tight uppercase">
+                {'experience'.split('').map((letter, index) => {
+                  const isYellow = ['e', 'x', 'p'].includes(letter.toLowerCase());
+                  return (
+                    <span
+                      key={`exp-${index}`}
+                      className={isYellow ? 'text-exp-yellow' : 'text-white'}
+                    >
+                      {letter}
+                    </span>
+                  );
+                })}
+              </div>
+              {/* collective - vertical en blanc */}
+              <div className="flex flex-col text-white font-light text-2xl leading-tight tracking-tight uppercase ml-2">
+                {'collective'.split('').map((letter, index) => (
+                  <span key={`col-${index}`} className="text-white">
+                    {letter}
+                  </span>
+                ))}
               </div>
             </div>
           </div>
