@@ -1,5 +1,8 @@
 import { Metadata } from 'next';
 import { Link } from '@/i18n/routing';
+import { ValueCard } from './ValueCard';
+import { LinkedInLink } from './LinkedInLink';
+import { CTAButton } from './CTAButton';
 
 export const metadata: Metadata = {
   title: 'À Propos - Expérience Collective',
@@ -94,19 +97,7 @@ export default function AboutPage() {
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {/* Value 1 */}
-              <div
-                className="rounded-lg border-2 transition-colors"
-                style={{
-                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                  borderColor: 'rgba(255, 212, 0, 0.3)',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = '#FFD400';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(255, 212, 0, 0.3)';
-                }}
-              >
+              <ValueCard>
                 <div className="p-8 space-y-4">
                   <div className="w-16 h-16 rounded-lg flex items-center justify-center" style={{ backgroundColor: '#FFD400', color: '#000000' }}>
                     <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -118,22 +109,10 @@ export default function AboutPage() {
                     Nous repoussons constamment les limites pour trouver des solutions créatives et avant-gardistes.
                   </p>
                 </div>
-              </div>
+              </ValueCard>
 
               {/* Value 2 */}
-              <div
-                className="rounded-lg border-2 transition-colors"
-                style={{
-                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                  borderColor: 'rgba(255, 212, 0, 0.3)',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = '#FFD400';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(255, 212, 0, 0.3)';
-                }}
-              >
+              <ValueCard>
                 <div className="p-8 space-y-4">
                   <div className="w-16 h-16 rounded-lg flex items-center justify-center" style={{ backgroundColor: '#FFD400', color: '#000000' }}>
                     <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -145,22 +124,10 @@ export default function AboutPage() {
                     Nous croyons en la force du collectif et travaillons main dans la main avec nos clients.
                   </p>
                 </div>
-              </div>
+              </ValueCard>
 
               {/* Value 3 */}
-              <div
-                className="rounded-lg border-2 transition-colors"
-                style={{
-                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                  borderColor: 'rgba(255, 212, 0, 0.3)',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = '#FFD400';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(255, 212, 0, 0.3)';
-                }}
-              >
+              <ValueCard>
                 <div className="p-8 space-y-4">
                   <div className="w-16 h-16 rounded-lg flex items-center justify-center" style={{ backgroundColor: '#FFD400', color: '#000000' }}>
                     <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -172,7 +139,7 @@ export default function AboutPage() {
                     Nous visons l&apos;excellence dans tout ce que nous faisons, avec rigueur et passion.
                   </p>
                 </div>
-              </div>
+              </ValueCard>
             </div>
 
             <div className="mt-16 text-center max-w-3xl mx-auto">
@@ -223,27 +190,7 @@ export default function AboutPage() {
                     </div>
                     
                     <div className="flex justify-center">
-                      <a 
-                        href={member.linkedin} 
-                        className="w-10 h-10 rounded-lg flex items-center justify-center transition-colors"
-                        style={{
-                          backgroundColor: '#000000',
-                          color: '#FFFFFF',
-                        }}
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.backgroundColor = '#FFD400';
-                          e.currentTarget.style.color = '#000000';
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.backgroundColor = '#000000';
-                          e.currentTarget.style.color = '#FFFFFF';
-                        }}
-                        aria-label={`LinkedIn de ${member.name}`}
-                      >
-                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                        </svg>
-                      </a>
+                      <LinkedInLink href={member.linkedin} name={member.name} />
                     </div>
                   </div>
                 </div>
@@ -338,21 +285,9 @@ export default function AboutPage() {
             Faites le premier pas vers vos objectifs
           </p>
           <Link href="/exp/contact">
-            <button
-              className="px-12 py-6 text-lg font-bold rounded-lg transition-all duration-300"
-              style={{
-                backgroundColor: '#000000',
-                color: '#FFFFFF',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = '#000000';
-              }}
-            >
+            <CTAButton>
               Passez à l&apos;action !
-            </button>
+            </CTAButton>
           </Link>
         </div>
       </section>
