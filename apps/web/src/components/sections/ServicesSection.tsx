@@ -1,85 +1,20 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useMemo } from 'react';
 import { Link } from '@/i18n/routing';
 import Image from 'next/image';
 
 export default function ServicesSection() {
   const [activeService, setActiveService] = useState<number>(1);
-  const serviceRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const scrollContainerRef = useRef<HTMLDivElement | null>(null);
+  const [scrollProgress, setScrollProgress] = useState<number>(0);
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const stickyContainerRef = useRef<HTMLDivElement | null>(null);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  useEffect(() => {
-    const observers: IntersectionObserver[] = [];
-    const scrollContainer = scrollContainerRef.current;
-
-    if (!scrollContainer) return;
-
-    serviceRefs.current.forEach((ref, index) => {
-      if (!ref) return;
-
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              const containerRect = scrollContainer.getBoundingClientRect();
-              const cardRect = entry.boundingClientRect;
-              const containerCenter = containerRect.top + containerRect.height / 2;
-              const cardCenter = cardRect.top + cardRect.height / 2;
-              
-              // Si le centre de la carte est proche du centre du conteneur
-              const distanceFromCenter = Math.abs(cardCenter - containerCenter);
-              
-              // Active le service si la carte est dans la zone centrale (40% du conteneur)
-              if (distanceFromCenter < containerRect.height * 0.2) {
-                setActiveService(index + 1);
-              }
-            }
-          });
-        },
-        {
-          root: scrollContainer,
-          threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
-          rootMargin: '-25% 0px -25% 0px',
-        }
-      );
-
-      observer.observe(ref);
-      observers.push(observer);
-    });
-
-    // Empêcher le scroll de la page quand on scroll dans le conteneur
-    const handleWheel = (e: WheelEvent) => {
-      const container = scrollContainerRef.current;
-      if (!container) return;
-
-      const isAtTop = container.scrollTop === 0;
-      const isAtBottom = container.scrollTop + container.clientHeight >= container.scrollHeight - 1;
-
-      // Si on scroll vers le haut et qu'on est déjà en haut, empêcher le scroll de la page
-      if (e.deltaY < 0 && isAtTop) {
-        e.preventDefault();
-        e.stopPropagation();
-      }
-      // Si on scroll vers le bas et qu'on est déjà en bas, empêcher le scroll de la page
-      else if (e.deltaY > 0 && isAtBottom) {
-        e.preventDefault();
-        e.stopPropagation();
-      }
-    };
-
-    const container = scrollContainerRef.current;
-    if (container) {
-      container.addEventListener('wheel', handleWheel, { passive: false });
-    }
-
-    return () => {
-      observers.forEach((observer) => observer.disconnect());
-      if (container) {
-        container.removeEventListener('wheel', handleWheel);
-      }
-    };
-  }, []);
+  // Configuration de l'animation
+  const CARD_HEIGHT = 600; // Hauteur approximative d'une carte
+  const CARD_GAP = 48; // Espacement entre les cartes (space-y-12 = 3rem = 48px)
+  const SECTION_MULTIPLIER = 5; // Multiplicateur de viewport pour la hauteur de la section
 
   const services = [
     {
@@ -134,101 +69,252 @@ export default function ServicesSection() {
     },
   ];
 
-  return (
-    <section id="services" className="h-screen bg-[#F5F3F0] flex flex-col overflow-hidden">
-      <div className="max-w-7xl mx-auto w-full px-6 py-12 flex flex-col flex-1 min-h-0">
-        {/* Titre de section */}
-        <div className="mb-8 flex-shrink-0">
-          <h2 className="text-5xl font-light text-exp-black leading-tight">
-            Des services personnalisés<br />à vos ambitions
-          </h2>
-        </div>
+  // Calculer la hauteur totale nécessaire pour toutes les cartes
+  const totalCardsHeight = useMemo(() => {
+    return services.length * CARD_HEIGHT + (services.length - 1) * CARD_GAP;
+  }, []);
 
-        {/* Layout avec numéros sticky à gauche et cartes scrollables */}
-        <div className="flex gap-12 flex-1 min-h-0">
-          {/* Numéros sticky à gauche */}
-          <div className="hidden lg:block w-20 flex-shrink-0">
-            <div className="sticky top-32 space-y-6">
-              {services.map((service, index) => (
-                <a
-                  key={service.id}
-                  href={`#${service.id}`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    const element = document.getElementById(service.id);
-                    if (element) {
-                      const scrollContainer = element.closest('.scroll-container');
-                      if (scrollContainer) {
-                        const containerRect = scrollContainer.getBoundingClientRect();
-                        const elementRect = element.getBoundingClientRect();
-                        const scrollTop = scrollContainer.scrollTop;
-                        const targetScroll = scrollTop + elementRect.top - containerRect.top - containerRect.height / 2 + elementRect.height / 2;
-                        scrollContainer.scrollTo({ top: targetScroll, behavior: 'smooth' });
-                      }
-                    }
-                  }}
-                  className={`block text-2xl font-light transition-all duration-300 ${
-                    activeService === index + 1
-                      ? 'text-exp-black scale-110'
-                      : 'text-gray-400 hover:text-exp-black'
-                  }`}
-                >
-                  {service.number}
-                </a>
-              ))}
-            </div>
+  // Écouter le scroll de la page pour calculer la progression
+  useEffect(() => {
+    let rafId: number | null = null;
+
+    const handleScroll = () => {
+      if (!sectionRef.current) return;
+
+      const section = sectionRef.current;
+      const windowHeight = window.innerHeight;
+      const scrollY = window.scrollY;
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.offsetHeight;
+
+      // Calculer la progression (0 à 1) du scroll dans la section
+      // La section commence quand le haut du viewport atteint le haut de la section
+      // La section se termine quand on a scrollé toute la hauteur de la section
+      const scrollStart = sectionTop - windowHeight; // Quand la section entre dans le viewport
+      const scrollEnd = sectionTop + sectionHeight - windowHeight; // Quand on a fini de scroller la section
+      const scrollRange = scrollEnd - scrollStart;
+      
+      let progress = 0;
+      if (scrollY >= scrollStart && scrollY <= scrollEnd) {
+        // On est dans la section
+        progress = (scrollY - scrollStart) / scrollRange;
+        progress = Math.max(0, Math.min(1, progress)); // Clamp entre 0 et 1
+      } else if (scrollY > scrollEnd) {
+        // On a dépassé la section
+        progress = 1;
+      }
+
+      setScrollProgress(progress);
+    };
+
+    const onScroll = () => {
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId);
+      }
+      rafId = requestAnimationFrame(handleScroll);
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', handleScroll, { passive: true });
+    handleScroll(); // Appel initial
+
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', handleScroll);
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId);
+      }
+    };
+  }, []);
+
+  // Intersection Observer pour highlight des numéros
+  useEffect(() => {
+    if (!stickyContainerRef.current) return;
+
+    const observers: IntersectionObserver[] = [];
+
+    cardRefs.current.forEach((ref, index) => {
+      if (!ref) return;
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const containerRect = stickyContainerRef.current?.getBoundingClientRect();
+              const cardRect = entry.boundingClientRect;
+              
+              if (containerRect) {
+                const containerCenter = containerRect.top + containerRect.height / 2;
+                const cardCenter = cardRect.top + cardRect.height / 2;
+                const distanceFromCenter = Math.abs(cardCenter - containerCenter);
+
+                // Active le service si la carte est dans la zone centrale (40% du conteneur)
+                if (distanceFromCenter < containerRect.height * 0.2) {
+                  setActiveService(index + 1);
+                }
+              }
+            }
+          });
+        },
+        {
+          root: stickyContainerRef.current,
+          threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
+          rootMargin: '-30% 0px -30% 0px',
+        }
+      );
+
+      observer.observe(ref);
+      observers.push(observer);
+    });
+
+    return () => {
+      observers.forEach((observer) => observer.disconnect());
+    };
+  }, []);
+
+  // Calculer le translateY pour chaque carte selon la progression du scroll
+  const getCardTransform = (index: number) => {
+    if (typeof window === 'undefined') return 0;
+    
+    const viewportHeight = window.innerHeight;
+    const titleHeight = 120; // Hauteur approximative du titre + padding
+    const availableHeight = viewportHeight - titleHeight;
+    
+    // Chaque carte doit passer par le centre du viewport disponible
+    // On veut que les cartes défilent une par une
+    const progressPerCard = 1 / services.length;
+    const cardStartProgress = index * progressPerCard;
+    const cardEndProgress = (index + 1) * progressPerCard;
+    
+    // Calculer la progression relative de cette carte (0 à 1)
+    let cardProgress = 0;
+    if (scrollProgress >= cardEndProgress) {
+      cardProgress = 1; // Carte complètement passée
+    } else if (scrollProgress > cardStartProgress) {
+      cardProgress = (scrollProgress - cardStartProgress) / progressPerCard;
+    }
+    
+    // Position initiale : la carte commence en bas du conteneur (hors vue)
+    const initialY = availableHeight + 100;
+    
+    // Position finale : la carte remonte jusqu'à être centrée puis continue
+    // On veut que chaque carte passe par le centre du viewport disponible
+    const centerY = availableHeight / 2 - CARD_HEIGHT / 2;
+    const finalY = -index * (CARD_HEIGHT + CARD_GAP) + centerY - (CARD_HEIGHT + CARD_GAP);
+    
+    // Interpolation entre position initiale et finale avec easing
+    const easeInOut = (t: number) => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+    const easedProgress = easeInOut(cardProgress);
+    
+    const translateY = initialY + (finalY - initialY) * easedProgress;
+    
+    return translateY;
+  };
+
+  return (
+    <section 
+      ref={sectionRef}
+      id="services" 
+      className="relative bg-[#F5F3F0]"
+      style={{ 
+        height: `${SECTION_MULTIPLIER * 100}vh`,
+        minHeight: `${SECTION_MULTIPLIER * 100}vh`
+      }}
+    >
+      {/* Sticky container qui reste fixe pendant le scroll */}
+      <div 
+        ref={stickyContainerRef}
+        className="sticky top-0 h-screen overflow-hidden"
+      >
+        <div className="max-w-7xl mx-auto w-full h-full px-6 py-12 flex flex-col">
+          {/* Titre de section - fixe en haut */}
+          <div className="mb-8 flex-shrink-0 z-10">
+            <h2 className="text-5xl font-light text-exp-black leading-tight">
+              Des services personnalisés<br />à vos ambitions
+            </h2>
           </div>
 
-          {/* Contenu scrollable à droite - seul élément qui scroll */}
-          <div 
-            ref={scrollContainerRef}
-            className="flex-1 space-y-12 overflow-y-auto scroll-container scroll-smooth" 
-            style={{ scrollbarWidth: 'thin' }}
-          >
-            {services.map((service, index) => (
-              <div
-                key={service.id}
-                id={service.id}
-                ref={(el) => {
-                  serviceRefs.current[index] = el;
-                }}
-                className="scroll-mt-32"
-              >
-                <Link href={service.href}>
-                  <div className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
-                      {/* Image */}
-                      <div className="relative h-80 md:h-auto overflow-hidden">
-                        <Image
-                          src={service.image}
-                          alt={service.alt}
-                          fill
-                          className="object-cover group-hover:scale-105 transition-transform duration-700"
-                        />
-                      </div>
-                      {/* Contenu */}
-                      <div className="p-8 flex flex-col justify-center">
-                        <div className="flex items-center gap-3 mb-4">
-                          <span className="text-sm font-light text-gray-400">{service.number}</span>
-                          <h3 className="text-2xl font-light text-exp-black">
-                            {service.title}
-                          </h3>
-                        </div>
-                        <p className="text-base text-gray-600 leading-relaxed mb-4 font-light">
-                          {service.description}
-                        </p>
-                        <p className="text-sm text-gray-500 leading-relaxed mb-6 font-light whitespace-pre-line">
-                          {service.details}
-                        </p>
-                        <button className="inline-flex items-center text-exp-black text-sm font-light border border-exp-black px-6 py-2 rounded-full hover:bg-exp-black hover:text-white transition-all duration-300">
-                          Voir plus
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
+          {/* Layout avec numéros sticky à gauche et cartes animées */}
+          <div className="flex gap-12 flex-1 min-h-0 relative">
+            {/* Numéros sticky à gauche */}
+            <div className="hidden lg:block w-20 flex-shrink-0 z-20">
+              <div className="sticky top-32 space-y-6">
+                {services.map((service, index) => (
+                  <button
+                    key={service.id}
+                    onClick={() => {
+                      // Scroll vers la section services
+                      sectionRef.current?.scrollIntoView({ behavior: 'smooth' });
+                      // On pourrait aussi ajuster le scroll progress ici si nécessaire
+                    }}
+                    className={`block text-2xl font-light transition-all duration-300 ${
+                      activeService === index + 1
+                        ? 'text-exp-black scale-110'
+                        : 'text-gray-400 hover:text-exp-black'
+                    }`}
+                  >
+                    {service.number}
+                  </button>
+                ))}
               </div>
-            ))}
+            </div>
+
+            {/* Conteneur des cartes - position relative pour les cartes en absolute */}
+            <div className="flex-1 relative" style={{ minHeight: totalCardsHeight }}>
+              {services.map((service, index) => {
+                const translateY = getCardTransform(index);
+                
+                return (
+                  <div
+                    key={service.id}
+                    id={service.id}
+                    ref={(el) => {
+                      cardRefs.current[index] = el;
+                    }}
+                    className="absolute left-0 right-0"
+                    style={{
+                      transform: `translateY(${translateY}px)`,
+                      willChange: 'transform',
+                      top: 0,
+                    }}
+                  >
+                    <Link href={service.href}>
+                      <div className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
+                          {/* Image */}
+                          <div className="relative h-80 md:h-auto overflow-hidden">
+                            <Image
+                              src={service.image}
+                              alt={service.alt}
+                              fill
+                              className="object-cover group-hover:scale-105 transition-transform duration-700"
+                            />
+                          </div>
+                          {/* Contenu */}
+                          <div className="p-8 flex flex-col justify-center">
+                            <div className="flex items-center gap-3 mb-4">
+                              <span className="text-sm font-light text-gray-400">{service.number}</span>
+                              <h3 className="text-2xl font-light text-exp-black">
+                                {service.title}
+                              </h3>
+                            </div>
+                            <p className="text-base text-gray-600 leading-relaxed mb-4 font-light">
+                              {service.description}
+                            </p>
+                            <p className="text-sm text-gray-500 leading-relaxed mb-6 font-light whitespace-pre-line">
+                              {service.details}
+                            </p>
+                            <button className="inline-flex items-center text-exp-black text-sm font-light border border-exp-black px-6 py-2 rounded-full hover:bg-exp-black hover:text-white transition-all duration-300">
+                              Voir plus
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
