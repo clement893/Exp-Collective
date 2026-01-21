@@ -7,9 +7,13 @@ import Image from 'next/image';
 export default function ServicesSection() {
   const [activeService, setActiveService] = useState<number>(1);
   const serviceRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const scrollContainerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const observers: IntersectionObserver[] = [];
+    const scrollContainer = scrollContainerRef.current;
+
+    if (!scrollContainer) return;
 
     serviceRefs.current.forEach((ref, index) => {
       if (!ref) return;
@@ -18,22 +22,23 @@ export default function ServicesSection() {
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
-              const boundingRect = entry.boundingClientRect;
-              const viewportHeight = window.innerHeight;
-              const viewportCenter = viewportHeight / 2;
-              const cardCenter = boundingRect.top + boundingRect.height / 2;
+              const containerRect = scrollContainer.getBoundingClientRect();
+              const cardRect = entry.boundingClientRect;
+              const containerCenter = containerRect.top + containerRect.height / 2;
+              const cardCenter = cardRect.top + cardRect.height / 2;
               
-              // Si le centre de la carte est proche du centre de l'écran
-              const distanceFromCenter = Math.abs(cardCenter - viewportCenter);
+              // Si le centre de la carte est proche du centre du conteneur
+              const distanceFromCenter = Math.abs(cardCenter - containerCenter);
               
-              // Active le service si la carte est dans la zone centrale (40% du viewport)
-              if (distanceFromCenter < viewportHeight * 0.2) {
+              // Active le service si la carte est dans la zone centrale (40% du conteneur)
+              if (distanceFromCenter < containerRect.height * 0.2) {
                 setActiveService(index + 1);
               }
             }
           });
         },
         {
+          root: scrollContainer,
           threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
           rootMargin: '-25% 0px -25% 0px',
         }
@@ -43,8 +48,36 @@ export default function ServicesSection() {
       observers.push(observer);
     });
 
+    // Empêcher le scroll de la page quand on scroll dans le conteneur
+    const handleWheel = (e: WheelEvent) => {
+      const container = scrollContainerRef.current;
+      if (!container) return;
+
+      const isAtTop = container.scrollTop === 0;
+      const isAtBottom = container.scrollTop + container.clientHeight >= container.scrollHeight - 1;
+
+      // Si on scroll vers le haut et qu'on est déjà en haut, empêcher le scroll de la page
+      if (e.deltaY < 0 && isAtTop) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      // Si on scroll vers le bas et qu'on est déjà en bas, empêcher le scroll de la page
+      else if (e.deltaY > 0 && isAtBottom) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    };
+
+    const container = scrollContainerRef.current;
+    if (container) {
+      container.addEventListener('wheel', handleWheel, { passive: false });
+    }
+
     return () => {
       observers.forEach((observer) => observer.disconnect());
+      if (container) {
+        container.removeEventListener('wheel', handleWheel);
+      }
     };
   }, []);
 
@@ -102,17 +135,17 @@ export default function ServicesSection() {
   ];
 
   return (
-    <section id="services" className="py-24 px-6 bg-[#F5F3F0]">
-      <div className="max-w-7xl mx-auto">
+    <section id="services" className="h-screen bg-[#F5F3F0] flex flex-col overflow-hidden">
+      <div className="max-w-7xl mx-auto w-full px-6 py-12 flex flex-col flex-1 min-h-0">
         {/* Titre de section */}
-        <div className="mb-16">
+        <div className="mb-8 flex-shrink-0">
           <h2 className="text-5xl font-light text-exp-black leading-tight">
             Des services personnalisés<br />à vos ambitions
           </h2>
         </div>
 
-        {/* Layout avec numéros sticky à gauche */}
-        <div className="flex gap-12">
+        {/* Layout avec numéros sticky à gauche et cartes scrollables */}
+        <div className="flex gap-12 flex-1 min-h-0">
           {/* Numéros sticky à gauche */}
           <div className="hidden lg:block w-20 flex-shrink-0">
             <div className="sticky top-32 space-y-6">
@@ -124,7 +157,14 @@ export default function ServicesSection() {
                     e.preventDefault();
                     const element = document.getElementById(service.id);
                     if (element) {
-                      element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                      const scrollContainer = element.closest('.scroll-container');
+                      if (scrollContainer) {
+                        const containerRect = scrollContainer.getBoundingClientRect();
+                        const elementRect = element.getBoundingClientRect();
+                        const scrollTop = scrollContainer.scrollTop;
+                        const targetScroll = scrollTop + elementRect.top - containerRect.top - containerRect.height / 2 + elementRect.height / 2;
+                        scrollContainer.scrollTo({ top: targetScroll, behavior: 'smooth' });
+                      }
                     }
                   }}
                   className={`block text-2xl font-light transition-all duration-300 ${
@@ -139,8 +179,12 @@ export default function ServicesSection() {
             </div>
           </div>
 
-          {/* Contenu scrollable à droite */}
-          <div className="flex-1 space-y-12">
+          {/* Contenu scrollable à droite - seul élément qui scroll */}
+          <div 
+            ref={scrollContainerRef}
+            className="flex-1 space-y-12 overflow-y-auto scroll-container scroll-smooth" 
+            style={{ scrollbarWidth: 'thin' }}
+          >
             {services.map((service, index) => (
               <div
                 key={service.id}
