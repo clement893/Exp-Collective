@@ -79,9 +79,10 @@ export function applyThemeConfigDirectly(config: ThemeConfig, options?: {
   // If bypassDarkModeProtection is true, use config directly (for manual editing/preview)
   const modeConfig = bypassDarkModeProtection ? config : getThemeConfigForMode(config);
   
-  // Apply dark mode class if needed
-  const mode = config.mode || 'system';
-  if (mode === 'dark' || (mode === 'system' && typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+  // Apply dark mode class if needed - NEVER use system preference
+  const mode = config.mode || 'light';
+  // Only apply dark mode if explicitly set to 'dark', never use system preference
+  if (mode === 'dark') {
     applyDarkModeClass(true);
   } else {
     applyDarkModeClass(false);

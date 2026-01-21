@@ -12,17 +12,21 @@ export const themeCacheInlineScript = `
   // This ensures colors are applied before any CSS is rendered
   
   try {
-    // Restore dark mode preference from localStorage FIRST (before theme variables)
-    // This ensures the dark class is applied before any CSS is rendered
+    // FORCE LIGHT MODE - Never use system preference
+    // Always default to light mode unless explicitly set to dark in localStorage
     const storedTheme = localStorage.getItem('theme');
     if (storedTheme === 'dark') {
       document.documentElement.classList.add('dark');
       document.documentElement.classList.remove('light');
-    } else if (storedTheme === 'light') {
-      document.documentElement.classList.add('light');
+    } else {
+      // Force light mode - remove dark class and ensure light class
       document.documentElement.classList.remove('dark');
+      document.documentElement.classList.add('light');
+      // If no stored preference, set it to light
+      if (!storedTheme) {
+        localStorage.setItem('theme', 'light');
+      }
     }
-    // If no stored preference, default to light (no class needed, light is default)
     
     // Load theme variables from cache
     const root = document.documentElement;

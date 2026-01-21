@@ -169,6 +169,23 @@ export default async function LocaleLayout({
           }}
         />
         
+        {/* Force light mode and prevent system preference detection */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                // Force light mode on page load - remove dark class if present
+                const root = document.documentElement;
+                const storedTheme = localStorage.getItem('theme');
+                if (storedTheme !== 'dark') {
+                  root.classList.remove('dark');
+                  root.classList.add('light');
+                }
+              })();
+            `,
+          }}
+        />
+        
         {/* Add loaded class to body after initial render to enable transitions */}
         <script
           dangerouslySetInnerHTML={{

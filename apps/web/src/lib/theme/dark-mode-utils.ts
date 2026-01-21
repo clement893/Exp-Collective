@@ -21,16 +21,18 @@ export function prefersDarkMode(): boolean {
 }
 
 /**
- * Get theme mode from config or system preference
+ * Get theme mode from config - NEVER use system preference
+ * Always defaults to 'light' mode
  * 
  * @param config Theme configuration
- * @returns 'light' | 'dark' | 'system'
+ * @returns 'light' | 'dark'
  */
-export function getThemeMode(config: ThemeConfig): 'light' | 'dark' | 'system' {
-  const mode = config.mode || 'system';
+export function getThemeMode(config: ThemeConfig): 'light' | 'dark' {
+  const mode = config.mode || 'light';
   
+  // Never use 'system' mode - always default to 'light'
   if (mode === 'system') {
-    return prefersDarkMode() ? 'dark' : 'light';
+    return 'light';
   }
   
   return mode as 'light' | 'dark';
