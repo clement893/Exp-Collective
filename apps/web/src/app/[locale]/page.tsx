@@ -78,15 +78,16 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Section Photo avec texte superposé */}
-      <section className="relative h-screen">
+      {/* Section Photo avec texte superposé - Ampoule avec idée */}
+      <section className="relative h-screen bg-exp-black">
         <Image
-          src="/assets/photos/FREDERICXAnnieClaudePhotographie-22.jpg"
+          src="/assets/photos/ampoule-idee.png"
           alt="Les yeux, les oreilles grand ouverts"
           fill
           className="object-cover"
+          priority
         />
-        <div className="absolute inset-0 bg-exp-black/40"></div>
+        <div className="absolute inset-0 bg-exp-black/20"></div>
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center px-6">
             <h2 className="text-6xl font-thin text-white mb-6 leading-tight tracking-tight">
