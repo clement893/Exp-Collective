@@ -3,8 +3,6 @@
 import { Link } from '@/i18n/routing';
 
 export default function ExpFooter() {
-  const currentYear = new Date().getFullYear();
-
   return (
     <footer className="bg-exp-black text-white">
       {/* Main Footer Content */}
