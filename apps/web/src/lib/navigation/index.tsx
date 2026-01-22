@@ -21,7 +21,13 @@ import {
   FileCheck, 
   Palette, 
   Cog,
-  GraduationCap
+  GraduationCap,
+  Folder,
+  Tag,
+  Calendar,
+  Layout,
+  Menu as MenuIcon,
+  Search
 } from 'lucide-react';
 
 export interface NavigationItem {
@@ -55,6 +61,74 @@ export function getNavigationConfig(isAdmin: boolean): NavigationConfig {
         name: 'Dashboard',
         href: '/dashboard',
         icon: <LayoutDashboard className="w-5 h-5" />,
+      },
+      // CMS (collapsible group)
+      {
+        name: 'CMS',
+        icon: <FolderKanban className="w-5 h-5" />,
+        items: [
+          {
+            name: 'Vue d\'ensemble',
+            href: '/dashboard',
+            icon: <LayoutDashboard className="w-5 h-5" />,
+          },
+          {
+            name: 'Pages',
+            href: '/content/pages',
+            icon: <FileText className="w-5 h-5" />,
+          },
+          {
+            name: 'Articles',
+            href: '/content/posts',
+            icon: <FileCheck className="w-5 h-5" />,
+          },
+          {
+            name: 'Médias',
+            href: '/content/media',
+            icon: <Image className="w-5 h-5" />,
+          },
+          {
+            name: 'Catégories',
+            href: '/content/categories',
+            icon: <Folder className="w-5 h-5" />,
+          },
+          {
+            name: 'Tags',
+            href: '/content/tags',
+            icon: <Tag className="w-5 h-5" />,
+          },
+          {
+            name: 'Templates',
+            href: '/content/templates',
+            icon: <Layout className="w-5 h-5" />,
+          },
+          {
+            name: 'Planification',
+            href: '/content/schedule',
+            icon: <Calendar className="w-5 h-5" />,
+          },
+        ],
+        collapsible: true,
+        defaultOpen: true,
+      },
+      // Site (collapsible group)
+      {
+        name: 'Site',
+        icon: <Settings className="w-5 h-5" />,
+        items: [
+          {
+            name: 'Menus',
+            href: '/dashboard/site/menus',
+            icon: <MenuIcon className="w-5 h-5" />,
+          },
+          {
+            name: 'SEO',
+            href: '/dashboard/site/seo',
+            icon: <Search className="w-5 h-5" />,
+          },
+        ],
+        collapsible: true,
+        defaultOpen: false,
       },
       // Gestion (collapsible group)
       {
