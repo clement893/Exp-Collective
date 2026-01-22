@@ -27,17 +27,12 @@ export default function ExperienceClientPage() {
           <h1 className="text-6xl font-light text-white mb-8 leading-tight">
             Expérience Client &{' '}
             <span className="relative inline-block">
-              <span className="relative z-10 font-medium">Transformation Digitale</span>
+              <span className="relative z-10 text-exp-black font-bold">Transformation Digitale</span>
               <span className="absolute inset-0 bg-exp-yellow -z-0"></span>
             </span>
           </h1>
           <p className="text-2xl text-gray-300 font-light leading-relaxed max-w-3xl mx-auto">
-            Créez des parcours clients{' '}
-            <span className="relative inline-block">
-              <span className="relative z-10">mémorables</span>
-              <span className="absolute inset-0 bg-exp-yellow -z-0"></span>
-            </span>
-            {' '}qui fidélisent et génèrent de la croissance
+            Créez des parcours clients mémorables qui fidélisent et génèrent de la croissance
           </p>
         </div>
       </section>
@@ -50,7 +45,7 @@ export default function ExperienceClientPage() {
               <h2 className="text-5xl font-light text-exp-black mb-10 leading-tight">
                 Placez vos clients au{' '}
                 <span className="relative inline-block">
-                  <span className="relative z-10 font-medium">cœur de tout</span>
+                  <span className="relative z-10 text-exp-black font-bold">cœur de tout</span>
                   <span className="absolute inset-0 bg-exp-yellow -z-0"></span>
                 </span>
               </h2>
@@ -58,17 +53,7 @@ export default function ExperienceClientPage() {
                 Dans un monde où l'expérience client fait toute la différence, nous vous aidons à créer des parcours fluides, intuitifs et mémorables qui transforment vos clients en ambassadeurs.
               </p>
               <p className="text-lg text-gray-600 leading-relaxed font-light">
-                De l'analyse des points de contact à la mise en œuvre de solutions digitales innovantes, nous optimisons chaque interaction pour maximiser la{' '}
-                <span className="relative inline-block">
-                  <span className="relative z-10">satisfaction</span>
-                  <span className="absolute inset-0 bg-exp-yellow -z-0"></span>
-                </span>
-                {' '}et la{' '}
-                <span className="relative inline-block">
-                  <span className="relative z-10">fidélisation</span>
-                  <span className="absolute inset-0 bg-exp-yellow -z-0"></span>
-                </span>
-                .
+                De l'analyse des points de contact à la mise en œuvre de solutions digitales innovantes, nous optimisons chaque interaction pour maximiser la satisfaction et la fidélisation.
               </p>
             </div>
             <div className="bg-gray-50 p-12 rounded-2xl">
