@@ -1,7 +1,7 @@
 'use client';
 
 import { PageHeader, PageContainer } from '@/components/layout';
-import { MenusManager } from '@/components/site/MenusManager';
+import MenusManager from '@/components/site/MenusManager';
 import ProtectedRoute from '@/components/auth/ProtectedRoute';
 import MotionDiv from '@/components/motion/MotionDiv';
 

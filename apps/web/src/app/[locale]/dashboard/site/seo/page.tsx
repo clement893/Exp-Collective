@@ -1,7 +1,7 @@
 'use client';
 
 import { PageHeader, PageContainer } from '@/components/layout';
-import { SEOManager } from '@/components/site/SEOManager';
+import SEOManager from '@/components/site/SEOManager';
 import ProtectedRoute from '@/components/auth/ProtectedRoute';
 import MotionDiv from '@/components/motion/MotionDiv';
 
