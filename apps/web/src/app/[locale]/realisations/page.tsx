@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import { Link } from '@/i18n/routing';
 import Image from 'next/image';
 
@@ -74,15 +73,6 @@ const projects = [
 ];
 
 export default function RealisationsPage() {
-  const [selectedService, setSelectedService] = useState('all');
-  const [selectedYear, setSelectedYear] = useState('all');
-
-  const filteredProjects = projects.filter(project => {
-    const matchesService = selectedService === 'all' || project.service === selectedService;
-    const matchesYear = selectedYear === 'all' || project.date === selectedYear;
-    
-    return matchesService && matchesYear;
-  });
 
   return (
     <div className="min-h-screen bg-white">
@@ -104,58 +94,12 @@ export default function RealisationsPage() {
         </div>
       </section>
 
-      {/* Filters Section */}
-      <section className="py-12 bg-gray-50 border-b border-gray-200">
-        <div className="container mx-auto px-6">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Service Filter */}
-              <div>
-                <label htmlFor="service" className="block text-sm font-medium text-gray-700 mb-2">
-                  Service
-                </label>
-                <select
-                  id="service"
-                  value={selectedService}
-                  onChange={(e) => setSelectedService(e.target.value)}
-                  className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-exp-yellow focus:border-transparent transition-all"
-                >
-                  <option value="all">Tous les services</option>
-                  <option value="Accompagnement stratégique">Accompagnement stratégique</option>
-                  <option value="Image de marque">Image de marque</option>
-                  <option value="Expérience client">Expérience client</option>
-                  <option value="Mesure de performance">Mesure de performance</option>
-                </select>
-              </div>
-
-              {/* Year Filter */}
-              <div>
-                <label htmlFor="year" className="block text-sm font-medium text-gray-700 mb-2">
-                  Année
-                </label>
-                <select
-                  id="year"
-                  value={selectedYear}
-                  onChange={(e) => setSelectedYear(e.target.value)}
-                  className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-exp-yellow focus:border-transparent transition-all"
-                >
-                  <option value="all">Toutes les années</option>
-                  <option value="2024">2024</option>
-                  <option value="2023">2023</option>
-                  <option value="2022">2022</option>
-                </select>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Projects Grid */}
       <section className="py-20">
         <div className="container mx-auto px-6">
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {filteredProjects.map((project) => (
+              {projects.map((project) => (
                 <div
                   key={project.id}
                   className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100"
@@ -222,15 +166,6 @@ export default function RealisationsPage() {
                 </div>
               ))}
             </div>
-
-            {/* No results message */}
-            {filteredProjects.length === 0 && (
-              <div className="text-center py-20">
-                <p className="text-2xl text-gray-400 font-light">
-                  Aucun projet ne correspond à vos critères de recherche
-                </p>
-              </div>
-            )}
           </div>
         </div>
       </section>
