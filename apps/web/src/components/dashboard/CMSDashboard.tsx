@@ -26,7 +26,6 @@ import {
 } from 'lucide-react';
 import { useAuthStore } from '@/lib/store';
 import { cmsAPI, type CMSStats, type ActivityItem } from '@/lib/api/cms';
-import MotionDiv from '@/components/motion/MotionDiv';
 
 export interface CMSDashboardProps {
   className?: string;
