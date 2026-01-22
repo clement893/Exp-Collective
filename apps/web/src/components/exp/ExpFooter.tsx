@@ -1,6 +1,7 @@
 'use client';
 
 import { Link } from '@/i18n/routing';
+import Image from 'next/image';
 
 export default function ExpFooter() {
   return (
@@ -8,32 +9,19 @@ export default function ExpFooter() {
       {/* Main Footer Content */}
       <div className="container mx-auto px-6 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-          {/* Logo à gauche - 2 colonnes - Vertical */}
+          {/* Logo à gauche - 2 colonnes */}
           <div className="lg:col-span-2">
-            <div className="flex items-start">
-              {/* experience - vertical avec exp en jaune */}
-              <div className="flex flex-col text-white font-light text-2xl leading-tight tracking-tight uppercase">
-                {'experience'.split('').map((letter, index) => {
-                  const isYellow = ['e', 'x', 'p'].includes(letter.toLowerCase());
-                  return (
-                    <span
-                      key={`exp-${index}`}
-                      className={isYellow ? 'text-exp-yellow' : 'text-white'}
-                    >
-                      {letter}
-                    </span>
-                  );
-                })}
+            <Link href="/" className="flex items-center group">
+              <div className="relative h-16 w-auto">
+                <Image
+                  src="/assets/Logo/Final/ExpC_Lc inv.png"
+                  alt="Expérience Collective"
+                  width={200}
+                  height={75}
+                  className="h-full w-auto object-contain transform group-hover:scale-105 transition-transform duration-300"
+                />
               </div>
-              {/* collective - vertical en blanc */}
-              <div className="flex flex-col text-white font-light text-2xl leading-tight tracking-tight uppercase ml-2">
-                {'collective'.split('').map((letter, index) => (
-                  <span key={`col-${index}`} className="text-white">
-                    {letter}
-                  </span>
-                ))}
-              </div>
-            </div>
+            </Link>
           </div>
 
           {/* Section CTA au milieu-gauche - 4 colonnes */}
