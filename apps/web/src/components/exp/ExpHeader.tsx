@@ -31,6 +31,9 @@ export default function ExpHeader() {
                 priority
               />
             </div>
+            <span className="ml-3 text-black font-normal text-lg hidden sm:block">
+              Expérience Collective
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
