@@ -19,7 +19,6 @@ import {
   Tag, 
   Calendar, 
   Layout,
-  Plus,
   Activity,
   Settings,
   Eye,
