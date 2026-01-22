@@ -8,7 +8,6 @@ export default function ExpHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navigation = [
-    { name: 'Accueil', href: '/' },
     { name: 'Services', href: '/services' },
     { name: 'Réalisations', href: '/realisations' },
     { name: 'À Propos', href: '/a-propos' },
