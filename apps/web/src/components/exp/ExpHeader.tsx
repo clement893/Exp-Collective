@@ -22,7 +22,7 @@ export default function ExpHeader() {
           <Link href="/" className="flex items-center group">
             <div className="relative h-12 w-auto">
               <Image
-                src="/assets/Logo/Final/ExpC_Lc inv.png"
+                src="/assets/Logo/Final/ExpC_Lc.png"
                 alt="Expérience Collective"
                 width={200}
                 height={75}

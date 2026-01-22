@@ -37,8 +37,8 @@ export default function ContactPage() {
             <h1 className="text-6xl md:text-7xl font-thin mb-6 leading-tight tracking-tight">
               Lancez votre projet{' '}
               <span className="relative inline-block">
-                <span className="relative z-10">avec nous</span>
-                <span className="absolute inset-x-0 top-0 h-full bg-exp-yellow/40 -z-0"></span>
+                <span className="relative z-10 text-exp-black font-bold">avec nous</span>
+                <span className="absolute inset-x-0 top-0 h-full bg-exp-yellow -z-0"></span>
               </span>
             </h1>
             <p className="text-xl text-white/70 font-light">
