@@ -71,8 +71,8 @@ export default function HomePage() {
           />
         </div>
         
-        <div className="relative z-10 max-w-4xl mx-auto text-center">
-          <h2 className="text-5xl font-thin text-white mb-12 leading-tight tracking-tight">
+        <div className="relative z-10 max-w-7xl mx-auto">
+          <h2 className="text-5xl font-thin text-white mb-8 leading-tight tracking-tight text-center">
             Notre{' '}
             <span className="relative inline-block">
               <span className="relative z-10 text-exp-black font-bold">raison</span>
@@ -80,11 +80,48 @@ export default function HomePage() {
             </span>
             {' '}d'être
           </h2>
-          <p className="text-2xl text-gray-300 font-light leading-relaxed">
-            Nous croyons que chaque organisation a une histoire unique à raconter. 
-            Notre mission est de vous aider à la révéler, à la partager et à la faire vivre 
-            à travers des expériences qui marquent les esprits et transforment les intentions en actions.
+          <p className="text-xl text-gray-300 font-light leading-relaxed text-center max-w-4xl mx-auto mb-16">
+            Chez Expérience Collective, nous accompagnons les partenaires à chaque étape de leur croissance et projets, et développons des stratégies sur mesure qui visent l'innovation, l'engagement et la transformation. Nos actions reposent sur trois piliers qui sont nos valeurs et animent tous nos projets.
           </p>
+          
+          {/* Cartes de valeurs */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Valeur 1 */}
+            <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-lg p-8 hover:border-exp-yellow transition-all duration-300 group">
+              <div className="mb-4">
+                <span className="inline-block px-4 py-2 bg-exp-yellow text-exp-black font-bold text-sm rounded">
+                  Valeur
+                </span>
+              </div>
+              <p className="text-gray-300 font-light leading-relaxed">
+                Nous croyons que chaque organisation a une histoire unique à raconter. Notre mission est de vous aider à la révéler, à la partager et à la faire vivre à travers des expériences qui marquent les esprits.
+              </p>
+            </div>
+            
+            {/* Valeur 2 */}
+            <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-lg p-8 hover:border-exp-yellow transition-all duration-300 group">
+              <div className="mb-4">
+                <span className="inline-block px-4 py-2 bg-exp-yellow text-exp-black font-bold text-sm rounded">
+                  Valeur
+                </span>
+              </div>
+              <p className="text-gray-300 font-light leading-relaxed">
+                Nous écoutons avec attention, observons avec curiosité et comprenons avec empathie. C'est dans cette attention que naissent les meilleures solutions et les stratégies les plus impactantes.
+              </p>
+            </div>
+            
+            {/* Valeur 3 */}
+            <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-lg p-8 hover:border-exp-yellow transition-all duration-300 group">
+              <div className="mb-4">
+                <span className="inline-block px-4 py-2 bg-exp-yellow text-exp-black font-bold text-sm rounded">
+                  Valeur
+                </span>
+              </div>
+              <p className="text-gray-300 font-light leading-relaxed">
+                Nous transformons les intentions en actions concrètes et mesurables. Chaque projet est une opportunité de créer un impact durable et de générer une valeur authentique pour nos partenaires.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
