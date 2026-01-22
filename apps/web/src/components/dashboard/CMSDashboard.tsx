@@ -24,7 +24,6 @@ import {
   Eye,
   Clock
 } from 'lucide-react';
-import { useAuthStore } from '@/lib/store';
 import { cmsAPI, type CMSStats, type ActivityItem } from '@/lib/api/cms';
 
 export interface CMSDashboardProps {
@@ -32,7 +31,6 @@ export interface CMSDashboardProps {
 }
 
 export default function CMSDashboard({ className }: CMSDashboardProps) {
-  const { user } = useAuthStore();
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [stats, setStats] = useState<CMSStats>({
