@@ -125,29 +125,95 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Section Photo avec texte superposé - Ampoule avec idée */}
-      <section className="relative h-screen bg-exp-black">
-        <Image
-          src="/assets/photos/ampoule-idee.png"
-          alt="Les yeux, les oreilles grand ouverts"
-          fill
-          className="object-cover"
-          priority
-        />
-        <div className="absolute inset-0 bg-exp-black/20"></div>
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-center px-6">
-            <h2 className="text-6xl font-thin text-white mb-6 leading-tight tracking-tight">
-              Les yeux, les oreilles{' '}
-              <span className="relative inline-block">
-                <span className="relative z-10 text-exp-black font-bold">grand ouverts</span>
-                <span className="absolute inset-x-0 top-0 h-full bg-exp-yellow -z-0"></span>
-              </span>
-            </h2>
-            <p className="text-xl text-white/90 font-light max-w-2xl mx-auto">
-              Nous écoutons, observons et comprenons avant d'agir. 
-              C'est dans cette attention que naissent les meilleures solutions.
-            </p>
+      {/* Section Écoute - Layout asymétrique avec style quote */}
+      <section className="relative py-32 bg-white overflow-hidden">
+        {/* Éléments graphiques décoratifs */}
+        <div className="absolute top-20 right-20 w-96 h-96 bg-exp-yellow/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 left-20 w-64 h-64 bg-exp-yellow/10 rounded-full blur-2xl"></div>
+        
+        <div className="container mx-auto px-6">
+          <div className="max-w-6xl mx-auto">
+            {/* Guillemet géant en haut à gauche */}
+            <div className="relative">
+              <div className="absolute -top-8 -left-4 text-exp-yellow text-[200px] font-serif leading-none opacity-20 select-none">
+                “
+              </div>
+              
+              {/* Contenu principal - Layout asymétrique */}
+              <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                {/* Colonne gauche - Titre avec accent jaune */}
+                <div className="lg:col-span-5">
+                  <div className="space-y-6">
+                    {/* Badge */}
+                    <div className="inline-block">
+                      <div className="px-6 py-2 bg-exp-black text-exp-yellow text-sm font-bold tracking-wider rounded-full">
+                        NOTRE APPROCHE
+                      </div>
+                    </div>
+                    
+                    {/* Titre avec éléments graphiques */}
+                    <div className="relative">
+                      <h2 className="text-5xl lg:text-6xl font-thin text-exp-black leading-tight">
+                        Les yeux, les oreilles{' '}
+                        <span className="relative inline-block">
+                          <span className="relative z-10 text-exp-black font-bold">grand ouverts</span>
+                          <span className="absolute inset-x-0 top-0 h-full bg-exp-yellow -z-0"></span>
+                        </span>
+                      </h2>
+                      
+                      {/* Ligne décorative */}
+                      <div className="mt-8 flex items-center gap-4">
+                        <div className="w-20 h-1 bg-exp-yellow"></div>
+                        <div className="w-12 h-1 bg-exp-yellow/50"></div>
+                        <div className="w-8 h-1 bg-exp-yellow/30"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Colonne droite - Citation avec design moderne */}
+                <div className="lg:col-span-7">
+                  <div className="relative">
+                    {/* Carte avec ombre et bordure */}
+                    <div className="bg-gradient-to-br from-gray-50 to-white p-12 rounded-2xl shadow-2xl border-l-8 border-exp-yellow">
+                      <blockquote className="space-y-6">
+                        <p className="text-2xl lg:text-3xl text-gray-800 font-light leading-relaxed italic">
+                          Nous écoutons, observons et comprenons avant d'agir.
+                        </p>
+                        <p className="text-xl text-gray-600 font-light leading-relaxed">
+                          C'est dans cette attention que naissent les meilleures solutions.
+                        </p>
+                      </blockquote>
+                      
+                      {/* Icônes décoratives */}
+                      <div className="mt-8 flex gap-6">
+                        <div className="flex items-center gap-3 text-gray-400">
+                          <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                          </svg>
+                          <span className="text-sm font-medium">Observer</span>
+                        </div>
+                        <div className="flex items-center gap-3 text-gray-400">
+                          <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+                          </svg>
+                          <span className="text-sm font-medium">Écouter</span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Cercle décoratif en arrière-plan */}
+                    <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-exp-yellow rounded-full opacity-20 blur-xl -z-10"></div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Guillemet géant en bas à droite */}
+              <div className="absolute -bottom-12 right-0 text-exp-yellow text-[200px] font-serif leading-none opacity-20 select-none">
+                ”
+              </div>
+            </div>
           </div>
         </div>
       </section>
