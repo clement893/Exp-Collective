@@ -1,10 +1,6 @@
-import { Metadata } from 'next';
-import { Link } from '@/i18n/routing';
+'use client';
 
-export const metadata: Metadata = {
-  title: 'Nos Services - Expérience Collective',
-  description: 'Des services personnalisés à vos ambitions. Découvrez comment nous pouvons vous aider à atteindre vos objectifs.',
-};
+import { Link } from '@/i18n/routing';
 
 const services = [
   {
@@ -114,19 +110,7 @@ export default function ServicesPage() {
                     <div className="md:col-span-3 flex justify-end">
                       <Link href={`/exp/services/${service.slug}`}>
                         <button
-                          className="px-6 py-3 font-bold transition-all duration-300 group-hover:scale-105 rounded-lg"
-                          style={{
-                            backgroundColor: '#000000',
-                            color: '#FFFFFF',
-                          }}
-                          onMouseEnter={(e) => {
-                            e.currentTarget.style.backgroundColor = '#FFD400';
-                            e.currentTarget.style.color = '#000000';
-                          }}
-                          onMouseLeave={(e) => {
-                            e.currentTarget.style.backgroundColor = '#000000';
-                            e.currentTarget.style.color = '#FFFFFF';
-                          }}
+                          className="px-6 py-3 font-bold transition-all duration-300 group-hover:scale-105 rounded-lg bg-black text-white hover:bg-[#FFD400] hover:text-black"
                         >
                           En savoir plus →
                         </button>
@@ -225,17 +209,7 @@ export default function ServicesPage() {
           </p>
           <Link href="/exp/contact">
             <button
-              className="px-12 py-6 text-lg font-bold rounded-lg transition-all duration-300"
-              style={{
-                backgroundColor: '#000000',
-                color: '#FFFFFF',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = '#000000';
-              }}
+              className="px-12 py-6 text-lg font-bold rounded-lg transition-all duration-300 bg-black text-white hover:bg-black/90"
             >
               Passez à l&apos;action !
             </button>
