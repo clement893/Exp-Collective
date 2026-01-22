@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-exp-black">
+    <div className="min-h-screen bg-white">
       
       {/* Hero Section - Grand 'e' jaune avec logo superposé */}
       <section className="relative min-h-screen flex items-center justify-center bg-exp-black overflow-hidden">
@@ -56,12 +56,22 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Section Services */}
+      {/* Section Services - Fond blanc */}
       <ServicesSection />
 
-      {/* Section Raison d'être - Fond noir */}
-      <section className="py-40 px-6 bg-exp-black">
-        <div className="max-w-4xl mx-auto text-center">
+      {/* Section Raison d'être - Fond noir avec image d'arrière-plan */}
+      <section className="relative py-40 px-6 bg-exp-black overflow-hidden">
+        {/* Image d'arrière-plan subtile */}
+        <div className="absolute inset-0 opacity-10">
+          <Image
+            src="/assets/e infusion/e infusion V3 copie.png"
+            alt=""
+            fill
+            className="object-cover"
+          />
+        </div>
+        
+        <div className="relative z-10 max-w-4xl mx-auto text-center">
           <h2 className="text-5xl font-thin text-white mb-12 leading-tight tracking-tight">
             Notre{' '}
             <span className="relative inline-block">
@@ -105,26 +115,26 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Section Témoignages */}
-      <section className="py-40 px-6 bg-exp-black">
+      {/* Section Témoignages - Fond blanc avec images */}
+      <section className="py-40 px-6 bg-white">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-5xl font-thin text-white mb-20 text-center leading-tight tracking-tight">
+          <h2 className="text-5xl font-thin text-exp-black mb-20 text-center leading-tight tracking-tight">
             Ce qu'ils disent de nous
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             {/* Témoignage 1 */}
-            <div className="space-y-6 bg-gray-900 p-8 rounded-xl">
+            <div className="space-y-6 bg-gray-50 p-8 rounded-xl shadow-lg">
               <div className="flex items-center gap-4">
                 <div className="w-20 h-20 rounded-full bg-gradient-to-br from-exp-yellow to-yellow-600 flex items-center justify-center text-exp-black text-3xl font-medium shadow-lg">
                   M
                 </div>
                 <div>
-                  <div className="font-medium text-white text-lg">Marie Tremblay</div>
-                  <div className="text-sm text-gray-400 font-light">Directrice Marketing</div>
+                  <div className="font-medium text-exp-black text-lg">Marie Tremblay</div>
+                  <div className="text-sm text-gray-600 font-light">Directrice Marketing</div>
                   <div className="text-xs text-exp-yellow font-medium">TechCorp</div>
                 </div>
               </div>
-              <p className="text-lg text-gray-300 leading-relaxed font-light">
+              <p className="text-lg text-gray-700 leading-relaxed font-light">
                 "Expérience Collective a transformé notre approche marketing. 
                 Leur capacité à comprendre nos enjeux et à proposer des solutions innovantes 
                 a dépassé toutes nos attentes."
@@ -132,18 +142,18 @@ export default function HomePage() {
             </div>
 
             {/* Témoignage 2 */}
-            <div className="space-y-6 bg-gray-900 p-8 rounded-xl">
+            <div className="space-y-6 bg-gray-50 p-8 rounded-xl shadow-lg">
               <div className="flex items-center gap-4">
-                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center text-white text-3xl font-medium shadow-lg">
+                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center text-white text-3xl font-medium shadow-lg">
                   J
                 </div>
                 <div>
-                  <div className="font-medium text-white text-lg">Jean Dubois</div>
-                  <div className="text-sm text-gray-400 font-light">PDG</div>
+                  <div className="font-medium text-exp-black text-lg">Jean Dubois</div>
+                  <div className="text-sm text-gray-600 font-light">PDG</div>
                   <div className="text-xs text-exp-yellow font-medium">Innovation Plus</div>
                 </div>
               </div>
-              <p className="text-lg text-gray-300 leading-relaxed font-light">
+              <p className="text-lg text-gray-700 leading-relaxed font-light">
                 "Une équipe à l'écoute, créative et stratégique. 
                 Ils ont su donner vie à notre vision et créer une identité de marque 
                 qui nous ressemble vraiment."
@@ -153,7 +163,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* CTA Final */}
+      {/* CTA Final - Fond noir */}
       <section className="py-32 px-6 bg-exp-black">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-5xl font-thin text-white mb-8 leading-tight tracking-tight">

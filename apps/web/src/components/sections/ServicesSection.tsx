@@ -53,11 +53,11 @@ export default function ServicesSection() {
   ];
 
   return (
-    <section id="services" className="py-32 px-6 bg-exp-black">
+    <section id="services" className="py-32 px-6 bg-white">
       <div className="max-w-7xl mx-auto">
         {/* Titre de section */}
         <div className="mb-16 text-center">
-          <h2 className="text-4xl lg:text-5xl font-light text-white leading-tight">
+          <h2 className="text-4xl lg:text-5xl font-light text-exp-black leading-tight">
             Des services personnalisés<br />à vos ambitions
           </h2>
         </div>
@@ -66,7 +66,7 @@ export default function ServicesSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {services.map((service) => (
             <Link key={service.id} href={service.href}>
-              <div className="group bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl hover:bg-gray-800 transition-all duration-500 transform hover:scale-105">
+              <div className="group bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl border border-gray-100 transition-all duration-500 transform hover:scale-105">
                 {/* Image */}
                 <div className="relative h-64 overflow-hidden">
                   <Image
@@ -78,7 +78,7 @@ export default function ServicesSection() {
                 </div>
                 
                 {/* Contenu */}
-                <div className="p-8">
+                <div className="p-8 bg-gradient-to-br from-white to-gray-50">
                   <div className="flex items-center gap-3 mb-4">
                     <span className="text-sm font-light text-gray-400">{service.number}</span>
                     {service.icon && (
@@ -86,19 +86,19 @@ export default function ServicesSection() {
                     )}
                   </div>
                   
-                  <h3 className="text-2xl font-light text-white mb-3">
+                  <h3 className="text-2xl font-light text-exp-black mb-3">
                     {service.title}
                   </h3>
                   
-                  <p className="text-base text-gray-300 leading-relaxed mb-3 font-light">
+                  <p className="text-base text-gray-700 leading-relaxed mb-3 font-light">
                     {service.description}
                   </p>
                   
-                  <p className="text-sm text-gray-400 leading-relaxed mb-6 font-light whitespace-pre-line">
+                  <p className="text-sm text-gray-600 leading-relaxed mb-6 font-light whitespace-pre-line">
                     {service.details}
                   </p>
                   
-                  <button className="bg-exp-yellow text-exp-black px-6 py-2 rounded-full text-sm font-medium hover:bg-white transition-all duration-300">
+                  <button className="bg-exp-yellow text-exp-black px-6 py-2 rounded-full text-sm font-medium hover:bg-exp-black hover:text-white transition-all duration-300">
                     En savoir plus
                   </button>
                 </div>
