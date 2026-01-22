@@ -15,7 +15,7 @@ import { Plus, Edit, Trash2, Menu as MenuIcon } from 'lucide-react';
 import { useToast } from '@/lib/toast';
 
 export default function MenusManager() {
-  const { toast } = useToast();
+  const { showToast, success, error: showError } = useToast();
   const [menus, setMenus] = useState<Menu[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -34,11 +34,7 @@ export default function MenusManager() {
       const errorMessage = 'Erreur lors du chargement des menus';
       setError(errorMessage);
       console.error(err);
-      toast({
-        title: 'Erreur',
-        description: errorMessage,
-        variant: 'error',
-      });
+      showError(errorMessage);
     } finally {
       setIsLoading(false);
     }
@@ -50,19 +46,11 @@ export default function MenusManager() {
     try {
       await menusAPI.delete(id);
       await loadMenus();
-      toast({
-        title: 'Succès',
-        description: 'Menu supprimé avec succès',
-        variant: 'success',
-      });
+      success('Menu supprimé avec succès');
     } catch (err) {
       const errorMessage = 'Erreur lors de la suppression';
       setError(errorMessage);
-      toast({
-        title: 'Erreur',
-        description: errorMessage,
-        variant: 'error',
-      });
+      showError(errorMessage);
     }
   };
 
@@ -102,10 +90,9 @@ export default function MenusManager() {
           variant="primary" 
           onClick={() => {
             // TODO: Open create modal
-            toast({
-              title: 'Fonctionnalité à venir',
-              description: 'La création de menu sera disponible prochainement',
-              variant: 'info',
+            showToast({
+              message: 'La création de menu sera disponible prochainement',
+              type: 'info',
             });
           }}
         >
@@ -137,10 +124,9 @@ export default function MenusManager() {
                     className="flex-1"
                     onClick={() => {
                       // TODO: Open edit modal
-                      toast({
-                        title: 'Fonctionnalité à venir',
-                        description: 'L\'édition de menu sera disponible prochainement',
-                        variant: 'info',
+                      showToast({
+                        message: 'L\'édition de menu sera disponible prochainement',
+                        type: 'info',
                       });
                     }}
                   >

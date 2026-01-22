@@ -15,7 +15,7 @@ import { Save } from 'lucide-react';
 import { useToast } from '@/lib/toast';
 
 export default function SEOManager() {
-  const { toast } = useToast();
+  const { showToast, success: showSuccessToast, error: showErrorToast } = useToast();
   const [settings, setSettings] = useState<SEOSettings>({});
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
@@ -36,11 +36,7 @@ export default function SEOManager() {
       const errorMessage = 'Erreur lors du chargement des paramètres SEO';
       setError(errorMessage);
       console.error(err);
-      toast({
-        title: 'Erreur',
-        description: errorMessage,
-        variant: 'error',
-      });
+      showErrorToast(errorMessage);
     } finally {
       setIsLoading(false);
     }
@@ -53,20 +49,12 @@ export default function SEOManager() {
       setSuccess(false);
       await seoAPI.updateSettings(settings);
       setSuccess(true);
-      toast({
-        title: 'Succès',
-        description: 'Paramètres SEO sauvegardés avec succès',
-        variant: 'success',
-      });
+      showSuccessToast('Paramètres SEO sauvegardés avec succès');
       setTimeout(() => setSuccess(false), 3000);
     } catch (err) {
       const errorMessage = 'Erreur lors de la sauvegarde';
       setError(errorMessage);
-      toast({
-        title: 'Erreur',
-        description: errorMessage,
-        variant: 'error',
-      });
+      showErrorToast(errorMessage);
     } finally {
       setIsSaving(false);
     }
