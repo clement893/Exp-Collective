@@ -75,8 +75,8 @@ export default function HomePage() {
           <h2 className="text-5xl font-thin text-white mb-12 leading-tight tracking-tight">
             Notre{' '}
             <span className="relative inline-block">
-              <span className="relative z-10">raison</span>
-              <span className="absolute inset-x-0 top-0 h-full bg-exp-yellow/40 -z-0"></span>
+              <span className="relative z-10 text-exp-black">raison</span>
+              <span className="absolute inset-x-0 top-0 h-full bg-exp-yellow -z-0"></span>
             </span>
             {' '}d'être
           </h2>
@@ -103,8 +103,8 @@ export default function HomePage() {
             <h2 className="text-6xl font-thin text-white mb-6 leading-tight tracking-tight">
               Les yeux, les oreilles{' '}
               <span className="relative inline-block">
-                <span className="relative z-10 text-white">grand ouverts</span>
-                <span className="absolute inset-x-0 top-0 h-full bg-exp-yellow/40 -z-0"></span>
+                <span className="relative z-10 text-exp-black">grand ouverts</span>
+                <span className="absolute inset-x-0 top-0 h-full bg-exp-yellow -z-0"></span>
               </span>
             </h2>
             <p className="text-xl text-white/90 font-light max-w-2xl mx-auto">
@@ -169,8 +169,8 @@ export default function HomePage() {
           <h2 className="text-5xl font-thin text-white mb-8 leading-tight tracking-tight">
             Prêt à transformer votre{' '}
             <span className="relative inline-block">
-              <span className="relative z-10">vision</span>
-              <span className="absolute inset-x-0 top-0 h-full bg-exp-yellow/40 -z-0"></span>
+              <span className="relative z-10 text-exp-black">vision</span>
+              <span className="absolute inset-x-0 top-0 h-full bg-exp-yellow -z-0"></span>
             </span>
             {' '}en réalité ?
           </h2>
