@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from '@/i18n/routing';
 import Image from 'next/image';
+import { Palette, TrendingUp, BarChart3, FileText } from 'lucide-react';
 
 export default function ServicesSection() {
   const [activeService, setActiveService] = useState<number>(1);
@@ -20,6 +21,7 @@ export default function ServicesSection() {
       href: '/services/image-de-marque',
       image: '/assets/photos/FREDERICXAnnieClaudePhotographie-22.jpg',
       alt: 'Image de marque et marketing',
+      icon: Palette,
     },
     {
       id: 'service-2',
@@ -30,6 +32,7 @@ export default function ServicesSection() {
       href: '/services/strategie-cmo',
       image: '/assets/photos/FREDERICXAnnieClaudePhotographie-22.jpg',
       alt: 'Accompagnement stratégique',
+      icon: TrendingUp,
     },
     {
       id: 'service-3',
@@ -40,6 +43,7 @@ export default function ServicesSection() {
       href: '/services/experience-client',
       image: '/assets/photos/FREDERICXAnnieClaudePhotographie-22.jpg',
       alt: 'Expérience client',
+      icon: BarChart3,
     },
     {
       id: 'service-4',
@@ -50,16 +54,7 @@ export default function ServicesSection() {
       href: '/services/mesure-performance',
       image: '/assets/photos/FREDERICXAnnieClaudePhotographie-22.jpg',
       alt: 'Mesure de performance',
-    },
-    {
-      id: 'service-5',
-      number: '05',
-      title: 'Appels d\'offres et soumissions',
-      description: 'Gagner les contrats stratégiques',
-      details: 'Rédaction et stratégie\nMaximiser vos chances de succès',
-      href: '/services/appels-offres',
-      image: '/assets/photos/FREDERICXAnnieClaudePhotographie-22.jpg',
-      alt: 'Appels d\'offres',
+      icon: FileText,
     },
   ];
 
@@ -165,7 +160,8 @@ export default function ServicesSection() {
   }, []);
 
   // Calculer la hauteur de la section (basée sur le nombre de cartes)
-  const sectionHeight = services.length * 100; // 100vh par carte
+  // Réduit à 60vh par carte pour un scroll plus rapide
+  const sectionHeight = services.length * 60; // 60vh par carte
 
   return (
     <section 
@@ -256,8 +252,13 @@ export default function ServicesSection() {
                           </div>
                           {/* Contenu */}
                           <div className="p-6 flex flex-col justify-center">
-                            <div className="flex items-center gap-2 mb-3">
-                              <span className="text-xs font-light text-gray-400">{service.number}</span>
+                            <div className="flex items-center gap-3 mb-3">
+                              <div className="flex items-center gap-2">
+                                <span className="text-xs font-light text-gray-400">{service.number}</span>
+                                {service.icon && (
+                                  <service.icon className="w-5 h-5 text-exp-yellow" />
+                                )}
+                              </div>
                               <h3 className="text-xl lg:text-2xl font-light text-exp-black">
                                 {service.title}
                               </h3>
