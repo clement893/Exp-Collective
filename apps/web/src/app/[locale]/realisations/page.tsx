@@ -74,18 +74,14 @@ const projects = [
 ];
 
 export default function RealisationsPage() {
-  const [searchTerm, setSearchTerm] = useState('');
   const [selectedService, setSelectedService] = useState('all');
   const [selectedYear, setSelectedYear] = useState('all');
 
   const filteredProjects = projects.filter(project => {
-    const matchesSearch = project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         project.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         project.client.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesService = selectedService === 'all' || project.service === selectedService;
     const matchesYear = selectedYear === 'all' || project.date === selectedYear;
     
-    return matchesSearch && matchesService && matchesYear;
+    return matchesService && matchesYear;
   });
 
   return (
@@ -112,22 +108,7 @@ export default function RealisationsPage() {
       <section className="py-12 bg-gray-50 border-b border-gray-200">
         <div className="container mx-auto px-6">
           <div className="max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {/* Search */}
-              <div>
-                <label htmlFor="search" className="block text-sm font-medium text-gray-700 mb-2">
-                  Rechercher
-                </label>
-                <input
-                  id="search"
-                  type="text"
-                  placeholder="Mot-clé, client..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-exp-yellow focus:border-transparent transition-all"
-                />
-              </div>
-
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Service Filter */}
               <div>
                 <label htmlFor="service" className="block text-sm font-medium text-gray-700 mb-2">
@@ -232,9 +213,11 @@ export default function RealisationsPage() {
                     </div>
 
                     {/* CTA Button */}
-                    <button className="w-full px-6 py-3 bg-exp-black text-exp-yellow font-bold rounded-lg hover:bg-exp-yellow hover:text-exp-black transition-all duration-300 group-hover:shadow-lg">
-                      Voir le détail →
-                    </button>
+                    <Link href={`/realisations/${project.id}`}>
+                      <button className="w-full px-6 py-3 bg-exp-black text-exp-yellow font-bold rounded-lg hover:bg-exp-yellow hover:text-exp-black transition-all duration-300 group-hover:shadow-lg">
+                        Voir le détail →
+                      </button>
+                    </Link>
                   </div>
                 </div>
               ))}
