@@ -66,7 +66,7 @@ function applySearch<T extends Record<string, unknown>>(
   const term = searchTerm.toLowerCase();
   return data.filter((row) =>
     columns.some((col) => {
-      const value = row[col.key];
+      const value = row[col.key as keyof T];
       return value?.toString().toLowerCase().includes(term);
     })
   );
@@ -91,7 +91,7 @@ function applyFilters<T extends Record<string, unknown>>(
     if (!column) return;
     
     result = result.filter((row) => {
-      const rowValue = row[key];
+      const rowValue = row[key as keyof T];
       
       if (column.filterType === 'select') {
         return rowValue === value;
@@ -117,8 +117,8 @@ function applySorting<T extends Record<string, unknown>>(
   sortDirection: 'asc' | 'desc'
 ): T[] {
   return [...data].sort((a, b) => {
-    const aValue = a[sortColumn];
-    const bValue = b[sortColumn];
+    const aValue = a[sortColumn as keyof T];
+    const bValue = b[sortColumn as keyof T];
     
     // Handle null/undefined values
     if (aValue == null && bValue == null) return 0;

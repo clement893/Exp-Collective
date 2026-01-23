@@ -198,7 +198,7 @@ function DataTable<T extends Record<string, unknown>>({
                   <TableRow key={index} onClick={onRowClick ? () => onRowClick(row) : undefined}>
                     {columns.map(column => (
                       <TableCell key={column.key}>
-                        {column.render ? column.render(row[column.key], row) : row[column.key]?.toString() || '-'}
+                        {column.render ? column.render(row[column.key as keyof T], row) : (row[column.key as keyof T] as unknown)?.toString() || '-'}
                       </TableCell>
                     ))}
                     {actions && (
