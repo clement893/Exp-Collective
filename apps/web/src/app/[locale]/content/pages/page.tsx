@@ -127,9 +127,23 @@ export default function PagesManagementPage() {
   if (isLoading) {
     return (
       <ProtectedRoute>
-        <PageContainer>
-          <div className="flex items-center justify-center min-h-[400px]">
-            <Loading />
+        <PageContainer className="max-w-7xl">
+          <PageHeader
+            title={t('title') || 'Gestion des Pages'}
+            description={t('description') || 'Créez et gérez vos pages de contenu'}
+            breadcrumbs={[
+              { label: t('breadcrumbs.dashboard') || 'Tableau de bord', href: '/dashboard' },
+              { label: t('breadcrumbs.content') || 'Contenu', href: '/content' },
+              { label: t('breadcrumbs.pages') || 'Pages' },
+            ]}
+          />
+          <div className="mt-8">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+              {[1, 2, 3, 4].map((i) => (
+                <div key={i} className="h-24 bg-muted animate-pulse rounded-lg" />
+              ))}
+            </div>
+            <div className="h-96 bg-muted animate-pulse rounded-lg" />
           </div>
         </PageContainer>
       </ProtectedRoute>
@@ -138,13 +152,13 @@ export default function PagesManagementPage() {
 
   return (
     <ProtectedRoute>
-      <PageContainer>
+      <PageContainer className="max-w-7xl">
         <PageHeader
-          title={t('title') || 'Pages Management'}
-          description={t('description') || 'Create and manage your content pages'}
+          title={t('title') || 'Gestion des Pages'}
+          description={t('description') || 'Créez et gérez vos pages de contenu'}
           breadcrumbs={[
-            { label: t('breadcrumbs.dashboard') || 'Dashboard', href: '/dashboard' },
-            { label: t('breadcrumbs.content') || 'Content', href: '/content' },
+            { label: t('breadcrumbs.dashboard') || 'Tableau de bord', href: '/dashboard' },
+            { label: t('breadcrumbs.content') || 'Contenu', href: '/content' },
             { label: t('breadcrumbs.pages') || 'Pages' },
           ]}
         />
