@@ -11,6 +11,7 @@ import { useState } from 'react';
 import { logger } from '@/lib/logger';
 import { Card, DataTable, Button, Modal, Input, Textarea, Badge, Alert } from '@/components/ui';
 import type { Column } from '@/components/ui/DataTable';
+import type { ColorVariant } from '@/components/ui/types';
 import { Plus, Edit, Trash2, Eye, FileText, Search, Calendar, Globe, Archive, FileEdit } from 'lucide-react';
 import { Link } from '@/i18n/routing';
 
@@ -92,7 +93,7 @@ export default function PagesManager({
       render: (_value: unknown, page: Page) => {
         const statusConfig: Record<
           Page['status'],
-          { label: string; variant: 'default' | 'success' | 'warning' | 'danger'; color: string }
+          { label: string; variant: ColorVariant; color: string }
         > = {
           draft: {
             label: 'Brouillon',
