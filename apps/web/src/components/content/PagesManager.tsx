@@ -8,7 +8,6 @@
 'use client';
 
 import { useState } from 'react';
-import { logger } from '@/lib/logger';
 import { Card, DataTable, Button, Modal, Input, Textarea, Badge, Alert } from '@/components/ui';
 import type { Column } from '@/components/ui/DataTable';
 import type { ColorVariant } from '@/components/ui/types';
