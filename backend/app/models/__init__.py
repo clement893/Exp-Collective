@@ -34,6 +34,9 @@ from app.models.company import Company
 from app.models.booking import (
     Booking, Attendee, BookingPayment, BookingStatus, PaymentStatus, TicketType
 )
+from app.models.masterclass import (
+    CityEvent, MasterclassEvent, City, Venue, EventStatus
+)
 from app.core.security_audit import SecurityAuditLog
 
 __all__ = [
@@ -91,6 +94,11 @@ __all__ = [
     "BookingStatus",
     "PaymentStatus",
     "TicketType",
+    "CityEvent",
+    "MasterclassEvent",
+    "City",
+    "Venue",
+    "EventStatus",
     "SecurityAuditLog",
 ]
 

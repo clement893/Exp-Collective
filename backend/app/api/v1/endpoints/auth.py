@@ -5,6 +5,8 @@ Authentication Endpoints
 from datetime import datetime, timedelta, timezone
 from typing import Annotated
 from urllib.parse import urlencode, urlparse
+import base64
+import json
 
 import httpx
 import bcrypt

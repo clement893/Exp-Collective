@@ -4,6 +4,7 @@ SQLAlchemy models for masterclass bookings
 """
 
 from datetime import datetime
+from typing import TYPE_CHECKING
 from sqlalchemy import (
     Column, DateTime, Integer, String, Text, ForeignKey, Numeric,
     Enum as SQLEnum, Boolean, func, Index
@@ -12,6 +13,9 @@ from sqlalchemy.orm import relationship
 import enum
 
 from app.core.database import Base
+
+if TYPE_CHECKING:
+    from app.models.masterclass import CityEvent
 
 
 class BookingStatus(str, enum.Enum):
