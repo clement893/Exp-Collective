@@ -30,6 +30,7 @@ import {
   Building2,
   MessageSquare,
   GraduationCap,
+  FileText,
 } from 'lucide-react';
 import { clsx } from 'clsx';
 
@@ -59,6 +60,11 @@ const createSidebarItems = (isAdmin: boolean) => [
     label: 'Projets',
     href: '/dashboard/projects',
     icon: <FolderKanban className="w-5 h-5" />,
+  },
+  {
+    label: 'CMS',
+    href: '/dashboard',
+    icon: <FileText className="w-5 h-5" />,
   },
   {
     label: 'Réseau',

@@ -21,7 +21,8 @@ import {
   Shield,
   Home,
   GraduationCap,
-  MapPin
+  MapPin,
+  FileText
 } from 'lucide-react';
 import { clsx } from 'clsx';
 
@@ -54,6 +55,11 @@ function DashboardLayoutContent({
       label: 'Projets',
       href: '/dashboard/projects',
       icon: <FolderKanban className="w-5 h-5" />,
+    },
+    {
+      label: 'CMS',
+      href: '/dashboard',
+      icon: <FileText className="w-5 h-5" />,
     },
     {
       label: 'Super Admin',

@@ -45,18 +45,24 @@ export default function CMSDashboard({ className }: CMSDashboardProps) {
   const [recentActivity, setRecentActivity] = useState<ActivityItem[]>([]);
 
   useEffect(() => {
+    // Debug: vérifier que le composant est bien monté
+    console.log('CMSDashboard mounted, loading data...');
     loadData();
     // Rafraîchir les données toutes les 30 secondes
     const interval = setInterval(() => {
       loadData();
     }, 30000);
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+      console.log('CMSDashboard unmounted');
+    };
   }, []);
 
   const loadData = async () => {
     try {
       setIsLoading(true);
       setError(null);
+      console.log('Loading CMS data...');
       
       // Charger les statistiques et l'activité en parallèle
       const [statsData, activityData] = await Promise.all([
@@ -79,13 +85,27 @@ export default function CMSDashboard({ className }: CMSDashboardProps) {
         }),
       ]);
 
+      console.log('CMS data loaded:', { stats: statsData, activity: activityData.length });
       setStats(statsData);
       setRecentActivity(activityData);
     } catch (err) {
       console.error('Failed to load CMS data:', err);
-      setError('Erreur lors du chargement des données. Veuillez réessayer.');
+      const errorMessage = err instanceof Error ? err.message : 'Erreur lors du chargement des données. Veuillez réessayer.';
+      setError(errorMessage);
+      // S'assurer que les valeurs par défaut sont définies même en cas d'erreur
+      setStats({
+        totalPages: 0,
+        totalPosts: 0,
+        totalMedia: 0,
+        totalCategories: 0,
+        totalTags: 0,
+        scheduledContent: 0,
+        pendingReview: 0,
+      });
+      setRecentActivity([]);
     } finally {
       setIsLoading(false);
+      console.log('CMS data loading completed, isLoading:', false);
     }
   };
 
@@ -219,6 +239,30 @@ export default function CMSDashboard({ className }: CMSDashboardProps) {
     }
   };
 
+  // Timeout pour éviter un chargement infini - afficher le contenu même si l'API échoue
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (isLoading) {
+        console.warn('CMS Dashboard loading timeout, showing content anyway');
+        setIsLoading(false);
+        // S'assurer que les stats sont définies même après timeout
+        if (stats.totalPages === 0 && stats.totalPosts === 0 && stats.totalMedia === 0) {
+          setStats({
+            totalPages: 0,
+            totalPosts: 0,
+            totalMedia: 0,
+            totalCategories: 0,
+            totalTags: 0,
+            scheduledContent: 0,
+            pendingReview: 0,
+          });
+        }
+      }
+    }, 5000); // 5 secondes max pour un meilleur UX
+
+    return () => clearTimeout(timeout);
+  }, [isLoading, stats]);
+
   if (isLoading) {
     return (
       <div className={className}>
@@ -232,6 +276,9 @@ export default function CMSDashboard({ className }: CMSDashboardProps) {
       </div>
     );
   }
+
+  // Debug: vérifier que le composant est rendu
+  console.log('CMSDashboard render:', { isLoading, error, stats });
 
   return (
     <div className={className}>
