@@ -4,6 +4,7 @@ Pydantic v2 models for authentication
 """
 
 from typing import Optional
+from uuid import UUID
 
 from pydantic import BaseModel, EmailStr, Field, field_validator
 
@@ -144,7 +145,7 @@ class UserCreate(BaseModel):
 
 class UserResponse(BaseModel):
     """User response schema"""
-    id: int
+    id: UUID
     email: str
     first_name: Optional[str] = None
     last_name: Optional[str] = None
@@ -176,7 +177,7 @@ class TokenWithUser(BaseModel):
                 "token_type": "bearer",
                 "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
                 "user": {
-                    "id": 1,
+                    "id": "550e8400-e29b-41d4-a716-446655440000",
                     "email": "user@example.com",
                     "first_name": "John",
                     "last_name": "Doe",

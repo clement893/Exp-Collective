@@ -5,6 +5,7 @@ Pydantic v2 models for user management
 
 from datetime import datetime
 from typing import Optional
+from uuid import UUID
 
 from pydantic import BaseModel, EmailStr, Field, ConfigDict, field_validator
 import re
@@ -172,7 +173,7 @@ class UserUpdate(BaseModel):
 
 class User(UserBase):
     """User response schema"""
-    id: int
+    id: UUID
     created_at: datetime
     updated_at: datetime
 
