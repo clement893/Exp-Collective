@@ -13,7 +13,7 @@ import { useAuthStore } from '@/lib/store';
 import { PagesManager } from '@/components/content';
 import type { Page } from '@/components/content';
 import { PageHeader, PageContainer } from '@/components/layout';
-import { Loading, Alert } from '@/components/ui';
+import { Alert } from '@/components/ui';
 import ProtectedRoute from '@/components/auth/ProtectedRoute';
 import { logger } from '@/lib/logger';
 import { pagesAPI } from '@/lib/api/pages';
