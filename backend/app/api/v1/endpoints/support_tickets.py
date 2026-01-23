@@ -75,7 +75,7 @@ async def get_or_create_user_by_email(email: str, db: AsyncSession) -> User:
     
     guest_user = User(
         email=email.lower(),
-        hashed_password=get_password_hash(random_password),
+        password_hash=get_password_hash(random_password),
         first_name=email_prefix,  # Use email prefix as first name
         is_active=False,  # Guest users are inactive (can't login)
     )

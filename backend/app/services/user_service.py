@@ -44,7 +44,8 @@ class UserService:
         # Create user
         user = User(
             email=user_data.email,
-            name=user_data.name,
+            first_name=user_data.first_name,
+            last_name=user_data.last_name,
             password_hash=hash_password(user_data.password),
         )
 
@@ -117,9 +118,15 @@ class UserService:
             return user
         
         # Create new OAuth user
+        # Split name into first_name and last_name
+        name_parts = name.split(' ', 1) if name else ['', '']
+        first_name = name_parts[0] if len(name_parts) > 0 else ''
+        last_name = name_parts[1] if len(name_parts) > 1 else ''
+        
         user = User(
             email=email,
-            name=name,
+            first_name=first_name,
+            last_name=last_name,
             password_hash=None,  # OAuth users don't have password
             provider=provider,
             provider_id=provider_id,

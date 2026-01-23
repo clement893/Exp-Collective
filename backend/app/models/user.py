@@ -23,11 +23,15 @@ class User(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     email = Column(String, unique=True, index=True, nullable=False)
-    hashed_password = Column(String, nullable=False)
+    password_hash = Column(String, nullable=True)  # Nullable for OAuth users
     first_name = Column(String(100), nullable=True, index=True)  # For search
     last_name = Column(String(100), nullable=True, index=True)  # For search
     avatar = Column(String(500), nullable=True)  # Avatar URL
     is_active = Column(Boolean, default=True, nullable=False, index=True)
+    # OAuth fields
+    provider = Column(String(50), nullable=True)  # OAuth provider: 'google', 'github', etc.
+    provider_id = Column(String(255), nullable=True, index=True)  # OAuth provider user ID
+    is_verified = Column(Boolean, default=False, nullable=False)  # Email verification status
     # DEPRECATED: theme_preference column exists in DB but is deprecated
     # Theme management is now handled globally via the theme system
     # Made nullable=True to handle cases where migration hasn't been run yet
@@ -71,6 +75,12 @@ class User(Base):
                     if hasattr(role, 'is_active') and role.is_active:
                         return True
         return False
+    
+    @property
+    def name(self) -> str:
+        """Get full name from first_name and last_name"""
+        parts = [self.first_name, self.last_name]
+        return ' '.join(filter(None, parts)) or self.email.split('@')[0]
     
     @property
     def is_admin(self) -> bool:

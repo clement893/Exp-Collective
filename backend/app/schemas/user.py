@@ -181,7 +181,7 @@ class User(UserBase):
 
 class UserInDB(User):
     """User in database schema"""
-    hashed_password: str
+    password_hash: str
 
 
 # Alias for API responses

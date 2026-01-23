@@ -228,7 +228,7 @@ async def register(
     hashed_password = get_password_hash(user_data.password)
     new_user = User(
         email=user_data.email,
-        hashed_password=hashed_password,
+        password_hash=hashed_password,
         first_name=user_data.first_name,
         last_name=user_data.last_name,
     )
@@ -325,7 +325,7 @@ async def login(
     client_ip = request.client.host if request.client else None
     user_agent = request.headers.get("user-agent")
 
-    if not user or not verify_password(password, user.hashed_password):
+    if not user or not user.password_hash or not verify_password(password, user.password_hash):
         # Log failed login attempt
         # Use separate session (db=None) to ensure log is saved even if exception is raised
         logger.info(f"Login failure detected for email: {email}")
@@ -1150,7 +1150,7 @@ async def google_oauth_callback(
                 
                 user = User(
                     email=email,
-                    hashed_password=hashed_password,
+                    password_hash=hashed_password,
                     first_name=first_name,
                     last_name=last_name,
                     is_active=True,
