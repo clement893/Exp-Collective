@@ -343,6 +343,24 @@
         "apiKeys": "Clés API"
       }
     }
+  },
+  "content": {
+    "pages": {
+      "title": "Gestion des Pages",
+      "description": "Créer et gérer vos pages de contenu",
+      "breadcrumbs": {
+        "dashboard": "Tableau de bord",
+        "content": "Contenu",
+        "pages": "Pages"
+      },
+      "errors": {
+        "loadFailed": "Échec du chargement des pages. Veuillez réessayer."
+      }
+    }
+  },
+  "dashboard": {
+    "title": "Bienvenue",
+    "description": "Centre de gestion du contenu et du site"
   }
 }
 
