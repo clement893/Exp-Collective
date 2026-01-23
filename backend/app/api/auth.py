@@ -135,17 +135,23 @@ async def refresh_token(
             detail="Invalid token type",
         )
     
-    # Get user ID from token
-    user_id = payload.get("sub")
-    if not user_id:
+    # Get user email from token (refresh tokens use email as 'sub')
+    # Check for both 'sub' (email) and 'user_id' (for backward compatibility)
+    user_email = payload.get("sub")
+    user_id = payload.get("user_id")
+    
+    if not user_email and not user_id:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Invalid token payload",
         )
     
-    # Fetch user from database
+    # Fetch user from database by email (preferred) or by ID
     service = UserService(db)
-    user = await service.get_user_by_id(user_id)
+    if user_email:
+        user = await service.get_user_by_email(user_email)
+    else:
+        user = await service.get_user_by_id(user_id)
     
     if not user or not user.is_active:
         raise HTTPException(

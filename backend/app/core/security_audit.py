@@ -6,7 +6,9 @@ Comprehensive security event logging for audit trails
 from datetime import datetime
 from typing import Optional, Dict, Any
 from enum import Enum
+from uuid import UUID
 from sqlalchemy import Column, DateTime, Integer, String, Text, JSON, Index, func
+from sqlalchemy.dialects.postgresql import UUID as PostgresUUID
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.database import Base, AsyncSessionLocal
@@ -71,7 +73,7 @@ class SecurityAuditLog(Base):
     severity = Column(String(20), default="info", nullable=False)  # info, warning, error, critical
     
     # User context
-    user_id = Column(Integer, nullable=True, index=True)
+    user_id = Column(PostgresUUID(as_uuid=True), nullable=True, index=True)
     user_email = Column(String(255), nullable=True)  # Denormalized for audit trail
     api_key_id = Column(Integer, nullable=True)  # If event was via API key
     
@@ -100,7 +102,7 @@ class SecurityAuditLogger:
         db: Optional[AsyncSession] = None,
         event_type: SecurityEventType = None,
         description: str = None,
-        user_id: Optional[int] = None,
+        user_id: Optional[UUID] = None,
         user_email: Optional[str] = None,
         api_key_id: Optional[int] = None,
         ip_address: Optional[str] = None,
@@ -216,7 +218,7 @@ class SecurityAuditLogger:
         event_type: SecurityEventType,
         api_key_id: int,
         description: str,
-        user_id: Optional[int] = None,
+        user_id: Optional[UUID] = None,
         user_email: Optional[str] = None,
         ip_address: Optional[str] = None,
         metadata: Optional[Dict[str, Any]] = None,
@@ -240,7 +242,7 @@ class SecurityAuditLogger:
         db: Optional[AsyncSession] = None,
         event_type: SecurityEventType = None,
         description: str = None,
-        user_id: Optional[int] = None,
+        user_id: Optional[UUID] = None,
         user_email: Optional[str] = None,
         ip_address: Optional[str] = None,
         user_agent: Optional[str] = None,
@@ -270,7 +272,7 @@ class SecurityAuditLogger:
     async def log_suspicious_activity(
         db: AsyncSession,
         description: str,
-        user_id: Optional[int] = None,
+        user_id: Optional[UUID] = None,
         user_email: Optional[str] = None,
         ip_address: Optional[str] = None,
         metadata: Optional[Dict[str, Any]] = None,

@@ -18,14 +18,18 @@ class UserService:
         """Initialize service."""
         self.db = db
 
-    async def get_user_by_id(self, user_id: UUID | str) -> Optional[User]:
+    async def get_user_by_id(self, user_id: UUID | str | int) -> Optional[User]:
         """Get user by ID."""
-        # Convert string to UUID if needed
+        # Convert string/int to UUID if needed
         if isinstance(user_id, str):
             try:
                 user_id = UUID(user_id)
             except ValueError:
                 return None
+        elif isinstance(user_id, int):
+            # If it's an int, it might be from an old system - try to convert
+            # But UUIDs can't be created from integers directly, so return None
+            return None
         result = await self.db.execute(select(User).where(User.id == user_id))
         return result.scalar_one_or_none()
 
@@ -55,7 +59,7 @@ class UserService:
 
         return user
 
-    async def update_user(self, user_id: UUID, user_data: UserUpdate) -> Optional[User]:
+    async def update_user(self, user_id: UUID | str, user_data: UserUpdate) -> Optional[User]:
         """Update user."""
         user = await self.get_user_by_id(user_id)
         if not user:
@@ -70,7 +74,7 @@ class UserService:
 
         return user
 
-    async def delete_user(self, user_id: UUID) -> bool:
+    async def delete_user(self, user_id: UUID | str) -> bool:
         """Delete user."""
         user = await self.get_user_by_id(user_id)
         if not user:
