@@ -191,26 +191,6 @@ export default function PagesManager({
     setIsCreateModalOpen(true);
   };
 
-  const handleEdit = (page: Page) => {
-    setFormData({
-      title: page.title,
-      slug: page.slug,
-      content: page.content,
-      status: page.status,
-    });
-    setSelectedPage(page);
-    setError(null);
-    setIsEditModalOpen(true);
-  };
-
-  const handleView = (page: Page) => {
-    if (page.status === 'published') {
-      window.open(`/pages/${page.slug}`, '_blank');
-    } else {
-      logger.log('View page:', page);
-    }
-  };
-
   const handleDelete = async (id: number) => {
     if (!confirm('Êtes-vous sûr de vouloir supprimer cette page ? Cette action est irréversible.')) {
       return;
