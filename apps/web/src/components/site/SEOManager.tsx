@@ -15,7 +15,7 @@ import { Save } from 'lucide-react';
 import { useToast } from '@/lib/toast';
 
 export default function SEOManager() {
-  const { showToast, success: showSuccessToast, error: showErrorToast } = useToast();
+  const { success: showSuccessToast, error: showErrorToast } = useToast();
   const [settings, setSettings] = useState<SEOSettings>({});
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
