@@ -94,6 +94,7 @@ def setup_cors(app: FastAPI) -> None:
         "X-Bootstrap-Key",  # For bootstrap superadmin endpoint
         "Cache-Control",  # For cache control headers
         "Pragma",  # For pragma headers (browser cache control)
+        "Expires",  # For expires header (browser cache control)
     ]
     
     # Exposed headers - minimal set
