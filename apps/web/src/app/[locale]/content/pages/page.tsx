@@ -35,15 +35,20 @@ export default function PagesManagementPage() {
     try {
       setIsLoading(true);
       setError(null);
+      logger.debug('Loading pages from API...');
       const loadedPages = await pagesAPI.list();
+      logger.debug('Pages loaded successfully', { count: loadedPages.length });
       // Convert API Page type to component Page type (they're compatible but TypeScript sees them as different)
       setPages(loadedPages as Page[]);
       setIsLoading(false);
     } catch (error) {
       logger.error('Failed to load pages', error instanceof Error ? error : new Error(String(error)));
       const appError = handleApiError(error);
-      setError(appError.message || t('errors.loadFailed') || 'Failed to load pages. Please try again.');
+      const errorMessage = appError.message || t('errors.loadFailed') || 'Failed to load pages. Please try again.';
+      setError(errorMessage);
       setIsLoading(false);
+      // Set empty array on error so the UI can still render
+      setPages([]);
     } finally {
       loadingRef.current = false;
     }
@@ -78,13 +83,19 @@ export default function PagesManagementPage() {
 
   const handlePageUpdate = async (id: number, pageData: Partial<Page>) => {
     try {
-      await pagesAPI.update(id, {
+      // Find the page to get its slug
+      const pageToUpdate = pages.find(p => p.id === id);
+      if (!pageToUpdate) {
+        throw new Error('Page not found');
+      }
+      
+      await pagesAPI.update(pageToUpdate.slug, {
         slug: pageData.slug ? String(pageData.slug) : undefined,
         title: pageData.title ? String(pageData.title) : undefined,
         content: pageData.content ? String(pageData.content) : undefined,
         status: pageData.status as 'draft' | 'published' | 'archived' | undefined,
       });
-      logger.info('Page updated successfully', { id, pageData });
+      logger.info('Page updated successfully', { id, slug: pageToUpdate.slug, pageData });
       await loadPages();
     } catch (error) {
       logger.error('Failed to update page', error instanceof Error ? error : new Error(String(error)));
@@ -96,8 +107,14 @@ export default function PagesManagementPage() {
 
   const handlePageDelete = async (id: number) => {
     try {
-      await pagesAPI.delete(id);
-      logger.info('Page deleted successfully', { id });
+      // Find the page to get its slug
+      const pageToDelete = pages.find(p => p.id === id);
+      if (!pageToDelete) {
+        throw new Error('Page not found');
+      }
+      
+      await pagesAPI.delete(pageToDelete.slug);
+      logger.info('Page deleted successfully', { id, slug: pageToDelete.slug });
       await loadPages();
     } catch (error) {
       logger.error('Failed to delete page', error instanceof Error ? error : new Error(String(error)));

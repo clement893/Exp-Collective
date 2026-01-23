@@ -70,7 +70,7 @@ export default function PageEditPage() {
       
       // Save sections (for now, we'll store them as JSON in content or a separate field)
       // Note: This is a simplified approach - in production, you might want to store sections separately
-      await pagesAPI.update(page.id, {
+      await pagesAPI.update(page.slug, {
         content: JSON.stringify(updatedSections), // Store sections as JSON for now
       });
       

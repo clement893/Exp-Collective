@@ -44,7 +44,7 @@ export default function AdminPagesContent() {
 
     try {
       setError(null);
-      await pagesAPI.delete(selectedPage.id);
+      await pagesAPI.delete(selectedPage.slug);
       logger.info('[AdminPages] Page deleted', { id: selectedPage.id, slug: selectedPage.slug });
       setPages(pages.filter((p) => p.id !== selectedPage.id));
       setDeleteModalOpen(false);

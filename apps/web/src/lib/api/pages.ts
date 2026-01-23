@@ -85,10 +85,10 @@ export const pagesAPI = {
   },
 
   /**
-   * Update an existing page
+   * Update an existing page by slug
    */
-  update: async (id: number, data: PageUpdate): Promise<Page> => {
-    const response = await apiClient.put<Page>(`/v1/pages/${id}`, data);
+  update: async (slug: string, data: PageUpdate): Promise<Page> => {
+    const response = await apiClient.put<Page>(`/v1/pages/${slug}`, data);
     const result = extractApiData<Page>(response);
     if (!result) {
       throw new Error('Failed to update page: no data returned');
@@ -97,10 +97,10 @@ export const pagesAPI = {
   },
 
   /**
-   * Delete a page by ID
+   * Delete a page by slug
    */
-  delete: async (id: number): Promise<void> => {
-    await apiClient.delete(`/v1/pages/id/${id}`);
+  delete: async (slug: string): Promise<void> => {
+    await apiClient.delete(`/v1/pages/${slug}`);
   },
 };
 
